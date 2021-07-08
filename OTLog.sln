@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31410.357
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OTLog", "OTLog\OTLog.csproj", "{762A1531-333F-4A18-815E-74917CD3C2BD}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SRC", "SRC", "{FEBA107D-F276-4C8A-B0E7-646BA5EC9918}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OTLog", "SRC\OTLog\OTLog.csproj", "{762A1531-333F-4A18-815E-74917CD3C2BD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,6 +20,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{762A1531-333F-4A18-815E-74917CD3C2BD} = {FEBA107D-F276-4C8A-B0E7-646BA5EC9918}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {40761D62-5117-4AB2-BAE4-6A5245801F52}
