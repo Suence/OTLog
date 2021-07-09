@@ -114,7 +114,9 @@
     <Resource Include="Assets\Icons\abkhk-yw045-003.ico" />
     <Resource Include="Assets\Icons\timer.ico" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Assets\Videos\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\Images\taskbarIcon.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -126,9 +128,6 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Assets\Images\work_overtime_4x.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Assets\Videos\ToastInLineVideo.mp4">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Resource Include="timer32.ico" />
