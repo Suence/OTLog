@@ -8,7 +8,7 @@
         <ContentControl prism:RegionManager.RegionName="ContentRegion" />
         <Button HorizontalAlignment="Center"
                 VerticalAlignment="Center"
-                Content="Show Toast"
+                Content="Show Toast Notification"
                 Padding="20, 10"
                 Click="Button_Click" />
     </Grid>
