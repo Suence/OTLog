@@ -10,17 +10,16 @@ namespace OTLog.ViewModels
         public ICommand ShowWindowCommand { get; }
         private void ShowWindow()
         {
-            Application.Current.MainWindow = new MainWindow();
             Application.Current.MainWindow.Show();
         }
-        private bool CanShowWindow() => Application.Current.MainWindow == null;
+        private bool CanShowWindow() => !Application.Current.MainWindow.IsVisible;
 
         public ICommand HideWindowCommand { get; }
         private void HideWindow()
         {
-            Application.Current.MainWindow.Close();
+            Application.Current.MainWindow.Hide();
         }
-        private bool CanHideWindow() => Application.Current.MainWindow != null;
+        private bool CanHideWindow() => Application.Current.MainWindow.IsVisible;
 
         public ICommand ExitApplicationCommand { get; }
         private void ExitApplication() => Application.Current.Shutdown();

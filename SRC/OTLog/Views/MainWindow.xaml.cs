@@ -1,6 +1,7 @@
 ﻿using Microsoft.Toolkit.Uwp.Notifications;
 using System;
 using System.IO;
+using System.Threading.Tasks;
 using System.Windows;
 using Windows.Foundation.Collections;
 
@@ -34,9 +35,7 @@ namespace OTLog.Views
             };
         }
 
-
-
-        private void Button_Click(object sender, RoutedEventArgs e)
+        public static void ShowToast()
         {
             //ToastNotificationManagerCompat.History.Clear();
             //var inlineUri = new Uri("E:\\Personal\\Windows10Notification\\Windows10Notification\\bin\\Debug\\net5.0-windows10.0.17763.0\\WallHaven.jpg");
@@ -78,6 +77,12 @@ namespace OTLog.Views
                 selectionBox.Items.Add(new ToastSelectionBoxItem("Item2", "Item B"));
                 return selectionBox;
             }
+        }
+
+        private void CloseWindowButton_Click(object sender, RoutedEventArgs e)
+        {
+            Hide();
+            ShowToast();
         }
     }
 }

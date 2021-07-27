@@ -59,6 +59,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Views\NotifyIcon.xaml.cs">
+      <DependentUpon>NotifyIcon.xaml</DependentUpon>
+    </Compile>
     <Page Include="Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -108,6 +111,9 @@
     <PackageReference Include="Microsoft.Toolkit.Uwp.Notifications">
       <Version>7.0.2</Version>
     </PackageReference>
+    <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf">
+      <Version>1.1.31</Version>
+    </PackageReference>
     <PackageReference Include="Prism.Unity" Version="8.0.0.1909" />
   </ItemGroup>
   <ItemGroup>
@@ -118,6 +124,14 @@
     <Folder Include="Assets\Videos\" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Assets\Images\夜间.png" />
+    <Resource Include="Assets\Images\向下2.png" />
+    <Resource Include="Assets\Images\向下.png" />
+    <Resource Include="Assets\Images\go.png" />
+    <Resource Include="Assets\Images\left.png" />
+    <Resource Include="Assets\Images\MainLog.png" />
+    <Resource Include="Assets\Images\Refresh.png" />
+    <Resource Include="Assets\Images\right.png" />
     <Content Include="Assets\Images\taskbarIcon.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -127,10 +141,45 @@
     <Content Include="Assets\Images\toastinline800.gif">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Assets\Images\关闭Gray.png" />
+    <Resource Include="Assets\Images\删除.png" />
+    <Resource Include="Assets\Images\加载中.png" />
+    <Resource Include="Assets\Images\对号.png" />
+    <Resource Include="Assets\Images\展开.png" />
+    <Resource Include="Assets\Images\收起.png" />
+    <Resource Include="Assets\Images\数据.png" />
+    <Resource Include="Assets\Images\模块.png" />
+    <Resource Include="Assets\Images\添加.png" />
+    <Resource Include="Assets\Images\添加2.png" />
+    <Resource Include="Assets\Images\用户.png" />
+    <Resource Include="Assets\Images\编辑.png" />
+    <Resource Include="Assets\Images\关闭.png" />
+    <Resource Include="Assets\Images\willow.png" />
+    <Resource Include="Assets\Images\Willow_trans_new.png" />
     <Content Include="Assets\Images\work_overtime_4x.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Assets\Images\最小化.png" />
+    <Resource Include="Assets\Images\后退.png" />
     <Resource Include="timer32.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Modules\OTLog.Home\OTLog.Home.csproj">
+      <Project>{2512f704-939e-4081-a525-1fdfa1c3a4fb}</Project>
+      <Name>OTLog.Home</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OTLog.Core\OTLog.Core.csproj">
+      <Project>{dd8ccb71-8a73-4bb3-b475-256079f515df}</Project>
+      <Name>OTLog.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OTLog.Themes\OTLog.Themes.csproj">
+      <Project>{6a4fbb4b-ecd4-4709-baca-5003b2029ab5}</Project>
+      <Name>OTLog.Themes</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OTLog.UI.Core\OTLog.UI.Core.csproj">
+      <Project>{16c820f7-fc26-4a5d-8412-ae321e323f86}</Project>
+      <Name>OTLog.UI.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

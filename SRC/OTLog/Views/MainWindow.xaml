@@ -2,14 +2,135 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:prism="http://prismlibrary.com/"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:suence="http://software.suence.com/"
+        xmlns:constants="clr-namespace:OTLog.Core.Constants;assembly=OTLog.Core"
         prism:ViewModelLocator.AutoWireViewModel="True"
-        Title="{Binding Title}" Height="350" Width="525">
-    <Grid>
-        <ContentControl prism:RegionManager.RegionName="ContentRegion" />
-        <Button HorizontalAlignment="Center"
-                VerticalAlignment="Center"
-                Content="Show Toast Notification"
-                Padding="20, 10"
-                Click="Button_Click" />
+        Title="{Binding Title}"
+        Height="600"
+        Width="800">
+    <Window.InputBindings>
+        <KeyBinding Key="Space"
+                    Modifiers="Alt"
+                    Command="{x:Static ApplicationCommands.NotACommand}" />
+    </Window.InputBindings>
+    <WindowChrome.WindowChrome>
+        <WindowChrome UseAeroCaptionButtons="False"
+                      CaptionHeight="0"
+                      GlassFrameThickness="1" />
+    </WindowChrome.WindowChrome>
+    <Grid x:Name="AppContainer">
+        <Grid x:Name="HomeContainer"
+              Background="Transparent">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <!-- 内容区域 -->
+            <ContentControl Grid.Row="0"
+                            Grid.RowSpan="2"
+                            Foreground="{DynamicResource SecondryText.Foreground}"
+                            prism:RegionManager.RegionName="{x:Static constants:RegionNames.MainRegion}" />
+
+            <!--#region 窗口标题栏 -->
+            <Grid x:Name="AppTitleContainer"
+                  Grid.Row="0"
+                  Height="40"
+                  Background="Transparent"
+                  UseLayoutRounding="True">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="MouseLeftButtonDown">
+                        <i:CallMethodAction TargetObject="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                                            MethodName="DragMove" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <StackPanel Grid.Column="0"
+                            Orientation="Horizontal">
+                    <Button Width="47"
+                            Margin="0, 0, -10, 0"
+                            IsTabStop="False"
+                            BorderThickness="0"
+                            Foreground="White"
+                            FontWeight="Bold"
+                            Command="{Binding BackCommand}"
+                            Style="{DynamicResource AppTitleButtonStyle}"
+                            suence:ButtonBrush.ButtonPressBackground="{DynamicResource AppTitleButton.Pressed.Background}"
+                            suence:ButtonBrush.ButtonMouseOverBackground="{DynamicResource AppTitleButton.MouseOver.Background}"
+                            FontSize="15">
+                        <Button.Visibility>
+                            <Binding Path="CanBack">
+                                <Binding.Converter>
+                                    <suence:BooleanToObjectConverter TrueValue="{x:Static Visibility.Visible}"
+                                                                     FalseValue="{x:Static Visibility.Collapsed}" />
+                                </Binding.Converter>
+                            </Binding>
+                        </Button.Visibility>
+                        <Button.Content>
+                            <Image Source="pack://application:,,,/OTLog;component/Assets/Images/后退.png"
+                                   Width="20"
+                                   Height="20" />
+                        </Button.Content>
+                    </Button>
+                    <TextBlock FontSize="14"
+                               VerticalAlignment="Center"
+                               Margin="15, 0"
+                               Foreground="{DynamicResource LightGrayText.Foreground}"
+                               Text="{Binding Title}" />
+                </StackPanel>
+                <StackPanel Grid.Column="2"
+                            Orientation="Horizontal">
+    
+                    <Button Width="47"
+                            IsTabStop="False"
+                            BorderThickness="0"
+                            Foreground="White"
+                            FontWeight="Bold"
+                            Style="{DynamicResource AppTitleButtonStyle}"
+                            suence:ButtonBrush.ButtonPressBackground="{DynamicResource AppTitleButton.Pressed.Background}"
+                            suence:ButtonBrush.ButtonMouseOverBackground="{DynamicResource AppTitleButton.MouseOver.Background}"
+                            FontFamily="Segoe MDL2 Assets"
+                            FontSize="15">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Click">
+                                <i:ChangePropertyAction TargetObject="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                                                        PropertyName="WindowState"
+                                                        Value="Minimized" />
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                        <Button.Content>
+                            <Image Source="pack://application:,,,/OTLog;component/Assets/Images/最小化.png"
+                                   Width="20"
+                                   Height="20" />
+                        </Button.Content>
+                    </Button>
+                    <Button Width="47"
+                            IsTabStop="False"
+                            BorderThickness="0"
+                            Click="CloseWindowButton_Click"
+                            Style="{DynamicResource CloseWindowButtonStyle}"
+                            suence:ButtonBrush.ButtonPressBackground="{DynamicResource AppTitleButton.Pressed.Background}"
+                            suence:ButtonBrush.ButtonMouseOverBackground="{DynamicResource AppTitleButton.MouseOver.Background}"
+                            FontFamily="Segoe MDL2 Assets"
+                            FontSize="15">
+                        <Button.Content>
+                            <Image Source="pack://application:,,,/OTLog;component/Assets/Images/向下2.png"
+                                   Width="20"
+                                   Height="20" />
+                        </Button.Content>
+                    </Button>
+                </StackPanel>
+            </Grid>
+            <!--#endregion-->
+        </Grid>
+
+        <!-- 提示消息区域 -->
+        <ContentControl Foreground="{DynamicResource SecondryText.Foreground}"
+                        prism:RegionManager.RegionName="{x:Static constants:RegionNames.MessageRegion}" />
     </Grid>
 </Window>
