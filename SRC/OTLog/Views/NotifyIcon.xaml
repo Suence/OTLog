@@ -6,18 +6,18 @@
                     xmlns:vm="clr-namespace:OTLog.ViewModels">
     <ContextMenu x:Shared="false"
                  x:Key="SysTrayMenu">
-        <MenuItem Header="Show Window"
+        <!--<MenuItem Header="Show Window"
                   Command="{Binding ShowWindowCommand}" />
         <MenuItem Header="Hide Window"
                   Command="{Binding HideWindowCommand}" />
-        <Separator />
-        <MenuItem Header="Exit"
+        <Separator />-->
+        <MenuItem Header="退出"
                   Command="{Binding ExitApplicationCommand}" />
     </ContextMenu>
 
     <tb:TaskbarIcon x:Key="NotifyIcon"
                     IconSource="/timer32.ico"
-                    ToolTipText="Double-click for window, right-click for menu"
+                    ToolTipText="双击图标显示程序窗口"
                     DoubleClickCommand="{Binding ShowWindowCommand}"
                     ContextMenu="{StaticResource SysTrayMenu}">
         <!--<tb:TaskbarIcon.DataContext>

@@ -18,6 +18,9 @@ namespace OTLog.Home
         {
             containerRegistry.RegisterForNavigation<StartPage>();
             containerRegistry.RegisterForNavigation<HomePage>();
+            containerRegistry.RegisterForNavigation<Overview>();
+            containerRegistry.RegisterForNavigation<About>();
+            containerRegistry.RegisterForNavigation<Settings>();
         }
     }
 }

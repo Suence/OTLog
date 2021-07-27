@@ -4,6 +4,8 @@ using OTLog.ViewModels;
 using OTLog.Views;
 using Prism.Ioc;
 using Prism.Modularity;
+using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 
 namespace OTLog
@@ -14,6 +16,7 @@ namespace OTLog
     public partial class App
     {
         private TaskbarIcon _notifyIcon;
+        public static List<string> AppArgs;
 
         protected override Window CreateShell()
         {
@@ -28,7 +31,10 @@ namespace OTLog
 
         protected override void OnStartup(StartupEventArgs e)
         {
+            AppArgs = e.Args.ToList();
+
             base.OnStartup(e);
+
             _notifyIcon = (TaskbarIcon)FindResource("NotifyIcon");
             _notifyIcon.DataContext = Container.Resolve<NotifyIconViewModel>();
         }

@@ -5,13 +5,42 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="OTLog.Home.Views.HomePage"
+             xmlns:constants="clr-namespace:OTLog.Core.Constants;assembly=OTLog.Core"
              prism:ViewModelLocator.AutoWireViewModel="True"
              d:DesignWidth="385"
-             d:DesignHeight="235">
+             d:DesignHeight="235"
+             Padding="0, 40, 0, 0">
     <Grid Background="{DynamicResource App.Background}">
-        <TextBlock Text="HomePage"
-                   FontSize="30"
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Center" />
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0">
+            <StackPanel>
+                <Button Content="Overview"
+                        FontSize="18"
+                        Padding="20, 10"
+                        Background="Transparent"
+                        Foreground="White"
+                        Command="{Binding GoToTargetViewCommand}"
+                        CommandParameter="{x:Static constants:ViewNames.Overview}" />
+                <Button Content="Settings"
+                        FontSize="18"
+                        Padding="20, 10"
+                        Background="Transparent"
+                        Foreground="White"
+                        Command="{Binding GoToTargetViewCommand}"
+                        CommandParameter="{x:Static constants:ViewNames.Settings}" />
+                <Button Content="About"
+                        FontSize="18"
+                        Padding="20, 10"
+                        Background="Transparent"
+                        Foreground="White"
+                        Command="{Binding GoToTargetViewCommand}"
+                        CommandParameter="{x:Static constants:ViewNames.About}" />
+            </StackPanel>
+        </Grid>
+        <ContentControl Grid.Column="1" 
+                        prism:RegionManager.RegionName="{x:Static constants:RegionNames.HomeRegion}"/>
     </Grid>
 </UserControl>

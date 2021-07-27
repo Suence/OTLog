@@ -7,6 +7,8 @@
         xmlns:constants="clr-namespace:OTLog.Core.Constants;assembly=OTLog.Core"
         prism:ViewModelLocator.AutoWireViewModel="True"
         Title="{Binding Title}"
+        Loaded="Window_Loaded"
+        Background="{DynamicResource App.Background}"
         Height="600"
         Width="800">
     <Window.InputBindings>
@@ -36,7 +38,7 @@
             <!--#region 窗口标题栏 -->
             <Grid x:Name="AppTitleContainer"
                   Grid.Row="0"
-                  Height="40"
+                  Height="36"
                   Background="Transparent"
                   UseLayoutRounding="True">
                 <Grid.ColumnDefinitions>
@@ -52,7 +54,7 @@
                 </i:Interaction.Triggers>
                 <StackPanel Grid.Column="0"
                             Orientation="Horizontal">
-                    <Button Width="47"
+                    <!--<Button Width="47"
                             Margin="0, 0, -10, 0"
                             IsTabStop="False"
                             BorderThickness="0"
@@ -76,11 +78,11 @@
                                    Width="20"
                                    Height="20" />
                         </Button.Content>
-                    </Button>
-                    <TextBlock FontSize="14"
+                    </Button>-->
+                    <TextBlock FontSize="12"
                                VerticalAlignment="Center"
                                Margin="15, 0"
-                               Foreground="{DynamicResource LightGrayText.Foreground}"
+                               Foreground="{DynamicResource AppTitle.Foreground}"
                                Text="{Binding Title}" />
                 </StackPanel>
                 <StackPanel Grid.Column="2"
@@ -91,6 +93,7 @@
                             BorderThickness="0"
                             Foreground="White"
                             FontWeight="Bold"
+                            ToolTip="最小化"
                             Style="{DynamicResource AppTitleButtonStyle}"
                             suence:ButtonBrush.ButtonPressBackground="{DynamicResource AppTitleButton.Pressed.Background}"
                             suence:ButtonBrush.ButtonMouseOverBackground="{DynamicResource AppTitleButton.MouseOver.Background}"
@@ -104,14 +107,23 @@
                             </i:EventTrigger>
                         </i:Interaction.Triggers>
                         <Button.Content>
-                            <Image Source="pack://application:,,,/OTLog;component/Assets/Images/最小化.png"
+                            <Viewbox Width="20"
+                                     Height="20">
+                                <Canvas Width="24"
+                                        Height="24">
+                                    <Path Fill="{DynamicResource AppButton.Foreground}"
+                                          Data="M19,13H5V11H19V13Z" />
+                                </Canvas>
+                            </Viewbox>
+                            <!--<Image Source="pack://application:,,,/OTLog;component/Assets/Images/最小化.png"
                                    Width="20"
-                                   Height="20" />
+                                   Height="20" />-->
                         </Button.Content>
                     </Button>
                     <Button Width="47"
                             IsTabStop="False"
                             BorderThickness="0"
+                            ToolTip="最小化到托盘"
                             Click="CloseWindowButton_Click"
                             Style="{DynamicResource CloseWindowButtonStyle}"
                             suence:ButtonBrush.ButtonPressBackground="{DynamicResource AppTitleButton.Pressed.Background}"
@@ -119,14 +131,23 @@
                             FontFamily="Segoe MDL2 Assets"
                             FontSize="15">
                         <Button.Content>
-                            <Image Source="pack://application:,,,/OTLog;component/Assets/Images/向下2.png"
+                            <Viewbox Width="20"
+                                     Height="20">
+                                <Canvas Width="24"
+                                        Height="24">
+                                    <Path Fill="{DynamicResource AppButton.Foreground}"
+                                          Data="M22,4V2H2V4H11V18.17L5.5,12.67L4.08,14.08L12,22L19.92,14.08L18.5,12.67L13,18.17V4H22Z" />
+                                </Canvas>
+                            </Viewbox>
+                            <!--<Image Source="pack://application:,,,/OTLog;component/Assets/Images/向下2.png"
                                    Width="20"
-                                   Height="20" />
+                                   Height="20" />-->
                         </Button.Content>
                     </Button>
                 </StackPanel>
             </Grid>
             <!--#endregion-->
+            <TextBlock Grid.Row="1" Text="{Binding LastActiveTime}" Foreground="White"  HorizontalAlignment="Left" VerticalAlignment="Bottom" FontSize="20" Margin="5"/>
         </Grid>
 
         <!-- 提示消息区域 -->

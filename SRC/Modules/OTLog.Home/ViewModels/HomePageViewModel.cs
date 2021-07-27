@@ -11,9 +11,20 @@ namespace OTLog.Home.ViewModels
 {
     public class HomePageViewModel : BindableBase, INavigationAware
     {
-        public HomePageViewModel()
+        #region private 
+        private readonly IRegionManager _regionManager;
+        #endregion
+        
+        public DelegateCommand<string> GoToTargetViewCommand { get; }
+        private void GoToTargetView(string viewName)
         {
+            _regionManager.RequestNavigate(RegionNames.HomeRegion, viewName);
+        }
 
+        public HomePageViewModel(IRegionManager regionManager)
+        {
+            _regionManager = regionManager;
+            GoToTargetViewCommand = new DelegateCommand<string>(GoToTargetView);
         }
 
         public bool IsNavigationTarget(NavigationContext navigationContext)
@@ -25,7 +36,6 @@ namespace OTLog.Home.ViewModels
 
         public void OnNavigatedTo(NavigationContext navigationContext)
         {
-            GlobalObjectHolder.CurrentViewName = nameof(ViewNames.HomePage);
         }
     }
 }

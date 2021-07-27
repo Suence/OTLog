@@ -9,7 +9,5 @@ namespace OTLog.Core.StaticObjects
 {
     public static class GlobalObjectHolder
     {
-        public static string CurrentViewName = ViewNames.StartPage;
-        public static string CurrentRegionName = RegionNames.MainRegion;
     }
 }

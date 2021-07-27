@@ -10,9 +10,14 @@ namespace OTLog.ViewModels
         public ICommand ShowWindowCommand { get; }
         private void ShowWindow()
         {
+            if (Application.Current.MainWindow.WindowState == WindowState.Minimized)
+                Application.Current.MainWindow.WindowState = WindowState.Normal;
+
             Application.Current.MainWindow.Show();
         }
-        private bool CanShowWindow() => !Application.Current.MainWindow.IsVisible;
+        private bool CanShowWindow() => 
+            Application.Current.MainWindow.WindowState == WindowState.Minimized || 
+            !Application.Current.MainWindow.IsVisible;
 
         public ICommand HideWindowCommand { get; }
         private void HideWindow()

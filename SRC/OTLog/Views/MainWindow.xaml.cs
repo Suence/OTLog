@@ -15,24 +15,7 @@ namespace OTLog.Views
         public MainWindow()
         {
             InitializeComponent();
-            // 点击通知时, 激活程序(即使程序已关闭)
-            // Listen to notification activation
-            ToastNotificationManagerCompat.OnActivated += toastArgs =>
-            {
-                // Obtain the arguments from the notification
-                ToastArguments args = ToastArguments.Parse(toastArgs.Argument);
 
-                // Obtain any user input (text boxes, menu selections) from the notification
-                ValueSet userInput = toastArgs.UserInput;
-                // 文本框内容
-                var textBoxContent = userInput["tbReply"].ToString();
-                // Need to dispatch to UI thread if performing UI operations
-                Application.Current.Dispatcher.Invoke(delegate
-                {
-                    // TODO: Show the corresponding content
-                    MessageBox.Show("Toast activated. Args: " + toastArgs.Argument);
-                });
-            };
         }
 
         public static void ShowToast()
@@ -83,6 +66,34 @@ namespace OTLog.Views
         {
             Hide();
             ShowToast();
+        }
+
+        private async void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (App.AppArgs?.Contains("--nowindow") ?? false)
+            {
+                await Task.Delay(10);
+                Hide();
+            }
+
+            // 点击通知时, 激活程序(即使程序已关闭)
+            // Listen to notification activation
+            ToastNotificationManagerCompat.OnActivated += toastArgs =>
+            {
+                // Obtain the arguments from the notification
+                ToastArguments args = ToastArguments.Parse(toastArgs.Argument);
+
+                // Obtain any user input (text boxes, menu selections) from the notification
+                ValueSet userInput = toastArgs.UserInput;
+                // 文本框内容
+                var textBoxContent = userInput["tbReply"].ToString();
+                // Need to dispatch to UI thread if performing UI operations
+                Application.Current.Dispatcher.Invoke(delegate
+                {
+                    // TODO: Show the corresponding content
+                    MessageBox.Show("Toast activated. Args: " + toastArgs.Argument);
+                });
+            };
         }
     }
 }

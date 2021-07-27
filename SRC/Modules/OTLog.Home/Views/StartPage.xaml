@@ -4,19 +4,27 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              x:Class="OTLog.Home.Views.StartPage"
              prism:ViewModelLocator.AutoWireViewModel="True"
              d:DesignWidth="750"
              d:DesignHeight="445">
-    <Grid Background="{DynamicResource ResourceKey=WindowTitle.Background}">
+    <UserControl.Resources>
+        <Storyboard x:Key="StartPageAnimation" Duration="0:0:3" />
+    </UserControl.Resources>
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:ControlStoryboardAction Storyboard="{StaticResource StartPageAnimation}"/>
+        </i:EventTrigger>
+        <i:StoryboardCompletedTrigger Storyboard="{StaticResource StartPageAnimation}">
+            <i:InvokeCommandAction Command="{Binding GoToHomePageCommand}"/>
+        </i:StoryboardCompletedTrigger>
+    </i:Interaction.Triggers>
+    <Grid Background="{DynamicResource App.Background}">
         <StackPanel VerticalAlignment="Center">
-            
-        <Image Source="pack://application:,,,/OTLog;component/Assets/Images/夜间.png"
-               Height="128"
-               Width="128" />
-        <Button HorizontalAlignment="Center"
-                Content="HomePage" Padding="20, 10" Margin="10"
-                Command="{Binding GoToHomePageCommand}"/>
+            <Image Source="pack://application:,,,/OTLog;component/Assets/Images/夜间.png"
+                   Height="128"
+                   Width="128" />
         </StackPanel>
     </Grid>
 </UserControl>
