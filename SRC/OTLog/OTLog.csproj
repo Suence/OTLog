@@ -183,6 +183,10 @@
       <Project>{2512f704-939e-4081-a525-1fdfa1c3a4fb}</Project>
       <Name>OTLog.Home</Name>
     </ProjectReference>
+    <ProjectReference Include="..\OTLog.Controls\OTLog.Controls.csproj">
+      <Project>{ed0e27c4-e3c8-4b12-894b-22aa8ba42437}</Project>
+      <Name>OTLog.Controls</Name>
+    </ProjectReference>
     <ProjectReference Include="..\OTLog.Core\OTLog.Core.csproj">
       <Project>{dd8ccb71-8a73-4bb3-b475-256079f515df}</Project>
       <Name>OTLog.Core</Name>

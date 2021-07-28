@@ -57,10 +57,8 @@ namespace OTLog
             _notifyIcon = (TaskbarIcon)FindResource("NotifyIcon");
             _notifyIcon.DataContext = Container.Resolve<NotifyIconViewModel>();
 
-            var systemStartupFolder = Environment.GetFolderPath(Environment.SpecialFolder.Startup);
+            string systemStartupFolder = Environment.GetFolderPath(Environment.SpecialFolder.Startup);
             string linkFileFullPath = Path.Combine(systemStartupFolder, "OTLog.lnk");
-
-
 
             // 如果快捷方式已经存在, 则不进行任何操作
             if (File.Exists(linkFileFullPath)) return;

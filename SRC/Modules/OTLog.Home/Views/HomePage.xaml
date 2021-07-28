@@ -16,26 +16,29 @@
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
         <Grid Grid.Column="0">
-            <StackPanel>
-                <Button Content="Overview"
+            <StackPanel Width="200">
+                <RadioButton Content="Overview"
                         FontSize="18"
                         Padding="20, 10"
                         Background="Transparent"
                         Foreground="White"
+                        Style="{DynamicResource NavigationRadioButton}"
                         Command="{Binding GoToTargetViewCommand}"
                         CommandParameter="{x:Static constants:ViewNames.Overview}" />
-                <Button Content="Settings"
+                <RadioButton Content="Settings"
                         FontSize="18"
                         Padding="20, 10"
                         Background="Transparent"
                         Foreground="White"
+                        Style="{DynamicResource NavigationRadioButton}"
                         Command="{Binding GoToTargetViewCommand}"
                         CommandParameter="{x:Static constants:ViewNames.Settings}" />
-                <Button Content="About"
+                <RadioButton Content="About"
                         FontSize="18"
                         Padding="20, 10"
                         Background="Transparent"
                         Foreground="White"
+                        Style="{DynamicResource NavigationRadioButton}"
                         Command="{Binding GoToTargetViewCommand}"
                         CommandParameter="{x:Static constants:ViewNames.About}" />
             </StackPanel>
