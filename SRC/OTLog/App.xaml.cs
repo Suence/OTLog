@@ -1,5 +1,8 @@
 ﻿using Hardcodet.Wpf.TaskbarNotification;
+using OTLog.Core.StaticObjects;
+using OTLog.Core.Utils;
 using OTLog.Home;
+using OTLog.Themes;
 using OTLog.ViewModels;
 using OTLog.Views;
 using Prism.Ioc;
@@ -32,9 +35,22 @@ namespace OTLog
 
         }
 
+        private ResourceDictionary GetThemeResource(Core.Enums.Theme theme)
+            => new[]
+            {
+                DarkTheme.Instance as ResourceDictionary,
+                DarkTheme.Instance as ResourceDictionary,
+                LightTheme.Instance as ResourceDictionary
+            }[(int)theme];
+
         protected override void OnStartup(StartupEventArgs e)
         {
             AppArgs = e.Args.ToList();
+
+            AppFileHelper.ValidateApplicationFiles();
+            Core.Enums.Theme userTheme = AppFileHelper.ReadUserThemeSettings();
+            GlobalObjectHolder.CurrentTheme = userTheme;
+            Resources.MergedDictionaries[0] = GetThemeResource(AppFileHelper.ReadUserThemeSettings());
 
             base.OnStartup(e);
 
@@ -43,6 +59,8 @@ namespace OTLog
 
             var systemStartupFolder = Environment.GetFolderPath(Environment.SpecialFolder.Startup);
             string linkFileFullPath = Path.Combine(systemStartupFolder, "OTLog.lnk");
+
+
 
             // 如果快捷方式已经存在, 则不进行任何操作
             if (File.Exists(linkFileFullPath)) return;

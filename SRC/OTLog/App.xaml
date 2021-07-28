@@ -4,11 +4,13 @@
                         xmlns:prism="http://prismlibrary.com/"
                         ShutdownMode="OnExplicitShutdown"
                         xmlns:local="clr-namespace:OTLog"
+                        xmlns:themes="clr-namespace:OTLog.Themes;assembly=OTLog.Themes"
                         xmlns:tb="http://www.hardcodet.net/taskbar">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/OTLog.Themes;component/DarkThemes.xaml"/>
+                <x:Static Member="themes:DarkTheme.Instance" />
+                <!--<ResourceDictionary Source="pack://application:,,,/OTLog.Themes;component/DarkTheme.xaml"/>-->
                 <ResourceDictionary Source="/Views/NotifyIcon.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>

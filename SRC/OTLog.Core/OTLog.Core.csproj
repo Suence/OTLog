@@ -43,10 +43,12 @@
   <ItemGroup>
     <Compile Include="Constants\RegionNames.cs" />
     <Compile Include="Constants\ViewNames.cs" />
+    <Compile Include="Enums\Theme.cs" />
     <Compile Include="Events\GoingToNewViewEvent.cs" />
     <Compile Include="Models\ViewHistory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StaticObjects\GlobalObjectHolder.cs" />
+    <Compile Include="Utils\AppFileHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Prism.Core">
