@@ -7,8 +7,8 @@
              x:Class="OTLog.Home.Views.HomePage"
              xmlns:constants="clr-namespace:OTLog.Core.Constants;assembly=OTLog.Core"
              prism:ViewModelLocator.AutoWireViewModel="True"
-             d:DesignWidth="385"
-             d:DesignHeight="235">
+             d:DesignWidth="710"
+             d:DesignHeight="530">
     <Grid Background="{DynamicResource App.Background}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
@@ -86,9 +86,12 @@
                 </RadioButton>
             </StackPanel>
 
-            <TextBlock Text="Version 1.0.1" HorizontalAlignment="Center" VerticalAlignment="Bottom" Foreground="{DynamicResource SecondryText.Foreground}"
+            <TextBlock Text="Version 1.0.1"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Bottom"
+                       Foreground="{DynamicResource SecondryText.Foreground}"
                        Margin="10"
-                       FontSize="14"/>
+                       FontSize="14" />
         </Grid>
         <ContentControl Grid.Column="1"
                         prism:RegionManager.RegionName="{x:Static constants:RegionNames.HomeRegion}" />

@@ -6,15 +6,158 @@
              mc:Ignorable="d"
              x:Class="OTLog.Home.Views.About"
              prism:ViewModelLocator.AutoWireViewModel="True"
-             d:DesignWidth="470"
-             d:DesignHeight="295">
-    <Grid>
-        <Grid>
-            <TextBlock Text="About"
-                       FontSize="30"
-                       Foreground="White"
-                       HorizontalAlignment="Center"
-                       VerticalAlignment="Center" />
+             d:DesignWidth="940"
+             d:DesignHeight="510">
+    <Grid Margin="0, 40, 0, 0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0"
+                   Text="关于"
+                   FontSize="35"
+                   Margin="40, 0, 0, 20"
+                   Foreground="{DynamicResource PrimaryText.Foreground}" />
+        <TextBlock Grid.Row="1"
+                   Margin="40, 0"
+                   Text="版本信息"
+                   FontSize="18"
+                   Foreground="{DynamicResource PrimaryText.Foreground}"/>
+        <Grid Grid.Row="2"
+              Margin="40, 10, 40, 20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Rectangle Grid.Row="0"
+                       Grid.Column="0"
+                       Grid.RowSpan="2"
+                       Width="50"
+                       Height="50"
+                       Fill="#FF333333" />
+            <Rectangle Grid.Row="0"
+                       Grid.Column="1"
+                       HorizontalAlignment="Left"
+                       Width="200"
+                       Height="20"
+                       Margin="5"
+                       Fill="#FF333333" />
+            <Rectangle Grid.Row="1"
+                       Grid.Column="1"
+                       HorizontalAlignment="Left"
+                       Width="250"
+                       Height="20"
+                       Margin="5"
+                       Fill="#FF333333" />
         </Grid>
+        <StackPanel Grid.Row="3" Margin="40, 10">
+            <TextBlock Grid.Row="1"
+                       Text="此版本的新增功能"
+                       FontSize="18"
+                       Margin="0, 0, 0, 20"
+                       Foreground="{DynamicResource PrimaryText.Foreground}" />
+            <StackPanel Orientation="Horizontal">
+                <Rectangle Grid.Row="0"
+                           Grid.Column="0"
+                           Grid.RowSpan="2"
+                           Width="50"
+                           Height="50"
+                           Margin="5"
+                           Fill="#FF333333" />
+                <Rectangle Grid.Row="0"
+                           Grid.Column="0"
+                           Grid.RowSpan="2"
+                           Height="50"
+                           Width="400"
+                           Margin="5"
+                           Fill="#FF333333" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Rectangle Grid.Row="0"
+                           Grid.Column="0"
+                           Grid.RowSpan="2"
+                           Width="50"
+                           Height="50"
+                           Margin="5"
+                           Fill="#FF333333" />
+                <Rectangle Grid.Row="0"
+                           Grid.Column="0"
+                           Grid.RowSpan="2"
+                           Height="50"
+                           Width="300"
+                           Margin="5"
+                           Fill="#FF333333" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Rectangle Grid.Row="0"
+                           Grid.Column="0"
+                           Grid.RowSpan="2"
+                           Width="50"
+                           Height="50"
+                           Margin="5"
+                           Fill="#FF333333" />
+                <Rectangle Grid.Row="0"
+                           Grid.Column="0"
+                           Grid.RowSpan="2"
+                           Height="50"
+                           Width="700"
+                           Margin="5"
+                           Fill="#FF333333" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Rectangle Grid.Row="0"
+                           Grid.Column="0"
+                           Grid.RowSpan="2"
+                           Width="50"
+                           Height="50"
+                           Margin="5"
+                           Fill="#FF333333" />
+                <Rectangle Grid.Row="0"
+                           Grid.Column="0"
+                           Grid.RowSpan="2"
+                           Height="50"
+                           Width="440"
+                           Margin="5"
+                           Fill="#FF333333" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Rectangle Grid.Row="0"
+                           Grid.Column="0"
+                           Grid.RowSpan="2"
+                           Width="50"
+                           Height="50"
+                           Margin="5"
+                           Fill="#FF333333" />
+                <Rectangle Grid.Row="0"
+                           Grid.Column="0"
+                           Grid.RowSpan="2"
+                           Height="50"
+                           Width="200"
+                           Margin="5"
+                           Fill="#FF333333" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Rectangle Grid.Row="0"
+                           Grid.Column="0"
+                           Grid.RowSpan="2"
+                           Width="50"
+                           Height="50"
+                           Margin="5"
+                           Fill="#FF333333" />
+                <Rectangle Grid.Row="0"
+                           Grid.Column="0"
+                           Grid.RowSpan="2"
+                           Height="50"
+                           Width="400"
+                           Margin="5"
+                           Fill="#FF333333" />
+            </StackPanel>
+        </StackPanel>
     </Grid>
 </UserControl>
