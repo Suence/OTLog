@@ -9,9 +9,10 @@
              prism:ViewModelLocator.AutoWireViewModel="True"
              d:DesignWidth="750"
              d:DesignHeight="445">
-    <UserControl.Resources>
+    <!--#region 空动画问题，在 Debug 模式下正常，但直接运行可执行文件，则不会结束和跳转 -->
+    <!--<UserControl.Resources>
         <Storyboard x:Key="StartPageAnimation"
-                    Duration="0:0:2" />
+                    Duration="0:0:0.1" />
     </UserControl.Resources>
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
@@ -20,7 +21,9 @@
         <i:StoryboardCompletedTrigger Storyboard="{StaticResource StartPageAnimation}">
             <i:InvokeCommandAction Command="{Binding GoToHomePageCommand}" />
         </i:StoryboardCompletedTrigger>
-    </i:Interaction.Triggers>
+    </i:Interaction.Triggers>-->
+    <!--#endregion-->
+    
     <Grid Background="{DynamicResource StartScreen.Background}">
         <Grid Background="{DynamicResource Gridlines}">
             <StackPanel VerticalAlignment="Center"

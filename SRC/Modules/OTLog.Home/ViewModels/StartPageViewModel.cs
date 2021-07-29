@@ -5,6 +5,7 @@ using Prism.Regions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace OTLog.Home.ViewModels
 {
@@ -25,6 +26,13 @@ namespace OTLog.Home.ViewModels
             _regionManager = regionManager;
 
             GoToHomePageCommand = new DelegateCommand(GoToHomePage);
+            LoadData();
+        }
+
+        private async void LoadData()
+        {
+            await Task.Delay(2000);
+            GoToHomePage();
         }
     }
 }
