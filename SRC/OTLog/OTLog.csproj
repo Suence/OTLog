@@ -170,9 +170,6 @@
     <Content Include="Assets\Images\taskbarIcon.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Assets\Images\ToastInLine.gif">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="Assets\Images\toastinline800.gif">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
