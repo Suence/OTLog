@@ -10,21 +10,57 @@
              d:DesignWidth="750"
              d:DesignHeight="445">
     <UserControl.Resources>
-        <Storyboard x:Key="StartPageAnimation" Duration="0:0:3" />
+        <Storyboard x:Key="StartPageAnimation"
+                    Duration="0:0:2" />
     </UserControl.Resources>
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
-            <i:ControlStoryboardAction Storyboard="{StaticResource StartPageAnimation}"/>
+            <i:ControlStoryboardAction Storyboard="{StaticResource StartPageAnimation}" />
         </i:EventTrigger>
         <i:StoryboardCompletedTrigger Storyboard="{StaticResource StartPageAnimation}">
-            <i:InvokeCommandAction Command="{Binding GoToHomePageCommand}"/>
+            <i:InvokeCommandAction Command="{Binding GoToHomePageCommand}" />
         </i:StoryboardCompletedTrigger>
     </i:Interaction.Triggers>
-    <Grid Background="{DynamicResource App.Background}">
-        <StackPanel VerticalAlignment="Center">
-            <Image Source="pack://application:,,,/OTLog;component/Assets/Images/夜间.png"
-                   Height="128"
-                   Width="128" />
-        </StackPanel>
+    <Grid Background="{DynamicResource StartScreen.Background}">
+        <Grid Background="{DynamicResource Gridlines}">
+            <StackPanel VerticalAlignment="Center"
+                        HorizontalAlignment="Center">
+                <TextBlock Text="This is a piece of text —— AAA"
+                           Margin="5"
+                           FontSize="30"
+                           Foreground="Gray"
+                           HorizontalAlignment="Center" />
+                <TextBlock Text="这是一段文字 —— 一二三"
+                           Margin="5"
+                           FontSize="30"
+                           Foreground="LightGray"
+                           HorizontalAlignment="Center" />
+            </StackPanel>
+            <Grid HorizontalAlignment="Center"
+                  VerticalAlignment="Bottom"
+                  Margin="20">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Rectangle Grid.Row="0" Grid.Column="0" Width="10" Height="10" Fill="White" Margin="2"/>
+                <Rectangle Grid.Row="0" Grid.Column="1" Width="10" Height="10" Fill="White" Margin="2"/>
+                <Rectangle Grid.Row="0" Grid.Column="2" Width="10" Height="10" Fill="White" Margin="2"/>
+
+                <Rectangle Grid.Row="1" Grid.Column="0" Width="10" Height="10" Fill="White" Margin="2"/>
+                <Rectangle Grid.Row="1" Grid.Column="1" Width="10" Height="10" Fill="White" Margin="2"/>
+                <Rectangle Grid.Row="1" Grid.Column="2" Width="10" Height="10" Fill="White" Margin="2"/>
+
+                <Rectangle Grid.Row="2" Grid.Column="0" Width="10" Height="10" Fill="White" Margin="2"/>
+                <Rectangle Grid.Row="2" Grid.Column="1" Width="10" Height="10" Fill="White" Margin="2"/>
+                <Rectangle Grid.Row="2" Grid.Column="2" Width="10" Height="10" Fill="White" Margin="2"/>
+            </Grid>
+        </Grid>
     </Grid>
 </UserControl>
