@@ -6,6 +6,7 @@ using Prism.Regions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace OTLog.Home.ViewModels
 {
@@ -16,8 +17,9 @@ namespace OTLog.Home.ViewModels
         #endregion
         
         public DelegateCommand<string> GoToTargetViewCommand { get; }
-        private void GoToTargetView(string viewName)
+        private async void GoToTargetView(string viewName)
         {
+            await Task.Delay(150);
             _regionManager.RequestNavigate(RegionNames.HomeRegion, viewName);
         }
 

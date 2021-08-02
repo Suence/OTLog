@@ -11,5 +11,20 @@ namespace OTLog.Home.Views
         {
             InitializeComponent();
         }
+
+        private void OverviewButton_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            ActiveModuleName.Text = "总览";
+        }
+
+        private void SettingsButton_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            ActiveModuleName.Text = "个性化";
+        }
+
+        private void AboutButton_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            ActiveModuleName.Text = "关于";
+        }
     }
 }

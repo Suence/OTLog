@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="AttachedProperties\BindableBlackoutDates.cs" />
     <Compile Include="AttachedProperties\ButtonBrush.cs" />
+    <Compile Include="Tools\BindingProxy.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Converters\BooleanToObjectConverter.cs" />

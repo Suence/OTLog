@@ -4,276 +4,307 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
+             xmlns:modernWpf="http://schemas.modernwpf.com/2019"
              x:Class="OTLog.Home.Views.Overview"
              prism:ViewModelLocator.AutoWireViewModel="True"
              d:DesignWidth="1030"
              d:DesignHeight="590">
-    <Grid Margin="0, 40, 0, 0">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition />
-        </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0"
-                   Text="总览"
-                   FontSize="35"
-                   Margin="40, 0, 0, 0"
-                   Foreground="{DynamicResource PrimaryText.Foreground}" />
-        <Rectangle Grid.Row="0"
-                   Height="40"
-                   Width="200"
-                   Fill="DarkMagenta"
-                   HorizontalAlignment="Right" />
-        <StackPanel Grid.Row="1"
-                    Margin="40, 20">
-            <TextBlock Text="范围"
-                       FontSize="20"
-                       Foreground="{DynamicResource SecondryText.Foreground}"
-                       Margin="0, 10" />
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition />
-                    <ColumnDefinition Width="Auto" />
-                </Grid.ColumnDefinitions>
-                <Rectangle Grid.Column="0"
-                           Fill="#FF333333"
-                           Height="40" />
-                <Rectangle Grid.Column="1"
-                           Fill="#FF444444"
-                           Height="40"
-                           Width="100"
-                           Margin="10, 0, 0, 0" />
+    <UserControl.RenderTransform>
+        <TranslateTransform Y="100"/>
+    </UserControl.RenderTransform>
+    <UserControl.Triggers>
+        <EventTrigger RoutedEvent="Loaded">
+            <BeginStoryboard>
+                <Storyboard>
+                    <DoubleAnimation Storyboard.TargetProperty="(UserControl.RenderTransform).(TranslateTransform.Y)"
+                                     To="0"
+                                     Duration="0:0:.3">
+                        <DoubleAnimation.EasingFunction>
+                            <CircleEase EasingMode="EaseOut" />
+                        </DoubleAnimation.EasingFunction>
+                    </DoubleAnimation>
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+    </UserControl.Triggers>
+    <ScrollViewer Margin="0, 0, 3, 0"
+                  Padding="0, 0, 30, 0">
+        <StackPanel>
+            <StackPanel Grid.Row="1"
+                        Margin="0, 0, 0, 10"
+                        TextBlock.FontSize="18">
+                <TextBlock Text="搜索"
+                           FontSize="20"
+                           Foreground="{DynamicResource SecondryText.Foreground}"
+                           Margin="0, 0" />
+                <WrapPanel Orientation="Horizontal"
+                           Margin="0, 10, 0, 0">
+                    <DatePicker modernWpf:ControlHelper.CornerRadius="0" />
+                    <TextBlock Text="-"
+                               Margin="5"
+                               VerticalAlignment="Center" />
+                    <DatePicker modernWpf:ControlHelper.CornerRadius="0" />
+                    <TextBox Width="200"
+                             modernWpf:ControlHelper.PlaceholderText="备注"
+                             Margin="10, 5"
+                             modernWpf:ControlHelper.CornerRadius="0"
+                             modernWpf:ControlHelper.PlaceholderForeground="{DynamicResource PlaceHolder.Foreground}" />
+                    <Button FontSize="16"
+                            Padding="20, 5"
+                            modernWpf:ControlHelper.CornerRadius="0"
+                            Margin="5">
+                        <Viewbox Width="20"
+                                 Height="20">
+                            <Canvas Width="24"
+                                    Height="24">
+                                <Path Fill="{DynamicResource App.Foreground}"
+                                      Data="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z" />
+                            </Canvas>
+                        </Viewbox>
+                    </Button>
+                </WrapPanel>
+
+            </StackPanel>
+            <Grid Grid.Row="2"
+                  Margin="0, 10">
+                <StackPanel>
+                    <TextBlock Text="统计"
+                               FontSize="20"
+                               Foreground="{DynamicResource SecondryText.Foreground}"
+                               Margin="0, 10" />
+                    <WrapPanel Orientation="Horizontal">
+                        <Grid Background="#FF333333"
+                              Width="200"
+                              Margin="0, 5, 10, 5">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Rectangle Grid.Row="0"
+                                       Fill="#FF555555"
+                                       Height="20"
+                                       Width="120"
+                                       HorizontalAlignment="Left"
+                                       Margin="5" />
+                            <Rectangle Grid.Row="1"
+                                       Fill="#FF555555"
+                                       Height="20"
+                                       Width="100"
+                                       HorizontalAlignment="Left"
+                                       Margin="5" />
+                            <Rectangle Grid.Row="2"
+                                       Fill="#FF555555"
+                                       Height="20"
+                                       Width="40"
+                                       HorizontalAlignment="Left"
+                                       Margin="5" />
+                            <Rectangle Grid.Row="3"
+                                       Fill="#FF555555"
+                                       Height="20"
+                                       Width="160"
+                                       HorizontalAlignment="Left"
+                                       Margin="5" />
+                        </Grid>
+                        <Grid Background="#FF333333"
+                              Width="200"
+                              Margin="0, 5, 10, 5">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Rectangle Grid.Row="0"
+                                       Fill="#FF555555"
+                                       Height="20"
+                                       Width="120"
+                                       HorizontalAlignment="Left"
+                                       Margin="5" />
+                            <Rectangle Grid.Row="1"
+                                       Fill="#FF555555"
+                                       Height="20"
+                                       Width="100"
+                                       HorizontalAlignment="Left"
+                                       Margin="5" />
+                            <Rectangle Grid.Row="2"
+                                       Fill="#FF555555"
+                                       Height="20"
+                                       Width="40"
+                                       HorizontalAlignment="Left"
+                                       Margin="5" />
+                            <Rectangle Grid.Row="3"
+                                       Fill="#FF555555"
+                                       Height="20"
+                                       Width="160"
+                                       HorizontalAlignment="Left"
+                                       Margin="5" />
+                        </Grid>
+                        <Grid Background="#FF333333"
+                              Width="200"
+                              Margin="0, 5, 10, 5">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Rectangle Grid.Row="0"
+                                       Fill="#FF555555"
+                                       Height="20"
+                                       Width="120"
+                                       HorizontalAlignment="Left"
+                                       Margin="5" />
+                            <Rectangle Grid.Row="1"
+                                       Fill="#FF555555"
+                                       Height="20"
+                                       Width="100"
+                                       HorizontalAlignment="Left"
+                                       Margin="5" />
+                            <Rectangle Grid.Row="2"
+                                       Fill="#FF555555"
+                                       Height="20"
+                                       Width="40"
+                                       HorizontalAlignment="Left"
+                                       Margin="5" />
+                            <Rectangle Grid.Row="3"
+                                       Fill="#FF555555"
+                                       Height="20"
+                                       Width="160"
+                                       HorizontalAlignment="Left"
+                                       Margin="5" />
+                        </Grid>
+                        <Grid Background="#FF333333"
+                              Width="200"
+                              Margin="0, 5, 10, 5">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition />
+                                <RowDefinition />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Rectangle Grid.Row="0"
+                                       Fill="#FF555555"
+                                       Height="20"
+                                       Width="120"
+                                       HorizontalAlignment="Left"
+                                       Margin="5" />
+                            <Rectangle Grid.Row="1"
+                                       Fill="#FF555555"
+                                       Height="20"
+                                       Width="100"
+                                       HorizontalAlignment="Left"
+                                       Margin="5" />
+                            <Rectangle Grid.Row="2"
+                                       Fill="#FF555555"
+                                       Height="20"
+                                       Width="40"
+                                       HorizontalAlignment="Left"
+                                       Margin="5" />
+                            <Rectangle Grid.Row="3"
+                                       Fill="#FF555555"
+                                       Height="20"
+                                       Width="160"
+                                       HorizontalAlignment="Left"
+                                       Margin="5" />
+                        </Grid>
+                    </WrapPanel>
+                </StackPanel>
             </Grid>
-            <!--<Line Grid.Row="0"
-                  Margin="0, 10"
-                  X1="0"
-                  Y1="0"
-                  X2="1"
-                  Y2="0"
-                  Stretch="Fill"
-                  Height="1"
-                  Stroke="Gray"
-                  VerticalAlignment="Bottom"/>-->
+            <Grid Grid.Row="3"
+                  Margin="0, 10">
+                <StackPanel>
+                    <TextBlock Text="详细信息"
+                               FontSize="20"
+                               Foreground="{DynamicResource SecondryText.Foreground}"
+                               Margin="0, 10" />
+                    <Button Width="400" 
+                            HorizontalAlignment="Left"
+                            Padding="5"
+                            Command="{Binding AddNewItemCommand}"
+                            Foreground="{DynamicResource PrimaryButton.Foreground}"
+                            Style="{DynamicResource NonBgButton}"
+                            modernWpf:ControlHelper.CornerRadius="0"
+                        HorizontalContentAlignment="Left"
+                            Margin="0, 5, 5, 5"
+                            Background="Transparent">
+                        <StackPanel Orientation="Horizontal">
+                            <Border BorderBrush="{DynamicResource App.Foreground}"
+                                    Height="50"
+                                    Width="50"
+                                    Margin="0, 0, 10, 0"
+                                    BorderThickness="2">
+                                <Viewbox Width="30"
+                                         Height="30">
+                                    <Canvas Width="24"
+                                            Height="24">
+                                        <Path Fill="{DynamicResource App.Foreground}"
+                                              Data="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" />
+                                    </Canvas>
+                                </Viewbox>
+                            </Border>
+                            <TextBlock Text="点击此处添加新项"
+                                       FontSize="18"
+                                       Margin="0, 0, 0, 0"/>
+                        </StackPanel>
+                    </Button>
+                    <WrapPanel>
+                        <Rectangle Width="200"
+                                   Height="200"
+                                   Fill="#FF333333"
+                                   Margin="0, 10, 10, 10" />
+                        <Rectangle Width="200"
+                                   Height="200"
+                                   Fill="#FF333333"
+                                   Margin="0, 10, 10, 10" />
+                        <Rectangle Width="200"
+                                   Height="200"
+                                   Fill="#FF333333"
+                                   Margin="0, 10, 10, 10" />
+                        <Rectangle Width="200"
+                                   Height="200"
+                                   Fill="#FF333333"
+                                   Margin="0, 10, 10, 10" />
+                        <Rectangle Width="200"
+                                   Height="200"
+                                   Fill="#FF333333"
+                                   Margin="0, 10, 10, 10" />
+                        <Rectangle Width="200"
+                                   Height="200"
+                                   Fill="#FF333333"
+                                   Margin="0, 10, 10, 10" />
+                        <Rectangle Width="200"
+                                   Height="200"
+                                   Fill="#FF333333"
+                                   Margin="0, 10, 10, 10" />
+                        <Rectangle Width="200"
+                                   Height="200"
+                                   Fill="#FF333333"
+                                   Margin="0, 10, 10, 10" />
+                        <Rectangle Width="200"
+                                   Height="200"
+                                   Fill="#FF333333"
+                                   Margin="0, 10, 10, 10" />
+                        <Rectangle Width="200"
+                                   Height="200"
+                                   Fill="#FF333333"
+                                   Margin="0, 10, 10, 10" />
+                        <Rectangle Width="200"
+                                   Height="200"
+                                   Fill="#FF333333"
+                                   Margin="0, 10, 10, 10" />
+                        <Rectangle Width="200"
+                                   Height="200"
+                                   Fill="#FF333333"
+                                   Margin="0, 10, 10, 10" />
+                        <Rectangle Width="200"
+                                   Height="200"
+                                   Fill="#FF333333"
+                                   Margin="0, 10, 10, 10" />
+                    </WrapPanel>
+                </StackPanel>
+            </Grid>
         </StackPanel>
-        <Grid Grid.Row="2"
-              Margin="40, 20">
-            <StackPanel>
-                <TextBlock Text="统计"
-                           FontSize="20"
-                           Foreground="{DynamicResource SecondryText.Foreground}"
-                           Margin="0, 10" />
-                <WrapPanel Orientation="Horizontal">
-                    <Grid Background="#FF333333"
-                          Width="200"
-                          Margin="0, 5, 10, 5">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition />
-                            <RowDefinition />
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
-                        <Rectangle Grid.Row="0"
-                                   Fill="#FF555555"
-                                   Height="20"
-                                   Width="120"
-                                   HorizontalAlignment="Left"
-                                   Margin="5" />
-                        <Rectangle Grid.Row="1"
-                                   Fill="#FF555555"
-                                   Height="20"
-                                   Width="100"
-                                   HorizontalAlignment="Left"
-                                   Margin="5" />
-                        <Rectangle Grid.Row="2"
-                                   Fill="#FF555555"
-                                   Height="20"
-                                   Width="40"
-                                   HorizontalAlignment="Left"
-                                   Margin="5" />
-                        <Rectangle Grid.Row="3"
-                                   Fill="#FF555555"
-                                   Height="20"
-                                   Width="160"
-                                   HorizontalAlignment="Left"
-                                   Margin="5" />
-                    </Grid>
-                    <Grid Background="#FF333333"
-                          Width="200"
-                          Margin="0, 5, 10, 5">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition />
-                            <RowDefinition />
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
-                        <Rectangle Grid.Row="0"
-                                   Fill="#FF555555"
-                                   Height="20"
-                                   Width="120"
-                                   HorizontalAlignment="Left"
-                                   Margin="5" />
-                        <Rectangle Grid.Row="1"
-                                   Fill="#FF555555"
-                                   Height="20"
-                                   Width="100"
-                                   HorizontalAlignment="Left"
-                                   Margin="5" />
-                        <Rectangle Grid.Row="2"
-                                   Fill="#FF555555"
-                                   Height="20"
-                                   Width="40"
-                                   HorizontalAlignment="Left"
-                                   Margin="5" />
-                        <Rectangle Grid.Row="3"
-                                   Fill="#FF555555"
-                                   Height="20"
-                                   Width="160"
-                                   HorizontalAlignment="Left"
-                                   Margin="5" />
-                    </Grid>
-                    <Grid Background="#FF333333"
-                          Width="200"
-                          Margin="0, 5, 10, 5">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition />
-                            <RowDefinition />
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
-                        <Rectangle Grid.Row="0"
-                                   Fill="#FF555555"
-                                   Height="20"
-                                   Width="120"
-                                   HorizontalAlignment="Left"
-                                   Margin="5" />
-                        <Rectangle Grid.Row="1"
-                                   Fill="#FF555555"
-                                   Height="20"
-                                   Width="100"
-                                   HorizontalAlignment="Left"
-                                   Margin="5" />
-                        <Rectangle Grid.Row="2"
-                                   Fill="#FF555555"
-                                   Height="20"
-                                   Width="40"
-                                   HorizontalAlignment="Left"
-                                   Margin="5" />
-                        <Rectangle Grid.Row="3"
-                                   Fill="#FF555555"
-                                   Height="20"
-                                   Width="160"
-                                   HorizontalAlignment="Left"
-                                   Margin="5" />
-                    </Grid>
-                    <Grid Background="#FF333333"
-                          Width="200"
-                          Margin="0, 5, 10, 5">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition />
-                            <RowDefinition />
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
-                        <Rectangle Grid.Row="0"
-                                   Fill="#FF555555"
-                                   Height="20"
-                                   Width="120"
-                                   HorizontalAlignment="Left"
-                                   Margin="5" />
-                        <Rectangle Grid.Row="1"
-                                   Fill="#FF555555"
-                                   Height="20"
-                                   Width="100"
-                                   HorizontalAlignment="Left"
-                                   Margin="5" />
-                        <Rectangle Grid.Row="2"
-                                   Fill="#FF555555"
-                                   Height="20"
-                                   Width="40"
-                                   HorizontalAlignment="Left"
-                                   Margin="5" />
-                        <Rectangle Grid.Row="3"
-                                   Fill="#FF555555"
-                                   Height="20"
-                                   Width="160"
-                                   HorizontalAlignment="Left"
-                                   Margin="5" />
-                    </Grid>
-                </WrapPanel>
-            </StackPanel>
-            <!--<Line Margin="0, 10"
-                  X1="0"
-                  Y1="0"
-                  X2="1"
-                  Y2="0"
-                  Stretch="Fill"
-                  Height="1"
-                  Stroke="Gray"
-                  VerticalAlignment="Bottom" />-->
-        </Grid>
-        <Grid Grid.Row="3"
-              Margin="40, 0">
-            <StackPanel>
-                <TextBlock Text="详细信息"
-                           FontSize="20"
-                           Foreground="{DynamicResource SecondryText.Foreground}"
-                           Margin="0, 10" />
-                <WrapPanel>
-                    <Rectangle Width="200"
-                               Height="200"
-                               Fill="#FF333333"
-                               Margin="0, 10, 10, 10" />
-                    <Rectangle Width="200"
-                               Height="200"
-                               Fill="#FF333333"
-                               Margin="0, 10, 10, 10" />
-                    <Rectangle Width="200"
-                               Height="200"
-                               Fill="#FF333333"
-                               Margin="0, 10, 10, 10" />
-                    <Rectangle Width="200"
-                               Height="200"
-                               Fill="#FF333333"
-                               Margin="0, 10, 10, 10" />
-                    <Rectangle Width="200"
-                               Height="200"
-                               Fill="#FF333333"
-                               Margin="0, 10, 10, 10" />
-                    <Rectangle Width="200"
-                               Height="200"
-                               Fill="#FF333333"
-                               Margin="0, 10, 10, 10" />
-                    <Rectangle Width="200"
-                               Height="200"
-                               Fill="#FF333333"
-                               Margin="0, 10, 10, 10" />
-                    <Rectangle Width="200"
-                               Height="200"
-                               Fill="#FF333333"
-                               Margin="0, 10, 10, 10" />
-                    <Rectangle Width="200"
-                               Height="200"
-                               Fill="#FF333333"
-                               Margin="0, 10, 10, 10" />
-                    <Rectangle Width="200"
-                               Height="200"
-                               Fill="#FF333333"
-                               Margin="0, 10, 10, 10" />
-                    <Rectangle Width="200"
-                               Height="200"
-                               Fill="#FF333333"
-                               Margin="0, 10, 10, 10" />
-                    <Rectangle Width="200"
-                               Height="200"
-                               Fill="#FF333333"
-                               Margin="0, 10, 10, 10" />
-                    <Rectangle Width="200"
-                               Height="200"
-                               Fill="#FF333333"
-                               Margin="0, 10, 10, 10" />
-                </WrapPanel>
-            </StackPanel>
-        </Grid>
-    </Grid>
+    </ScrollViewer>
 </UserControl>

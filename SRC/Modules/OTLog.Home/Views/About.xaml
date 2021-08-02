@@ -8,25 +8,37 @@
              prism:ViewModelLocator.AutoWireViewModel="True"
              d:DesignWidth="940"
              d:DesignHeight="510">
-    <Grid Margin="0, 40, 0, 0">
+    <UserControl.RenderTransform>
+        <TranslateTransform Y="100" />
+    </UserControl.RenderTransform>
+    <UserControl.Triggers>
+        <EventTrigger RoutedEvent="Loaded">
+            <BeginStoryboard>
+                <Storyboard>
+                    <DoubleAnimation Storyboard.TargetProperty="(UserControl.RenderTransform).(TranslateTransform.Y)"
+                                     To="0"
+                                     Duration="0:0:.3">
+                        <DoubleAnimation.EasingFunction>
+                            <CircleEase EasingMode="EaseOut" />
+                        </DoubleAnimation.EasingFunction>
+                    </DoubleAnimation>
+                </Storyboard>
+            </BeginStoryboard>
+        </EventTrigger>
+    </UserControl.Triggers>
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition />
         </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0"
-                   Text="关于"
-                   FontSize="35"
-                   Margin="40, 0, 0, 20"
-                   Foreground="{DynamicResource PrimaryText.Foreground}" />
         <TextBlock Grid.Row="1"
-                   Margin="40, 0"
                    Text="版本信息"
                    FontSize="18"
                    Foreground="{DynamicResource PrimaryText.Foreground}"/>
         <Grid Grid.Row="2"
-              Margin="40, 10, 40, 20">
+              Margin="0, 10, 0, 20">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition />
@@ -56,7 +68,7 @@
                        Margin="5"
                        Fill="#FF333333" />
         </Grid>
-        <StackPanel Grid.Row="3" Margin="40, 10">
+        <StackPanel Grid.Row="3" Margin="0, 10">
             <TextBlock Grid.Row="1"
                        Text="此版本的新增功能"
                        FontSize="18"

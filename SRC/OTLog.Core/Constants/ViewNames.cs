@@ -7,5 +7,7 @@
         public const string Overview = nameof(Overview);
         public const string About = nameof(About);
         public const string Settings = nameof(Settings);
+        public const string NewItem = nameof(NewItem);
+        public const string EditItem = nameof(EditItem);
     }
 }

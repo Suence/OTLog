@@ -1,4 +1,5 @@
 ﻿using Hardcodet.Wpf.TaskbarNotification;
+using ModernWpf;
 using OTLog.Core.StaticObjects;
 using OTLog.Core.Utils;
 using OTLog.Home;
@@ -13,6 +14,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Windows;
+using System.Windows.Media;
 
 namespace OTLog
 {
@@ -59,6 +61,8 @@ namespace OTLog
 
             string systemStartupFolder = Environment.GetFolderPath(Environment.SpecialFolder.Startup);
             string linkFileFullPath = Path.Combine(systemStartupFolder, "OTLog.lnk");
+
+            ThemeManager.Current.AccentColor = Colors.DarkMagenta;
 
             // 如果快捷方式已经存在, 则不进行任何操作
             if (File.Exists(linkFileFullPath)) return;

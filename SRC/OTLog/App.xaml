@@ -4,12 +4,15 @@
                         xmlns:prism="http://prismlibrary.com/"
                         ShutdownMode="OnExplicitShutdown"
                         xmlns:local="clr-namespace:OTLog"
+                        xmlns:ui="http://schemas.modernwpf.com/2019"
                         xmlns:themes="clr-namespace:OTLog.Themes;assembly=OTLog.Themes"
                         xmlns:tb="http://www.hardcodet.net/taskbar">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <x:Static Member="themes:DarkTheme.Instance" />
+                <ui:ThemeResources RequestedTheme="Dark"/>
+                <ui:XamlControlsResources />
                 <!--<ResourceDictionary Source="pack://application:,,,/OTLog.Themes;component/DarkTheme.xaml"/>-->
                 <ResourceDictionary Source="/Views/NotifyIcon.xaml" />
             </ResourceDictionary.MergedDictionaries>
