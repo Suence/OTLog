@@ -7,6 +7,8 @@
                      Color="#FF1A1B1C" />
     <SolidColorBrush x:Key="App.Background2"
                      Color="#FF222222"/>
+    <SolidColorBrush x:Key="App.Background3"
+                     Color="#FF333333" />
     <!-- END -->
     <!-- Title -->
     <SolidColorBrush x:Key="AppTitle.Foreground"
@@ -60,6 +62,8 @@
     <!-- Home -->
     <SolidColorBrush x:Key="Control.BorderBrush"
                      Color="Gray"/>
+    <SolidColorBrush x:Key="OTRecord.Background"
+                     Color="#FF333333"/>
     <!-- END -->
     <SolidColorBrush x:Key="CloseWindowButton.MouseOver.Background"
                      Color="#FFFF3B30" />

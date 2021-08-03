@@ -15,6 +15,7 @@
     <WarningLevel>4</WarningLevel>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -27,7 +28,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -51,7 +51,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>timer32.ico</ApplicationIcon>
+    <ApplicationIcon>logo32.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <DebugSymbols>true</DebugSymbols>
@@ -162,6 +162,7 @@
     <Folder Include="Assets\Videos\" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="logo32.ico" />
     <Resource Include="Assets\Images\夜间.png" />
     <Resource Include="Assets\Images\向下2.png" />
     <Resource Include="Assets\Images\向下.png" />
@@ -170,6 +171,7 @@
     <Resource Include="Assets\Images\MainLog.png" />
     <Resource Include="Assets\Images\Refresh.png" />
     <Resource Include="Assets\Images\right.png" />
+    <Resource Include="Assets\Images\logo.png" />
     <Content Include="Assets\Images\taskbarIcon.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

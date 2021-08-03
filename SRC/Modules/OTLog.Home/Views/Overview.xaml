@@ -6,12 +6,18 @@
              mc:Ignorable="d"
              xmlns:modernWpf="http://schemas.modernwpf.com/2019"
              x:Class="OTLog.Home.Views.Overview"
+             xmlns:suence="http://software.suence.com/"
              prism:ViewModelLocator.AutoWireViewModel="True"
              d:DesignWidth="1030"
              d:DesignHeight="590">
     <UserControl.RenderTransform>
-        <TranslateTransform Y="100"/>
+        <TranslateTransform Y="100" />
     </UserControl.RenderTransform>
+    <UserControl.Resources>
+        <suence:OTSeverityConverter x:Key="OTSeverityConverter" />
+        <suence:BindingProxy x:Key="BindingProxy" Data="{Binding}"/>
+    </UserControl.Resources>
+    
     <UserControl.Triggers>
         <EventTrigger RoutedEvent="Loaded">
             <BeginStoryboard>
@@ -27,284 +33,401 @@
             </BeginStoryboard>
         </EventTrigger>
     </UserControl.Triggers>
+
     <ScrollViewer Margin="0, 0, 3, 0"
                   Padding="0, 0, 30, 0">
         <StackPanel>
-            <StackPanel Grid.Row="1"
-                        Margin="0, 0, 0, 10"
-                        TextBlock.FontSize="18">
-                <TextBlock Text="搜索"
-                           FontSize="20"
-                           Foreground="{DynamicResource SecondryText.Foreground}"
-                           Margin="0, 0" />
-                <WrapPanel Orientation="Horizontal"
-                           Margin="0, 10, 0, 0">
-                    <DatePicker modernWpf:ControlHelper.CornerRadius="0" />
-                    <TextBlock Text="-"
-                               Margin="5"
-                               VerticalAlignment="Center" />
-                    <DatePicker modernWpf:ControlHelper.CornerRadius="0" />
-                    <TextBox Width="200"
-                             modernWpf:ControlHelper.PlaceholderText="备注"
-                             Margin="10, 5"
-                             modernWpf:ControlHelper.CornerRadius="0"
-                             modernWpf:ControlHelper.PlaceholderForeground="{DynamicResource PlaceHolder.Foreground}" />
-                    <Button FontSize="16"
-                            Padding="20, 5"
-                            modernWpf:ControlHelper.CornerRadius="0"
-                            Margin="5">
-                        <Viewbox Width="20"
-                                 Height="20">
-                            <Canvas Width="24"
-                                    Height="24">
-                                <Path Fill="{DynamicResource App.Foreground}"
-                                      Data="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z" />
-                            </Canvas>
-                        </Viewbox>
-                    </Button>
-                </WrapPanel>
-
-            </StackPanel>
-            <Grid Grid.Row="2"
-                  Margin="0, 10">
-                <StackPanel>
-                    <TextBlock Text="统计"
+                <StackPanel Grid.Row="1"
+                            Margin="0, 0, 0, 10"
+                            TextBlock.FontSize="18">
+                    <TextBlock Text="搜索"
                                FontSize="20"
                                Foreground="{DynamicResource SecondryText.Foreground}"
-                               Margin="0, 10" />
-                    <WrapPanel Orientation="Horizontal">
-                        <Grid Background="#FF333333"
-                              Width="200"
-                              Margin="0, 5, 10, 5">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition />
-                                <RowDefinition />
-                                <RowDefinition Height="Auto" />
-                            </Grid.RowDefinitions>
-                            <Rectangle Grid.Row="0"
-                                       Fill="#FF555555"
-                                       Height="20"
-                                       Width="120"
-                                       HorizontalAlignment="Left"
-                                       Margin="5" />
-                            <Rectangle Grid.Row="1"
-                                       Fill="#FF555555"
-                                       Height="20"
-                                       Width="100"
-                                       HorizontalAlignment="Left"
-                                       Margin="5" />
-                            <Rectangle Grid.Row="2"
-                                       Fill="#FF555555"
-                                       Height="20"
-                                       Width="40"
-                                       HorizontalAlignment="Left"
-                                       Margin="5" />
-                            <Rectangle Grid.Row="3"
-                                       Fill="#FF555555"
-                                       Height="20"
-                                       Width="160"
-                                       HorizontalAlignment="Left"
-                                       Margin="5" />
-                        </Grid>
-                        <Grid Background="#FF333333"
-                              Width="200"
-                              Margin="0, 5, 10, 5">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition />
-                                <RowDefinition />
-                                <RowDefinition Height="Auto" />
-                            </Grid.RowDefinitions>
-                            <Rectangle Grid.Row="0"
-                                       Fill="#FF555555"
-                                       Height="20"
-                                       Width="120"
-                                       HorizontalAlignment="Left"
-                                       Margin="5" />
-                            <Rectangle Grid.Row="1"
-                                       Fill="#FF555555"
-                                       Height="20"
-                                       Width="100"
-                                       HorizontalAlignment="Left"
-                                       Margin="5" />
-                            <Rectangle Grid.Row="2"
-                                       Fill="#FF555555"
-                                       Height="20"
-                                       Width="40"
-                                       HorizontalAlignment="Left"
-                                       Margin="5" />
-                            <Rectangle Grid.Row="3"
-                                       Fill="#FF555555"
-                                       Height="20"
-                                       Width="160"
-                                       HorizontalAlignment="Left"
-                                       Margin="5" />
-                        </Grid>
-                        <Grid Background="#FF333333"
-                              Width="200"
-                              Margin="0, 5, 10, 5">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition />
-                                <RowDefinition />
-                                <RowDefinition Height="Auto" />
-                            </Grid.RowDefinitions>
-                            <Rectangle Grid.Row="0"
-                                       Fill="#FF555555"
-                                       Height="20"
-                                       Width="120"
-                                       HorizontalAlignment="Left"
-                                       Margin="5" />
-                            <Rectangle Grid.Row="1"
-                                       Fill="#FF555555"
-                                       Height="20"
-                                       Width="100"
-                                       HorizontalAlignment="Left"
-                                       Margin="5" />
-                            <Rectangle Grid.Row="2"
-                                       Fill="#FF555555"
-                                       Height="20"
-                                       Width="40"
-                                       HorizontalAlignment="Left"
-                                       Margin="5" />
-                            <Rectangle Grid.Row="3"
-                                       Fill="#FF555555"
-                                       Height="20"
-                                       Width="160"
-                                       HorizontalAlignment="Left"
-                                       Margin="5" />
-                        </Grid>
-                        <Grid Background="#FF333333"
-                              Width="200"
-                              Margin="0, 5, 10, 5">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition />
-                                <RowDefinition />
-                                <RowDefinition Height="Auto" />
-                            </Grid.RowDefinitions>
-                            <Rectangle Grid.Row="0"
-                                       Fill="#FF555555"
-                                       Height="20"
-                                       Width="120"
-                                       HorizontalAlignment="Left"
-                                       Margin="5" />
-                            <Rectangle Grid.Row="1"
-                                       Fill="#FF555555"
-                                       Height="20"
-                                       Width="100"
-                                       HorizontalAlignment="Left"
-                                       Margin="5" />
-                            <Rectangle Grid.Row="2"
-                                       Fill="#FF555555"
-                                       Height="20"
-                                       Width="40"
-                                       HorizontalAlignment="Left"
-                                       Margin="5" />
-                            <Rectangle Grid.Row="3"
-                                       Fill="#FF555555"
-                                       Height="20"
-                                       Width="160"
-                                       HorizontalAlignment="Left"
-                                       Margin="5" />
-                        </Grid>
-                    </WrapPanel>
-                </StackPanel>
-            </Grid>
-            <Grid Grid.Row="3"
-                  Margin="0, 10">
-                <StackPanel>
-                    <TextBlock Text="详细信息"
-                               FontSize="20"
-                               Foreground="{DynamicResource SecondryText.Foreground}"
-                               Margin="0, 10" />
-                    <Button Width="400" 
-                            HorizontalAlignment="Left"
-                            Padding="5"
-                            Command="{Binding AddNewItemCommand}"
-                            Foreground="{DynamicResource PrimaryButton.Foreground}"
-                            Style="{DynamicResource NonBgButton}"
-                            modernWpf:ControlHelper.CornerRadius="0"
-                        HorizontalContentAlignment="Left"
-                            Margin="0, 5, 5, 5"
-                            Background="Transparent">
-                        <StackPanel Orientation="Horizontal">
-                            <Border BorderBrush="{DynamicResource App.Foreground}"
-                                    Height="50"
-                                    Width="50"
+                               Margin="0, 0" />
+                    <WrapPanel Orientation="Horizontal"
+                               Margin="0, 10, 0, 0">
+                        <DatePicker modernWpf:ControlHelper.CornerRadius="0"
+                                    Width="150"
+                                    modernWpf:ControlHelper.PlaceholderText="从" />
+                        <TextBlock Text="-"
+                                   Margin="5"
+                                   VerticalAlignment="Center" />
+                        <DatePicker modernWpf:ControlHelper.CornerRadius="0"
+                                    Width="150"
                                     Margin="0, 0, 10, 0"
-                                    BorderThickness="2">
-                                <Viewbox Width="30"
-                                         Height="30">
-                                    <Canvas Width="24"
-                                            Height="24">
-                                        <Path Fill="{DynamicResource App.Foreground}"
-                                              Data="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" />
-                                    </Canvas>
-                                </Viewbox>
-                            </Border>
-                            <TextBlock Text="点击此处添加新项"
-                                       FontSize="18"
-                                       Margin="0, 0, 0, 0"/>
-                        </StackPanel>
-                    </Button>
-                    <WrapPanel>
-                        <Rectangle Width="200"
-                                   Height="200"
-                                   Fill="#FF333333"
-                                   Margin="0, 10, 10, 10" />
-                        <Rectangle Width="200"
-                                   Height="200"
-                                   Fill="#FF333333"
-                                   Margin="0, 10, 10, 10" />
-                        <Rectangle Width="200"
-                                   Height="200"
-                                   Fill="#FF333333"
-                                   Margin="0, 10, 10, 10" />
-                        <Rectangle Width="200"
-                                   Height="200"
-                                   Fill="#FF333333"
-                                   Margin="0, 10, 10, 10" />
-                        <Rectangle Width="200"
-                                   Height="200"
-                                   Fill="#FF333333"
-                                   Margin="0, 10, 10, 10" />
-                        <Rectangle Width="200"
-                                   Height="200"
-                                   Fill="#FF333333"
-                                   Margin="0, 10, 10, 10" />
-                        <Rectangle Width="200"
-                                   Height="200"
-                                   Fill="#FF333333"
-                                   Margin="0, 10, 10, 10" />
-                        <Rectangle Width="200"
-                                   Height="200"
-                                   Fill="#FF333333"
-                                   Margin="0, 10, 10, 10" />
-                        <Rectangle Width="200"
-                                   Height="200"
-                                   Fill="#FF333333"
-                                   Margin="0, 10, 10, 10" />
-                        <Rectangle Width="200"
-                                   Height="200"
-                                   Fill="#FF333333"
-                                   Margin="0, 10, 10, 10" />
-                        <Rectangle Width="200"
-                                   Height="200"
-                                   Fill="#FF333333"
-                                   Margin="0, 10, 10, 10" />
-                        <Rectangle Width="200"
-                                   Height="200"
-                                   Fill="#FF333333"
-                                   Margin="0, 10, 10, 10" />
-                        <Rectangle Width="200"
-                                   Height="200"
-                                   Fill="#FF333333"
-                                   Margin="0, 10, 10, 10" />
+                                    modernWpf:ControlHelper.PlaceholderText="到" />
+                        <TextBox Width="215"
+                                 modernWpf:ControlHelper.PlaceholderText="备注"
+                                 Margin="0, 5, 15, 5"
+                                 modernWpf:ControlHelper.CornerRadius="0"
+                                 modernWpf:ControlHelper.PlaceholderForeground="{DynamicResource PlaceHolder.Foreground}" />
+                        <Button FontSize="16"
+                                Padding="20, 5"
+                                modernWpf:ControlHelper.CornerRadius="0"
+                                Style="{DynamicResource Win10ButtonStyle}"
+                                Margin="0, 5">
+                            <Viewbox Width="20"
+                                     Height="20">
+                                <Canvas Width="24"
+                                        Height="24">
+                                    <Path Fill="{DynamicResource App.Foreground}"
+                                          Data="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z" />
+                                </Canvas>
+                            </Viewbox>
+                        </Button>
                     </WrapPanel>
+
                 </StackPanel>
-            </Grid>
-        </StackPanel>
+                <Grid Grid.Row="2"
+                      Margin="0, 10">
+                    <StackPanel>
+                        <TextBlock Text="统计"
+                                   FontSize="20"
+                                   Foreground="{DynamicResource SecondryText.Foreground}"
+                                   Margin="0, 10" />
+                        <WrapPanel Orientation="Horizontal">
+                        <Grid Background="#FF333333"
+                              Width="180"
+                              Margin="0, 5, 10, 5">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Label Grid.Row="0"
+                                   Content="总时长"
+                                   Margin="10"
+                                   FontSize="16"
+                                   Foreground="Gray" />
+                            <StackPanel Grid.Row="1"
+                                        Margin="10, 0"
+                                        Orientation="Horizontal"
+                                        VerticalAlignment="Center">
+                                <TextBlock Grid.Row="1"
+                                           Text="278.7"
+                                           FontSize="30" />
+                                <TextBlock Text="小时"
+                                           VerticalAlignment="Bottom"
+                                           FontSize="16"
+                                           Margin="5, 0, 0, 3"
+                                           Foreground="Gray" />
+                            </StackPanel>
+                            <Button Grid.Row="2" HorizontalAlignment="Stretch" 
+                                    Margin="0, 10, 0, 0"
+                                    Content="了解更多"/>
+                        </Grid>
+                        <Grid Background="#FF333333"
+                              Width="180"
+                              Margin="0, 5, 10, 5">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Label Grid.Row="0"
+                                   Content="单次加班在 3 小时内"
+                                   Margin="10"
+                                   FontSize="16"
+                                   Foreground="Gray" />
+                            <StackPanel Grid.Row="1"
+                                        Margin="10, 0"
+                                        Orientation="Horizontal"
+                                        VerticalAlignment="Center">
+                                <TextBlock Grid.Row="1"
+                                           Text="23"
+                                           FontSize="30" />
+                                <TextBlock Text="天"
+                                           VerticalAlignment="Bottom"
+                                           FontSize="16"
+                                           Margin="5, 0, 0, 3"
+                                           Foreground="Gray" />
+                            </StackPanel>
+                            <Button Grid.Row="2"
+                                    HorizontalAlignment="Stretch"
+                                    Margin="0, 10, 0, 0"
+                                    Content="了解更多" />
+                        </Grid>
+                        <Grid Background="#FF333333"
+                              Width="180"
+                              Margin="0, 5, 10, 5">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Label Grid.Row="0"
+                                   Content="单次加班在 5 小时内"
+                                   Margin="10"
+                                   FontSize="16"
+                                   Foreground="Gray" />
+                            <StackPanel Grid.Row="1"
+                                        Margin="10, 0"
+                                        Orientation="Horizontal"
+                                        VerticalAlignment="Center">
+                                <TextBlock Grid.Row="1"
+                                           Text="12"
+                                           FontSize="30" />
+                                <TextBlock Text="天"
+                                           VerticalAlignment="Bottom"
+                                           FontSize="16"
+                                           Margin="5, 0, 0, 3"
+                                           Foreground="Gray" />
+                            </StackPanel>
+                            <Button Grid.Row="2"
+                                    HorizontalAlignment="Stretch"
+                                    Margin="0, 10, 0, 0"
+                                    Content="了解更多" />
+                        </Grid>
+                        <Grid Background="#FF333333"
+                              Width="180"
+                              Margin="0, 5, 10, 5">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Label Grid.Row="0"
+                                   Content="单次加班在 5 小时以上"
+                                   Margin="10"
+                                   FontSize="16"
+                                   Foreground="Gray" />
+                            <StackPanel Grid.Row="1"
+                                        Margin="10, 0"
+                                        Orientation="Horizontal"
+                                        VerticalAlignment="Center">
+                                <TextBlock Grid.Row="1"
+                                           Text="7"
+                                           FontSize="30" />
+                                <TextBlock Text="天"
+                                           VerticalAlignment="Bottom"
+                                           FontSize="16"
+                                           Margin="5, 0, 0, 3"
+                                           Foreground="Gray" />
+                            </StackPanel>
+                            <Button Grid.Row="2"
+                                    HorizontalAlignment="Stretch"
+                                    Margin="0, 10, 0, 0"
+                                    Content="了解更多" />
+                        </Grid>
+                    </WrapPanel>
+                    </StackPanel>
+                </Grid>
+                <Grid Grid.Row="3"
+                      Margin="0, 10">
+                    <StackPanel>
+                        <TextBlock Text="详细信息"
+                                   FontSize="20"
+                                   Foreground="{DynamicResource SecondryText.Foreground}"
+                                   Margin="0, 10" />
+                        <Button Width="400"
+                                HorizontalAlignment="Left"
+                                Padding="5"
+                                Command="{Binding AddNewItemCommand}"
+                                Foreground="{DynamicResource PrimaryButton.Foreground}"
+                                Style="{DynamicResource NonBgButton}"
+                                modernWpf:ControlHelper.CornerRadius="0"
+                                HorizontalContentAlignment="Left"
+                                Margin="0, 5, 5, 5"
+                                Background="Transparent">
+                            <StackPanel Orientation="Horizontal">
+                                <Border BorderBrush="{DynamicResource App.Foreground}"
+                                        Height="50"
+                                        Width="50"
+                                        Margin="0, 0, 10, 0"
+                                        BorderThickness="2">
+                                    <Viewbox Width="30"
+                                             Height="30">
+                                        <Canvas Width="24"
+                                                Height="24">
+                                            <Path Fill="{DynamicResource App.Foreground}"
+                                                  Data="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" />
+                                        </Canvas>
+                                    </Viewbox>
+                                </Border>
+                                <TextBlock Text="点击此处添加新项"
+                                           FontSize="18"
+                                           Margin="0, 0, 0, 0" />
+                            </StackPanel>
+                        </Button>
+                        <ItemsControl ItemsSource="{Binding OTRecords}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <WrapPanel IsItemsHost="True"
+                                               Orientation="Horizontal" />
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate DataType="OTRecord">
+                                    <Grid Width="200"
+                                          ClipToBounds="True"
+                                          Background="{DynamicResource OTRecord.Background}">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition />
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
+                                        <Grid Grid.Row="0">
+                                            <TextBlock Text="{Binding BeginTime, StringFormat={}{0:yyyy/MM/dd}}"
+                                                       FontSize="16"
+                                                       FontWeight="Bold"
+                                                       Foreground="Gray"
+                                                       HorizontalAlignment="Left"
+                                                       Margin="5, 5, 5, 10" />
+                                            <StackPanel HorizontalAlignment="Right"
+                                                        Orientation="Horizontal">
+                                                <Button x:Name="EditButton"
+                                                        Padding="5"
+                                                        Command="{Binding Source={StaticResource BindingProxy}, Path=Data.EditRecordCommand}"
+                                                        CommandParameter="{Binding}"
+                                                        VerticalAlignment="Center"
+                                                        Style="{DynamicResource NonBgButton}">
+                                                    <Viewbox Width="20"
+                                                             Height="20">
+                                                        <Canvas Width="24"
+                                                                Height="24">
+                                                            <Path Fill="Gray"
+                                                                  Data="M20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18,2.9 17.35,2.9 16.96,3.29L15.12,5.12L18.87,8.87M3,17.25V21H6.75L17.81,9.93L14.06,6.18L3,17.25Z" />
+                                                        </Canvas>
+                                                    </Viewbox>
+                                                    <Button.RenderTransform>
+                                                        <TranslateTransform Y="-40" />
+                                                    </Button.RenderTransform>
+                                                </Button>
+                                                <Button x:Name="DeleteButton"
+                                                        Style="{DynamicResource NonBgButton}"
+                                                        Command="{Binding Source={StaticResource BindingProxy}, Path=Data.DeleteRecordCommand}"
+                                                        CommandParameter="{Binding}"
+                                                        VerticalAlignment="Center"
+                                                        Padding="5">
+                                                    <Viewbox Width="20"
+                                                             Height="20">
+                                                        <Canvas Width="24"
+                                                                Height="24">
+                                                            <Path Fill="OrangeRed"
+                                                                  Data="M19,4H15.5L14.5,3H9.5L8.5,4H5V6H19M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19Z" />
+                                                        </Canvas>
+                                                    </Viewbox>
+                                                    <Button.RenderTransform>
+                                                        <TranslateTransform Y="-40" />
+                                                    </Button.RenderTransform>
+                                                </Button>
+                                            </StackPanel>
+                                        </Grid>
+                                        <StackPanel Grid.Row="1"
+                                                    TextBlock.FontSize="16"
+                                                    Orientation="Horizontal">
+                                            <TextBlock Text="开始"
+                                                       Margin="5"
+                                                       Foreground="Gray" />
+                                            <TextBlock Text="{Binding BeginTime, StringFormat={}{0:HH:mm:ss}}"
+                                                       Margin="5" />
+                                        </StackPanel>
+                                        <StackPanel Grid.Row="2"
+                                                    TextBlock.FontSize="16"
+                                                    Orientation="Horizontal">
+                                            <TextBlock Text="结束"
+                                                       Margin="5"
+                                                       Foreground="Gray" />
+                                            <TextBlock Text="{Binding EndTime, StringFormat={}{0:HH:mm:ss}}"
+                                                       Margin="5" />
+                                        </StackPanel>
+                                        <StackPanel Grid.Row="3"
+                                                    TextBlock.FontSize="16"
+                                                    Orientation="Horizontal">
+                                            <TextBlock Text="时长"
+                                                       Margin="5"
+                                                       Foreground="Gray" />
+                                            <TextBlock Margin="5">
+                                                <TextBlock.Text>
+                                                    <MultiBinding StringFormat="{}{0}h {1}m {2:00}s">
+                                                        <Binding Path="OTTime.Hours" />
+                                                        <Binding Path="OTTime.Minutes" />
+                                                        <Binding Path="OTTime.Seconds" />
+                                                    </MultiBinding>
+                                                </TextBlock.Text>
+                                            </TextBlock>
+                                        </StackPanel>
+                                        <StackPanel Grid.Row="4">
+                                            <TextBlock FontSize="16"
+                                                       Margin="5"
+                                                       Foreground="Gray"
+                                                       Text="备注" />
+                                            <Label Margin="5, 5, 5, 10"
+                                                   MinHeight="30"
+                                                   Content="{Binding Remark}"
+                                                   Foreground="Gray"
+                                                   Background="{DynamicResource App.Background2}"
+                                                   Padding="5" />
+                                        </StackPanel>
+                                        <Rectangle Grid.Row="5"
+                                                   Height="3"
+                                                   Fill="{Binding OTTime, Converter={StaticResource OTSeverityConverter}}" />
+                                    </Grid>
+                                    <DataTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver"
+                                                 Value="True">
+                                            <Trigger.EnterActions>
+                                                <BeginStoryboard>
+                                                    <Storyboard>
+                                                        <DoubleAnimation Storyboard.TargetName="EditButton"
+                                                                         Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.Y)"
+                                                                         To="0"
+                                                                         Duration="0:0:0.2">
+                                                            <DoubleAnimation.EasingFunction>
+                                                                <CircleEase EasingMode="EaseOut" />
+                                                            </DoubleAnimation.EasingFunction>
+                                                        </DoubleAnimation>
+                                                        <DoubleAnimation BeginTime="0:0:0.1"
+                                                                         Storyboard.TargetName="DeleteButton"
+                                                                         Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.Y)"
+                                                                         To="0"
+                                                                         Duration="0:0:0.2">
+                                                            <DoubleAnimation.EasingFunction>
+                                                                <CircleEase EasingMode="EaseOut" />
+                                                            </DoubleAnimation.EasingFunction>
+                                                        </DoubleAnimation>
+                                                    </Storyboard>
+                                                </BeginStoryboard>
+                                            </Trigger.EnterActions>
+                                            <Trigger.ExitActions>
+                                                <BeginStoryboard>
+                                                    <Storyboard>
+                                                        <DoubleAnimation Storyboard.TargetName="EditButton"
+                                                                         Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.Y)"
+                                                                         To="-40"
+                                                                         Duration="0:0:0.2">
+                                                            <DoubleAnimation.EasingFunction>
+                                                                <CircleEase EasingMode="EaseOut" />
+                                                            </DoubleAnimation.EasingFunction>
+                                                        </DoubleAnimation>
+                                                        <DoubleAnimation BeginTime="0:0:0.1"
+                                                                         Storyboard.TargetName="DeleteButton"
+                                                                         Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.Y)"
+                                                                         To="-40"
+                                                                         Duration="0:0:0.2">
+                                                            <DoubleAnimation.EasingFunction>
+                                                                <CircleEase EasingMode="EaseOut" />
+                                                            </DoubleAnimation.EasingFunction>
+                                                        </DoubleAnimation>
+                                                    </Storyboard>
+                                                </BeginStoryboard>
+                                            </Trigger.ExitActions>
+                                        </Trigger>
+                                    </DataTemplate.Triggers>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                            <ItemsControl.ItemContainerStyle>
+                                <Style TargetType="ContentPresenter">
+                                    <Setter Property="Margin"
+                                            Value="5" />
+                                </Style>
+                            </ItemsControl.ItemContainerStyle>
+                        </ItemsControl>
+                    </StackPanel>
+                </Grid>
+            </StackPanel>
     </ScrollViewer>
 </UserControl>

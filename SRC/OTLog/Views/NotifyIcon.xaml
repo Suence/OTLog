@@ -16,8 +16,8 @@
     </ContextMenu>
 
     <tb:TaskbarIcon x:Key="NotifyIcon"
-                    IconSource="/timer32.ico"
-                    ToolTipText="双击图标显示程序窗口"
+                    IconSource="/logo32.ico"
+                    ToolTipText="OTLog v1.0.1"
                     DoubleClickCommand="{Binding ShowWindowCommand}"
                     ContextMenu="{StaticResource SysTrayMenu}">
         <!--<tb:TaskbarIcon.DataContext>

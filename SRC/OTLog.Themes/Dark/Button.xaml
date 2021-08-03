@@ -353,18 +353,18 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
                     <Grid x:Name="grid"
-                              RenderTransformOrigin="0.5, 0.5"
-                              Background="{TemplateBinding Background}"
-                              SnapsToDevicePixels="True">
-                            <ContentPresenter Grid.Column="1"
-                                              Focusable="False"
-                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                              Margin="{TemplateBinding Padding}"
-                                              RecognizesAccessKey="True"
-                                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
-                        </Grid>
-                        <ControlTemplate.Triggers>
+                          RenderTransformOrigin="0.5, 0.5"
+                          Background="{TemplateBinding Background}"
+                          SnapsToDevicePixels="True">
+                        <ContentPresenter Grid.Column="1"
+                                          Focusable="False"
+                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                          Margin="{TemplateBinding Padding}"
+                                          RecognizesAccessKey="True"
+                                          SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver"
                                  Value="True">
                             <Setter TargetName="grid"
@@ -388,5 +388,69 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+    </Style>
+
+    <ControlTemplate x:Key="Win10ButtonTemplate"
+                     TargetType="{x:Type Button}">
+        <Grid x:Name="RootLayout"
+              RenderTransformOrigin="0.5, 0.5"
+              Background="{TemplateBinding Background}">
+            <ContentPresenter Focusable="False"
+                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                              Margin="{TemplateBinding Padding}"
+                              RecognizesAccessKey="True"
+                              TextBlock.Foreground="{TemplateBinding Foreground}"
+                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+            <Border x:Name="border"
+                    BorderThickness="{TemplateBinding BorderThickness}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    Visibility="Hidden"
+                    SnapsToDevicePixels="True" />
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsMouseOver"
+                     Value="True">
+                <Setter TargetName="border" 
+                        Property="Visibility"
+                        Value="Visible" />
+            </Trigger>
+            <Trigger Property="IsPressed"
+                     Value="True">
+                <Setter Property="Background"
+                        Value="{Binding RelativeSource={RelativeSource Mode=Self}, Path=BorderBrush}" />
+                <Setter TargetName="RootLayout"
+                        Property="RenderTransform">
+                    <Setter.Value>
+                        <ScaleTransform ScaleX="0.97"
+                                        ScaleY="0.97" />
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+            <Trigger Property="IsEnabled"
+                     Value="False">
+                <Setter Property="Foreground"
+                        Value="Gray" />
+                <Setter Property="Background"
+                        Value="LightGray" />
+                <Setter Property="BorderBrush"
+                        Value="Gray" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+    <Style x:Key="Win10ButtonStyle"
+           TargetType="{x:Type Button}">
+        <Setter Property="Background"
+                Value="#FF333333" />
+        <Setter Property="BorderBrush"
+                Value="#FF858585" />
+        <Setter Property="BorderThickness"
+                Value="2" />
+        <Setter Property="Template"
+                Value="{StaticResource Win10ButtonTemplate}" />
+        <Setter Property="Padding"
+                Value="5" />
+        <Setter Property="Foreground"
+                Value="White" />
     </Style>
 </ResourceDictionary>

@@ -122,6 +122,7 @@
                         <Button Content="确定"
                                 Padding="40, 5"
                                 Margin="5"
+                                Style="{DynamicResource Win10ButtonStyle}"
                                 modernWpf:ControlHelper.CornerRadius="0">
                             <Button.Triggers>
                                 <EventTrigger RoutedEvent="ButtonBase.Click">
@@ -130,8 +131,9 @@
                             </Button.Triggers>
                         </Button>
                         <Button Content="取消"
-                                Padding="40, 5"
+                                Padding="40, 7"
                                 Margin="5"
+                                Style="{DynamicResource Win10ButtonStyle}"
                                 modernWpf:ControlHelper.CornerRadius="0">
                             <Button.Triggers>
                                 <EventTrigger RoutedEvent="ButtonBase.Click">
