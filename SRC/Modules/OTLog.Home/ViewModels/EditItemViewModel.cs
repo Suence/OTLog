@@ -44,7 +44,13 @@ namespace OTLog.Home.ViewModels
 
         public void OnNavigatedTo(NavigationContext navigationContext)
         {
-            OTRecord = navigationContext.Parameters["Record"] as OTRecord;
+            OTRecord otRecord = navigationContext.Parameters["Record"] as OTRecord;
+            OTRecord = new OTRecord
+            {
+                BeginTime = otRecord.BeginTime,
+                EndTime = otRecord.EndTime,
+                Remark = otRecord.Remark
+            };
         }
     }
 }

@@ -112,17 +112,47 @@
                                    Margin="10, 5"
                                    VerticalAlignment="Center" />
                     </Grid>
-                    <Grid Grid.Row="1"
-                          Height="400">
-                    </Grid>
+                    <StackPanel Grid.Row="1" Margin="20" TextBlock.FontSize="16">
+                        <StackPanel Margin="0, 5">
+                            <TextBlock Text="日期" Foreground="Gray" Margin="0, 5"/>
+                            <DatePicker Width="240" SelectedDate="{Binding OTRecord.BeginTime}" modernWpf:ControlHelper.CornerRadius="0" 
+                                                        HorizontalAlignment="Left" />
+                        </StackPanel>
+                        <StackPanel Margin="0, 5">
+                            <TextBlock Text="开始" Foreground="Gray" Margin="0, 5"/>
+                            <modernWpf:SimpleTimePicker PickerVisibility="All"
+                                                        modernWpf:ControlHelper.CornerRadius="0"  
+                                                        Culture="zh-CN" 
+                                                        SelectedDateTime="{Binding OTRecord.BeginTime}"
+                                                        HorizontalAlignment="Left" />
+                        </StackPanel>
+                        <StackPanel Margin="0, 5">
+                            <TextBlock Text="结束" Margin="0, 5" Foreground="Gray"/>
+                            <modernWpf:SimpleTimePicker PickerVisibility="All"
+                                                        modernWpf:ControlHelper.CornerRadius="0"  
+                                                        Culture="zh-CN" 
+                                                        SelectedDateTime="{Binding OTRecord.EndTime}"
+                                                        HorizontalAlignment="Left" />
+                        </StackPanel>
+                        <StackPanel Margin="0, 5">
+                            <TextBlock Text="备注" Foreground="Gray" Margin="0,5 "/>
+                            <TextBox AcceptsReturn="True"
+                                     AcceptsTab="True"
+                                     Text="{Binding OTRecord.Remark}"
+                                     modernWpf:ControlHelper.CornerRadius="0"
+                                     MinHeight="100"
+                                     MaxHeight="200"/>
+                        </StackPanel>
+                    </StackPanel>
                     <StackPanel Grid.Row="2"
                                 Orientation="Horizontal"
                                 HorizontalAlignment="Right"
                                 Margin="10">
                         <Button Content="确定"
                                 Padding="40, 5"
+                                Margin="5"
                                 Style="{DynamicResource Win10ButtonStyle}"
-                                Margin="5">
+                                modernWpf:ControlHelper.CornerRadius="0">
                             <Button.Triggers>
                                 <EventTrigger RoutedEvent="ButtonBase.Click">
                                     <BeginStoryboard Storyboard="{StaticResource HidenAnimation}" />
@@ -130,7 +160,7 @@
                             </Button.Triggers>
                         </Button>
                         <Button Content="取消"
-                                Padding="40, 5"
+                                Padding="40, 7"
                                 Margin="5"
                                 Style="{DynamicResource Win10ButtonStyle}"
                                 modernWpf:ControlHelper.CornerRadius="0">
