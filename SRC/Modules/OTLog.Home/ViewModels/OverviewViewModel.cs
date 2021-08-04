@@ -1,6 +1,8 @@
 ﻿using OTLog.Core.Constants;
+using OTLog.Core.Events;
 using OTLog.Core.Models;
 using Prism.Commands;
+using Prism.Events;
 using Prism.Mvvm;
 using Prism.Regions;
 using System;
@@ -14,6 +16,7 @@ namespace OTLog.Home.ViewModels
     {
         #region private
         private readonly IRegionManager _regionManager;
+        private readonly IEventAggregator _eventAggregator;
         private ObservableCollection<OTRecord> _otRecords;
         #endregion
 
@@ -49,26 +52,42 @@ namespace OTLog.Home.ViewModels
         {
 
         }
-        public OverviewViewModel(IRegionManager regionManager)
+        public OverviewViewModel(IRegionManager regionManager, IEventAggregator eventAggregator)
         {
             _regionManager = regionManager;
-            
+            _eventAggregator = eventAggregator;
+
             AddNewItemCommand = new DelegateCommand(AddNewItem);
             EditRecordCommand = new DelegateCommand<OTRecord>(EditRecord);
             DeleteRecordCommand = new DelegateCommand<OTRecord>(DeleteRecord);
 
+            _eventAggregator.GetEvent<NewOTRecordEvent>().Subscribe(NewOTRecord);
+            _eventAggregator.GetEvent<OTRecordChangedEvent>().Subscribe(OnOTRecordChanged);
             Load();
+        }
+
+        private void NewOTRecord(OTRecord newRecord)
+        {
+            OTRecords.Add(newRecord);
+        }
+
+        private void OnOTRecordChanged(OTRecord record)
+        {
+            OTRecord targetRecord = OTRecords.First(r => r.Id == record.Id);
+            targetRecord.BeginTime = record.BeginTime;
+            targetRecord.EndTime = record.EndTime;
+            targetRecord.Remark = record.Remark;
         }
 
         private void Load()
         {
             _otRecords = new ObservableCollection<OTRecord>
             {
-                new OTRecord { BeginTime = new DateTime(2021, 7, 25, 19, 34, 20), EndTime = new DateTime(2021, 7, 25, 22, 10, 41), Remark = "这是一段备注" },
-                new OTRecord { BeginTime = new DateTime(2021, 7, 26, 18, 3, 0), EndTime = new DateTime(2021, 7, 26, 23, 20, 03), Remark = "这是一段备注" },
-                new OTRecord { BeginTime = new DateTime(2021, 7, 27, 19, 4, 10), EndTime = new DateTime(2021, 7, 27, 22, 14, 0), Remark = "这是一段备注"},
-                new OTRecord { BeginTime = new DateTime(2021, 7, 28, 19, 20, 33), EndTime = new DateTime(2021, 7, 28, 22, 30, 0), Remark = "这是一段备注" },
-                new OTRecord { BeginTime = new DateTime(2021, 7, 29, 17, 10, 0), EndTime = new DateTime(2021, 7, 29, 23, 55, 24), Remark = "这是一段备注" },
+                new OTRecord { Id = Guid.NewGuid(), BeginTime = new DateTime(2021, 7, 25, 19, 34, 20), EndTime = new DateTime(2021, 7, 25, 22, 10, 41), Remark = "这是一段备注" },
+                new OTRecord { Id = Guid.NewGuid(), BeginTime = new DateTime(2021, 7, 26, 18, 3, 0), EndTime = new DateTime(2021, 7, 26, 23, 20, 03), Remark = "这是一段备注" },
+                new OTRecord { Id = Guid.NewGuid(), BeginTime = new DateTime(2021, 7, 27, 19, 4, 10), EndTime = new DateTime(2021, 7, 27, 22, 14, 0), Remark = "这是一段备注"},
+                new OTRecord { Id = Guid.NewGuid(), BeginTime = new DateTime(2021, 7, 28, 19, 20, 33), EndTime = new DateTime(2021, 7, 28, 22, 30, 0), Remark = "这是一段备注" },
+                new OTRecord { Id = Guid.NewGuid(), BeginTime = new DateTime(2021, 7, 29, 17, 10, 0), EndTime = new DateTime(2021, 7, 29, 23, 55, 24), Remark = "这是一段备注" },
             };
         }
 

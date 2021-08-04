@@ -115,29 +115,38 @@
                     <StackPanel Grid.Row="1" Margin="20" TextBlock.FontSize="16">
                         <StackPanel Margin="0, 5">
                             <TextBlock Text="日期" Foreground="Gray" Margin="0, 5"/>
-                            <DatePicker Width="240" modernWpf:ControlHelper.CornerRadius="0" 
+                            <DatePicker Width="240" SelectedDate="{Binding BeginDate}" modernWpf:ControlHelper.CornerRadius="0" 
                                                         HorizontalAlignment="Left" />
                         </StackPanel>
                         <StackPanel Margin="0, 5">
                             <TextBlock Text="开始" Foreground="Gray" Margin="0, 5"/>
-                            <modernWpf:SimpleTimePicker PickerVisibility="All" modernWpf:ControlHelper.CornerRadius="0" 
+                            <modernWpf:SimpleTimePicker SelectedDateTime="{Binding BeginTime}" PickerVisibility="All" modernWpf:ControlHelper.CornerRadius="0" 
                                                         Culture="zh-CN" 
                                                         HorizontalAlignment="Left" />
                         </StackPanel>
                         <StackPanel Margin="0, 5">
                             <TextBlock Text="结束" Margin="0, 5" Foreground="Gray"/>
                             <modernWpf:SimpleTimePicker PickerVisibility="All"
-                                                        modernWpf:ControlHelper.CornerRadius="0"  
+                                                        SelectedDateTime="{Binding EndTime}" modernWpf:ControlHelper.CornerRadius="0"  
                                                         Culture="zh-CN" HorizontalAlignment="Left" />
                         </StackPanel>
                         <StackPanel Margin="0, 5">
                             <TextBlock Text="时长" Margin="0, 5" Foreground="Gray"/>
-                            <TextBlock Text="5 小时 33 分 10 秒" Margin="0, 5" />
+                            <TextBlock Margin="0, 5" >
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat="{}{0} 小时 {1:00} 分 {2:00} 秒">
+                                        <Binding Path="TotalTime.Hours"/>
+                                        <Binding Path="TotalTime.Minutes"/>
+                                        <Binding Path="TotalTime.Seconds"/>
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
                         </StackPanel>
                         <StackPanel Margin="0, 5">
                             <TextBlock Text="备注" Foreground="Gray" Margin="0,5 "/>
                             <TextBox AcceptsReturn="True"
                                      AcceptsTab="True"
+                                     Text="{Binding Remark}"
                                      modernWpf:ControlHelper.CornerRadius="0"
                                      MinHeight="100"
                                      MaxHeight="200"/>
@@ -150,13 +159,9 @@
                         <Button Content="确定"
                                 Padding="40, 5"
                                 Margin="5"
+                                Command="{Binding ConfirmCommand}"
                                 Style="{DynamicResource Win10ButtonStyle}"
                                 modernWpf:ControlHelper.CornerRadius="0">
-                            <Button.Triggers>
-                                <EventTrigger RoutedEvent="ButtonBase.Click">
-                                    <BeginStoryboard Storyboard="{StaticResource HidenAnimation}" />
-                                </EventTrigger>
-                            </Button.Triggers>
                         </Button>
                         <Button Content="取消"
                                 Padding="40, 7"

@@ -115,7 +115,7 @@
                     <StackPanel Grid.Row="1" Margin="20" TextBlock.FontSize="16">
                         <StackPanel Margin="0, 5">
                             <TextBlock Text="日期" Foreground="Gray" Margin="0, 5"/>
-                            <DatePicker Width="240" SelectedDate="{Binding OTRecord.BeginTime}" modernWpf:ControlHelper.CornerRadius="0" 
+                            <DatePicker Width="240" SelectedDate="{Binding BeginTime}" modernWpf:ControlHelper.CornerRadius="0" 
                                                         HorizontalAlignment="Left" />
                         </StackPanel>
                         <StackPanel Margin="0, 5">
@@ -123,7 +123,7 @@
                             <modernWpf:SimpleTimePicker PickerVisibility="All"
                                                         modernWpf:ControlHelper.CornerRadius="0"  
                                                         Culture="zh-CN" 
-                                                        SelectedDateTime="{Binding OTRecord.BeginTime}"
+                                                        SelectedDateTime="{Binding BeginTime}"
                                                         HorizontalAlignment="Left" />
                         </StackPanel>
                         <StackPanel Margin="0, 5">
@@ -131,14 +131,26 @@
                             <modernWpf:SimpleTimePicker PickerVisibility="All"
                                                         modernWpf:ControlHelper.CornerRadius="0"  
                                                         Culture="zh-CN" 
-                                                        SelectedDateTime="{Binding OTRecord.EndTime}"
+                                                        SelectedDateTime="{Binding EndTime}"
                                                         HorizontalAlignment="Left" />
+                        </StackPanel>
+                        <StackPanel Margin="0, 5">
+                            <TextBlock Text="时长" Margin="0, 5" Foreground="Gray"/>
+                            <TextBlock Margin="0, 5" >
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat="{}{0} 小时 {1:00} 分 {2:00} 秒">
+                                        <Binding Path="TotalTime.Hours"/>
+                                        <Binding Path="TotalTime.Minutes"/>
+                                        <Binding Path="TotalTime.Seconds"/>
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
                         </StackPanel>
                         <StackPanel Margin="0, 5">
                             <TextBlock Text="备注" Foreground="Gray" Margin="0,5 "/>
                             <TextBox AcceptsReturn="True"
                                      AcceptsTab="True"
-                                     Text="{Binding OTRecord.Remark}"
+                                     Text="{Binding Remark}"
                                      modernWpf:ControlHelper.CornerRadius="0"
                                      MinHeight="100"
                                      MaxHeight="200"/>
@@ -150,14 +162,10 @@
                                 Margin="10">
                         <Button Content="确定"
                                 Padding="40, 5"
+                                Command="{Binding ConfirmCommand}"
                                 Margin="5"
                                 Style="{DynamicResource Win10ButtonStyle}"
                                 modernWpf:ControlHelper.CornerRadius="0">
-                            <Button.Triggers>
-                                <EventTrigger RoutedEvent="ButtonBase.Click">
-                                    <BeginStoryboard Storyboard="{StaticResource HidenAnimation}" />
-                                </EventTrigger>
-                            </Button.Triggers>
                         </Button>
                         <Button Content="取消"
                                 Padding="40, 7"

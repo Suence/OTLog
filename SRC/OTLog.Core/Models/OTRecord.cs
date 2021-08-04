@@ -13,18 +13,34 @@ namespace OTLog.Core.Models
         private DateTime? _beginTime;
         private DateTime? _endTime;
         private string _remark;
+        private Guid _id;
         #endregion
+
+        public Guid Id
+        {
+            get => _id;
+            set => SetProperty(ref _id, value);
+        }
 
         public DateTime? BeginTime
         {
             get => _beginTime;
-            set => SetProperty(ref _beginTime, value);
+            set
+            {
+                SetProperty(ref _beginTime, value);
+                RaisePropertyChanged(nameof(OTTime));
+            }
         }
 
         public DateTime? EndTime
         {
             get => _endTime;
-            set => SetProperty(ref _endTime, value);
+            set
+            {
+                SetProperty(ref _endTime, value);
+                RaisePropertyChanged(nameof(OTTime));
+            }
+
         }
 
         public string Remark
