@@ -145,6 +145,7 @@ namespace OTLog.Home.ViewModels
             targetRecord.EndTime = record.EndTime;
             targetRecord.Remark = record.Remark;
             UpdateStatisticalInfo();
+            AppFileHelper.SaveOTRecords(OTRecords.ToList());
         }
 
         private void Load()

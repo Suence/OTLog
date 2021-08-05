@@ -36,6 +36,7 @@
                            Text="启动"
                            Foreground="{DynamicResource PrimaryText.Foreground}" />
                 <CheckBox Content="随系统启动"
+                          IsChecked="{Binding OpenAtBoot}"
                           Margin="0, 10" />
             </StackPanel>
             <!--#endregion-->

@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
@@ -17,13 +18,14 @@ namespace OTLog.Core.Utils
         /// 应用程序配置文件目录
         /// </summary>
         private static readonly string _basePath;
+        public static readonly string LinkFileFullPath;
 
         /// <summary>
         /// 应用程序配置文件完整路径
         /// </summary>
-        private static string _settingsFileFullPath;
+        public static string SettingsFileFullPath;
 
-        private static string _dataFileFullPath;
+        public static string DataFileFullPath;
 
         static AppFileHelper()
         {
@@ -32,8 +34,23 @@ namespace OTLog.Core.Utils
                     Environment.GetFolderPath(
                         Environment.SpecialFolder.LocalApplicationData),
                     $"SuenceSoft/OTLog/");
-            _settingsFileFullPath = Path.Combine(_basePath, "Settings.xml");
-            _dataFileFullPath = Path.Combine(_basePath, "data.json");
+            SettingsFileFullPath = Path.Combine(_basePath, "Settings.xml");
+            DataFileFullPath = Path.Combine(_basePath, "data.json");
+
+            string systemStartupFolder = Environment.GetFolderPath(Environment.SpecialFolder.Startup);
+            LinkFileFullPath = Path.Combine(systemStartupFolder, "OTLog.lnk");
+        }
+
+        // 创建快捷方式
+        public static void CreateShortcut(string lnkFilePath, string args = "")
+        {
+            var shellType = Type.GetTypeFromProgID("WScript.Shell");
+            dynamic shell = Activator.CreateInstance(shellType);
+            var shortcut = shell.CreateShortcut(lnkFilePath);
+            shortcut.TargetPath = Assembly.GetEntryAssembly().Location;
+            shortcut.Arguments = args;
+            shortcut.WorkingDirectory = AppDomain.CurrentDomain.SetupInformation.ApplicationBase;
+            shortcut.Save();
         }
 
         /// <summary>
@@ -45,13 +62,13 @@ namespace OTLog.Core.Utils
             {
                 Directory.CreateDirectory(_basePath);
             }
-            if (!File.Exists(_settingsFileFullPath))
+            if (!File.Exists(SettingsFileFullPath))
             {
                 CreateNewSettingsFile();
             }
-            if (!File.Exists(_dataFileFullPath))
+            if (!File.Exists(DataFileFullPath))
             {
-                File.Create(_dataFileFullPath);
+                File.Create(DataFileFullPath);
             }
         }
 
@@ -64,9 +81,10 @@ namespace OTLog.Core.Utils
             doc.Declaration = new XDeclaration("1.0", "UTF8", "yes");
             var objects =
                 new XElement("ApplicationInfo",
-                     new XElement(nameof(Theme), nameof(Theme.Default)));
+                     new XElement(nameof(Theme), nameof(Theme.Default)),
+                     new XElement("OpenAtBoot", "True"));
             doc.Add(objects);
-            doc.Save(_settingsFileFullPath);
+            doc.Save(SettingsFileFullPath);
         }
 
         /// <summary>
@@ -75,11 +93,27 @@ namespace OTLog.Core.Utils
         /// <returns></returns>
         public static Theme ReadUserThemeSettings()
             => Enum.TryParse(
-                XDocument.Load(_settingsFileFullPath)
+                XDocument.Load(SettingsFileFullPath)
                                .Root.Element(nameof(Theme))
                                .Value, out Theme theme)
             ? theme
             : Theme.Default;
+
+        public static bool ReadAutoOpenStatus()
+            => Boolean.TryParse(
+                XDocument.Load(SettingsFileFullPath)
+                         .Root
+                         .Element("OpenAtBoot")
+                         .Value, out bool openAtBoot)
+               ? openAtBoot
+               : true;
+
+        public static void WriteAutoOpenStatus(bool status)
+        {
+            var doc = XDocument.Load(SettingsFileFullPath);
+            doc.Root.Element("OpenAtBoot").Value = status.ToString();
+            doc.Save(SettingsFileFullPath);
+        }
 
         /// <summary>
         /// 写入主题设置
@@ -87,20 +121,20 @@ namespace OTLog.Core.Utils
         /// <param name="theme"></param>
         public static void WriteUserThemeSettings(Theme theme)
         {
-            var doc = XDocument.Load(_settingsFileFullPath);
+            var doc = XDocument.Load(SettingsFileFullPath);
             doc.Root.Element(nameof(Theme)).Value = $"{theme}";
-            doc.Save(_settingsFileFullPath);
+            doc.Save(SettingsFileFullPath);
         }
 
         public static void SaveOTRecords(List<OTRecord> records)
         {
             string data = JsonConvert.SerializeObject(records);
-            File.WriteAllText(_dataFileFullPath, data);
+            File.WriteAllText(DataFileFullPath, data);
         }
 
         public static List<OTRecord> GetOTRecords()
         {
-            string data = File.ReadAllText(_dataFileFullPath);
+            string data = File.ReadAllText(DataFileFullPath);
             return JsonConvert.DeserializeObject<List<OTRecord>>(data);
         }
     }

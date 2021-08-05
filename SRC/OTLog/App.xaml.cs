@@ -59,27 +59,14 @@ namespace OTLog
             _notifyIcon = (TaskbarIcon)FindResource("NotifyIcon");
             _notifyIcon.DataContext = Container.Resolve<NotifyIconViewModel>();
 
-            string systemStartupFolder = Environment.GetFolderPath(Environment.SpecialFolder.Startup);
-            string linkFileFullPath = Path.Combine(systemStartupFolder, "OTLog.lnk");
-
             ThemeManager.Current.AccentColor = Colors.DarkMagenta;
 
-            // 如果快捷方式已经存在, 则不进行任何操作
-            if (File.Exists(linkFileFullPath)) return;
+            bool openAtBoot = AppFileHelper.ReadAutoOpenStatus();
 
-            CreateShortcut(linkFileFullPath, "--nowindow");
-        }
-
-        // 创建快捷方式
-        private void CreateShortcut(string lnkFilePath, string args = "")
-        {
-            var shellType = Type.GetTypeFromProgID("WScript.Shell");
-            dynamic shell = Activator.CreateInstance(shellType);
-            var shortcut = shell.CreateShortcut(lnkFilePath);
-            shortcut.TargetPath = Assembly.GetEntryAssembly().Location;
-            shortcut.Arguments = args;
-            shortcut.WorkingDirectory = AppDomain.CurrentDomain.SetupInformation.ApplicationBase;
-            shortcut.Save();
+            if (openAtBoot && !File.Exists(AppFileHelper.LinkFileFullPath))
+            {
+                AppFileHelper.CreateShortcut(AppFileHelper.LinkFileFullPath, "--nowindow");
+            }
         }
 
         protected override void OnExit(ExitEventArgs e)
