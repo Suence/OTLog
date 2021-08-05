@@ -48,6 +48,7 @@
     <Compile Include="Events\GoingToNewViewEvent.cs" />
     <Compile Include="Events\NewOTRecordEvent.cs" />
     <Compile Include="Events\OTRecordChangedEvent.cs" />
+    <Compile Include="Events\OTRecordDeletedEvent.cs" />
     <Compile Include="Extensions\OTSeverityExtensions.cs" />
     <Compile Include="Models\OTRecord.cs" />
     <Compile Include="Models\ViewHistory.cs" />
@@ -56,6 +57,9 @@
     <Compile Include="Utils\AppFileHelper.cs" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>13.0.1</Version>
+    </PackageReference>
     <PackageReference Include="Prism.Core">
       <Version>8.1.97</Version>
     </PackageReference>

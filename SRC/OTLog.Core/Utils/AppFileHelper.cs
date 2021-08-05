@@ -1,4 +1,6 @@
-﻿using OTLog.Core.Enums;
+﻿using Newtonsoft.Json;
+using OTLog.Core.Enums;
+using OTLog.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -14,21 +16,24 @@ namespace OTLog.Core.Utils
         /// <summary>
         /// 应用程序配置文件目录
         /// </summary>
-        private static readonly string _settingsFileBasePath;
+        private static readonly string _basePath;
 
         /// <summary>
         /// 应用程序配置文件完整路径
         /// </summary>
         private static string _settingsFileFullPath;
 
+        private static string _dataFileFullPath;
+
         static AppFileHelper()
         {
-            _settingsFileBasePath =
+            _basePath =
                 Path.Combine(
                     Environment.GetFolderPath(
                         Environment.SpecialFolder.LocalApplicationData),
                     $"SuenceSoft/OTLog/");
-            _settingsFileFullPath = Path.Combine(_settingsFileBasePath, "Settings.xml");
+            _settingsFileFullPath = Path.Combine(_basePath, "Settings.xml");
+            _dataFileFullPath = Path.Combine(_basePath, "data.json");
         }
 
         /// <summary>
@@ -36,13 +41,17 @@ namespace OTLog.Core.Utils
         /// </summary>
         public static void ValidateApplicationFiles()
         {
-            if (!Directory.Exists(_settingsFileBasePath))
+            if (!Directory.Exists(_basePath))
             {
-                Directory.CreateDirectory(_settingsFileBasePath);
+                Directory.CreateDirectory(_basePath);
             }
             if (!File.Exists(_settingsFileFullPath))
             {
                 CreateNewSettingsFile();
+            }
+            if (!File.Exists(_dataFileFullPath))
+            {
+                File.Create(_dataFileFullPath);
             }
         }
 
@@ -81,6 +90,18 @@ namespace OTLog.Core.Utils
             var doc = XDocument.Load(_settingsFileFullPath);
             doc.Root.Element(nameof(Theme)).Value = $"{theme}";
             doc.Save(_settingsFileFullPath);
+        }
+
+        public static void SaveOTRecords(List<OTRecord> records)
+        {
+            string data = JsonConvert.SerializeObject(records);
+            File.WriteAllText(_dataFileFullPath, data);
+        }
+
+        public static List<OTRecord> GetOTRecords()
+        {
+            string data = File.ReadAllText(_dataFileFullPath);
+            return JsonConvert.DeserializeObject<List<OTRecord>>(data);
         }
     }
 }

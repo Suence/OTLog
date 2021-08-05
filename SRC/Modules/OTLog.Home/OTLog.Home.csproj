@@ -64,6 +64,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="ViewModels\AboutViewModel.cs" />
+    <Compile Include="ViewModels\DeleteRecordTipsViewModel.cs" />
     <Compile Include="ViewModels\EditItemViewModel.cs" />
     <Compile Include="ViewModels\HomePageViewModel.cs" />
     <Compile Include="ViewModels\NewItemViewModel.cs" />
@@ -72,6 +73,9 @@
     <Compile Include="ViewModels\StartPageViewModel.cs" />
     <Compile Include="Views\About.xaml.cs">
       <DependentUpon>About.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DeleteRecordTips.xaml.cs">
+      <DependentUpon>DeleteRecordTips.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\EditItem.xaml.cs">
       <DependentUpon>EditItem.xaml</DependentUpon>
@@ -103,6 +107,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Views\About.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DeleteRecordTips.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

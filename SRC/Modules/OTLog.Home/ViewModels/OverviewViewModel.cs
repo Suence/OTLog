@@ -1,6 +1,7 @@
 ﻿using OTLog.Core.Constants;
 using OTLog.Core.Events;
 using OTLog.Core.Models;
+using OTLog.Core.Utils;
 using Prism.Commands;
 using Prism.Events;
 using Prism.Mvvm;
@@ -18,7 +19,36 @@ namespace OTLog.Home.ViewModels
         private readonly IRegionManager _regionManager;
         private readonly IEventAggregator _eventAggregator;
         private ObservableCollection<OTRecord> _otRecords;
+        private ObservableCollection<OTRecord> _searchResult;
+        private DateTime? _beginDate;
+        private DateTime? _endDate;
+        private string _remark;
         #endregion
+
+        public ObservableCollection<OTRecord> SearchResult
+        {
+            get => _searchResult;
+            set => SetProperty(ref _searchResult, value);
+        }
+
+        public DateTime? BeginDate
+        {
+            get => _beginDate;
+            set => SetProperty(ref _beginDate, value);
+        }
+
+        public DateTime? EndDate
+        {
+            get => _endDate;
+            set => SetProperty(ref _endDate, value);
+        }
+
+        public string Remark
+        {
+            get => _remark;
+            set => SetProperty(ref _remark, value);
+        }
+
 
         public ObservableCollection<OTRecord> OTRecords
         {
@@ -26,12 +56,36 @@ namespace OTLog.Home.ViewModels
             set => SetProperty(ref _otRecords, value);
         }
 
+        public DelegateCommand ResetCommand { get; }
+        private void Reset()
+        {
+            BeginDate = null;
+            EndDate = null;
+            Remark = null;
+            Search();
+        }
+
+        public int MildTimes=> OTRecords.Count(r => r.OTTime.Value.Hours < 3);
+        public int ModerateTimes => OTRecords.Count(r => r.OTTime.Value.Hours < 5);
+        public int SevereTimes => OTRecords.Count(r => r.OTTime.Value.Hours >= 5);
+        public double AllTime => OTRecords.Select(r => r.OTTime ?? new TimeSpan()).Aggregate(new TimeSpan(), (left, right) => left + right).TotalHours;
+
         public DelegateCommand AddNewItemCommand { get; }
         private void AddNewItem()
         {
             _regionManager.RequestNavigate(
                 RegionNames.MessageRegion,
                 ViewNames.NewItem);
+        }
+
+        public DelegateCommand SearchCommand { get; }
+        private void Search()
+        {
+            SearchResult = 
+                new ObservableCollection<OTRecord>(
+                    OTRecords.Where(r => r.BeginTime >= (BeginDate ?? DateTime.MinValue)  &&
+                                         r.EndTime <= (EndDate?.AddDays(1) ?? DateTime.MaxValue) &&
+                                         r.Remark.Contains(Remark ?? String.Empty)));
         }
 
         public DelegateCommand<OTRecord> EditRecordCommand { get; }
@@ -46,7 +100,6 @@ namespace OTLog.Home.ViewModels
                 });
         }
 
-
         public DelegateCommand<OTRecord> DeleteRecordCommand { get; }
         private void DeleteRecord(OTRecord record)
         {
@@ -60,16 +113,30 @@ namespace OTLog.Home.ViewModels
             AddNewItemCommand = new DelegateCommand(AddNewItem);
             EditRecordCommand = new DelegateCommand<OTRecord>(EditRecord);
             DeleteRecordCommand = new DelegateCommand<OTRecord>(DeleteRecord);
+            SearchCommand = new DelegateCommand(Search);
+            ResetCommand = new DelegateCommand(Reset);
 
             _eventAggregator.GetEvent<NewOTRecordEvent>().Subscribe(NewOTRecord);
             _eventAggregator.GetEvent<OTRecordChangedEvent>().Subscribe(OnOTRecordChanged);
             Load();
         }
 
+        private void UpdateStatisticalInfo()
+        {
+            RaisePropertyChanged(nameof(MildTimes));
+            RaisePropertyChanged(nameof(ModerateTimes));
+            RaisePropertyChanged(nameof(SevereTimes));
+            RaisePropertyChanged(nameof(AllTime));
+        }
+
         private void NewOTRecord(OTRecord newRecord)
         {
             OTRecords.Add(newRecord);
+            SearchResult.Add(newRecord);
+            UpdateStatisticalInfo();
+            AppFileHelper.SaveOTRecords(OTRecords.ToList());
         }
+
 
         private void OnOTRecordChanged(OTRecord record)
         {
@@ -77,18 +144,15 @@ namespace OTLog.Home.ViewModels
             targetRecord.BeginTime = record.BeginTime;
             targetRecord.EndTime = record.EndTime;
             targetRecord.Remark = record.Remark;
+            UpdateStatisticalInfo();
         }
 
         private void Load()
         {
-            _otRecords = new ObservableCollection<OTRecord>
-            {
-                new OTRecord { Id = Guid.NewGuid(), BeginTime = new DateTime(2021, 7, 25, 19, 34, 20), EndTime = new DateTime(2021, 7, 25, 22, 10, 41), Remark = "这是一段备注" },
-                new OTRecord { Id = Guid.NewGuid(), BeginTime = new DateTime(2021, 7, 26, 18, 3, 0), EndTime = new DateTime(2021, 7, 26, 23, 20, 03), Remark = "这是一段备注" },
-                new OTRecord { Id = Guid.NewGuid(), BeginTime = new DateTime(2021, 7, 27, 19, 4, 10), EndTime = new DateTime(2021, 7, 27, 22, 14, 0), Remark = "这是一段备注"},
-                new OTRecord { Id = Guid.NewGuid(), BeginTime = new DateTime(2021, 7, 28, 19, 20, 33), EndTime = new DateTime(2021, 7, 28, 22, 30, 0), Remark = "这是一段备注" },
-                new OTRecord { Id = Guid.NewGuid(), BeginTime = new DateTime(2021, 7, 29, 17, 10, 0), EndTime = new DateTime(2021, 7, 29, 23, 55, 24), Remark = "这是一段备注" },
-            };
+            var data = AppFileHelper.GetOTRecords();
+            OTRecords = new ObservableCollection<OTRecord>(data);
+            SearchResult = new ObservableCollection<OTRecord>(OTRecords);
+            UpdateStatisticalInfo();
         }
 
         public bool KeepAlive => false;
