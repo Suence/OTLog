@@ -160,8 +160,14 @@
                                 Padding="40, 5"
                                 Margin="5"
                                 Command="{Binding ConfirmCommand}"
+                                IsEnabled="{Binding CanCreate}"
                                 Style="{DynamicResource Win10ButtonStyle}"
                                 modernWpf:ControlHelper.CornerRadius="0">
+                            <Button.Triggers>
+                                <EventTrigger RoutedEvent="ButtonBase.Click">
+                                    <BeginStoryboard Storyboard="{StaticResource HidenAnimation}" />
+                                </EventTrigger>
+                            </Button.Triggers>
                         </Button>
                         <Button Content="取消"
                                 Padding="40, 7"

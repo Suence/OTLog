@@ -6,8 +6,6 @@ using Prism.Events;
 using Prism.Mvvm;
 using Prism.Regions;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace OTLog.Home.ViewModels
 {
@@ -19,10 +17,21 @@ namespace OTLog.Home.ViewModels
         private DateTime? _beginTime;
         private DateTime? _endTime;
         private string _remark;
+        private DateTime? _beginDate;
         #endregion 
 
 
         public Guid Id { get; set; }
+
+        public DateTime? BeginDate
+        {
+            get => _beginDate;
+            set
+            {
+                SetProperty(ref _beginDate, value);
+                RaisePropertyChanged(nameof(CanEdit));
+            }
+        }
 
         public DateTime? BeginTime
         {
@@ -31,6 +40,7 @@ namespace OTLog.Home.ViewModels
             {
                 SetProperty(ref _beginTime, value);
                 RaisePropertyChanged(nameof(TotalTime));
+                RaisePropertyChanged(nameof(CanEdit));
             }
         }
         public DateTime? EndTime
@@ -40,6 +50,7 @@ namespace OTLog.Home.ViewModels
             {
                 SetProperty(ref _endTime, value);
                 RaisePropertyChanged(nameof(TotalTime));
+                RaisePropertyChanged(nameof(CanEdit));
             }
         }
 
@@ -54,6 +65,8 @@ namespace OTLog.Home.ViewModels
                ? EndTime.Value.AddDays(1) - BeginTime
                : EndTime - BeginTime;
 
+        public bool CanEdit => BeginDate != null && BeginTime != null && EndTime != null;
+
         public DelegateCommand CancelCommand { get; }
         private void Cancel()
         {
@@ -65,12 +78,13 @@ namespace OTLog.Home.ViewModels
         {
             _eventAggregator.GetEvent<OTRecordChangedEvent>().Publish(new OTRecord
             {
-                BeginTime = BeginTime,
-                EndTime = EndTime,
+                BeginTime = BeginDate.Value + BeginTime.Value.TimeOfDay,
+                EndTime = EndTime < BeginTime
+                          ? BeginDate.Value.AddDays(1) + EndTime.Value.TimeOfDay
+                          : BeginDate.Value + EndTime.Value.TimeOfDay,
                 Id = Id,
                 Remark = Remark
             });
-            _regionManager.Regions[RegionNames.MessageRegion].RemoveAll();
         }
 
         public EditItemViewModel(IRegionManager regionManager, IEventAggregator eventAggregator)
@@ -95,6 +109,7 @@ namespace OTLog.Home.ViewModels
             OTRecord otRecord = navigationContext.Parameters["Record"] as OTRecord;
 
             Id = otRecord.Id;
+            BeginDate = otRecord.BeginTime.Value.Date;
             BeginTime = otRecord.BeginTime;
             EndTime = otRecord.EndTime;
             Remark = otRecord.Remark;

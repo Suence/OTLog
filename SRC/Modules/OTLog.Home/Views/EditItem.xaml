@@ -115,7 +115,7 @@
                     <StackPanel Grid.Row="1" Margin="20" TextBlock.FontSize="16">
                         <StackPanel Margin="0, 5">
                             <TextBlock Text="日期" Foreground="Gray" Margin="0, 5"/>
-                            <DatePicker Width="240" SelectedDate="{Binding BeginTime}" modernWpf:ControlHelper.CornerRadius="0" 
+                            <DatePicker Width="240" SelectedDate="{Binding BeginDate}" modernWpf:ControlHelper.CornerRadius="0" 
                                                         HorizontalAlignment="Left" />
                         </StackPanel>
                         <StackPanel Margin="0, 5">
@@ -164,8 +164,14 @@
                                 Padding="40, 5"
                                 Command="{Binding ConfirmCommand}"
                                 Margin="5"
+                                IsEnabled="{Binding CanEdit}"
                                 Style="{DynamicResource Win10ButtonStyle}"
                                 modernWpf:ControlHelper.CornerRadius="0">
+                            <Button.Triggers>
+                                <EventTrigger RoutedEvent="ButtonBase.Click">
+                                    <BeginStoryboard Storyboard="{StaticResource HidenAnimation}" />
+                                </EventTrigger>
+                            </Button.Triggers>
                         </Button>
                         <Button Content="取消"
                                 Padding="40, 7"

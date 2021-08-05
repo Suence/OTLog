@@ -28,6 +28,7 @@ namespace OTLog.Home.ViewModels
             set
             {
                 SetProperty(ref _beginDate, value);
+                RaisePropertyChanged(nameof(CanCreate));
             }
         }
 
@@ -38,6 +39,7 @@ namespace OTLog.Home.ViewModels
             {
                 SetProperty(ref _beginTime, value);
                 RaisePropertyChanged(nameof(TotalTime));
+                RaisePropertyChanged(nameof(CanCreate));
             }
         }
         public DateTime? EndTime
@@ -47,6 +49,7 @@ namespace OTLog.Home.ViewModels
             {
                 SetProperty(ref _endTime, value);
                 RaisePropertyChanged(nameof(TotalTime));
+                RaisePropertyChanged(nameof(CanCreate));
             }
         }
 
@@ -61,6 +64,8 @@ namespace OTLog.Home.ViewModels
                ? EndTime.Value.AddDays(1) - BeginTime
                : EndTime - BeginTime;
 
+        public bool CanCreate => BeginDate != null && BeginTime != null && EndTime != null;
+
         public DelegateCommand CancelCommand { get; }
         private void Cancel()
         {
@@ -70,7 +75,6 @@ namespace OTLog.Home.ViewModels
         public DelegateCommand ConfirmCommand { get; }
         private void Confirm()
         {
-            _regionManager.Regions[RegionNames.MessageRegion].RemoveAll();
             _eventAggregator.GetEvent<NewOTRecordEvent>().Publish(new Core.Models.OTRecord
             {
                 BeginTime = BeginDate.Value + BeginTime.Value.TimeOfDay,
