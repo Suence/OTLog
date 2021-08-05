@@ -430,11 +430,9 @@
             <Trigger Property="IsEnabled"
                      Value="False">
                 <Setter Property="Foreground"
-                        Value="Gray" />
+                        Value="#FF858585" />
                 <Setter Property="Background"
-                        Value="LightGray" />
-                <Setter Property="BorderBrush"
-                        Value="Gray" />
+                        Value="#FF515151" />
             </Trigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
