@@ -41,6 +41,7 @@ namespace OTLog.Home.ViewModels
                 SetProperty(ref _beginTime, value);
                 RaisePropertyChanged(nameof(TotalTime));
                 RaisePropertyChanged(nameof(CanEdit));
+                RaisePropertyChanged(nameof(IsNextDay));
             }
         }
         public DateTime? EndTime
@@ -51,6 +52,7 @@ namespace OTLog.Home.ViewModels
                 SetProperty(ref _endTime, value);
                 RaisePropertyChanged(nameof(TotalTime));
                 RaisePropertyChanged(nameof(CanEdit));
+                RaisePropertyChanged(nameof(IsNextDay));
             }
         }
 
@@ -66,6 +68,7 @@ namespace OTLog.Home.ViewModels
                : EndTime - BeginTime;
 
         public bool CanEdit => BeginDate != null && BeginTime != null && EndTime != null;
+        public bool IsNextDay => EndTime?.TimeOfDay < BeginTime?.TimeOfDay;
 
         public DelegateCommand CancelCommand { get; }
         private void Cancel()

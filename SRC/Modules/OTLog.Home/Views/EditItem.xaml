@@ -128,11 +128,26 @@
                         </StackPanel>
                         <StackPanel Margin="0, 5">
                             <TextBlock Text="结束" Margin="0, 5" Foreground="Gray"/>
-                            <modernWpf:SimpleTimePicker PickerVisibility="All"
-                                                        modernWpf:ControlHelper.CornerRadius="0"  
-                                                        Culture="zh-CN" 
-                                                        SelectedDateTime="{Binding EndTime}"
-                                                        HorizontalAlignment="Left" />
+                            <StackPanel Orientation="Horizontal">
+                                <modernWpf:SimpleTimePicker PickerVisibility="All"
+                                                            modernWpf:ControlHelper.CornerRadius="0"  
+                                                            Culture="zh-CN" 
+                                                            SelectedDateTime="{Binding EndTime}"
+                                                            HorizontalAlignment="Left" />
+                                <Label Background="OrangeRed"
+                                       Content="第二天"
+                                       Margin="10, 0"
+                                       Padding="10, 5">
+                                    <Label.Visibility>
+                                        <Binding Path="IsNextDay">
+                                            <Binding.Converter>
+                                                <suence:BooleanToObjectConverter TrueValue="Visible"
+                                                                                 FalseValue="Hidden" />
+                                            </Binding.Converter>
+                                        </Binding>
+                                    </Label.Visibility>
+                                </Label>
+                            </StackPanel>
                         </StackPanel>
                         <StackPanel Margin="0, 5">
                             <TextBlock Text="时长" Margin="0, 5" Foreground="Gray"/>

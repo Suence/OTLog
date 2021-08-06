@@ -9,6 +9,6 @@
         public const string Settings = nameof(Settings);
         public const string NewItem = nameof(NewItem);
         public const string EditItem = nameof(EditItem);
-        public const string DeleteRecordTips = nameof(DeleteRecordTips);
+        public const string ErrorTips = nameof(ErrorTips);
     }
 }

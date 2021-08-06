@@ -3,11 +3,11 @@
 namespace OTLog.Home.Views
 {
     /// <summary>
-    /// Interaction logic for DeleteRecordTips
+    /// Interaction logic for ErrorTips
     /// </summary>
-    public partial class DeleteRecordTips : UserControl
+    public partial class ErrorTips : UserControl
     {
-        public DeleteRecordTips()
+        public ErrorTips()
         {
             InitializeComponent();
         }

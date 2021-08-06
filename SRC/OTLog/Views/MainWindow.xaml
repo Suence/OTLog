@@ -34,7 +34,13 @@
                             Grid.RowSpan="2"
                             Foreground="{DynamicResource SecondryText.Foreground}"
                             prism:RegionManager.RegionName="{x:Static constants:RegionNames.MainRegion}" />
+            
+            <!--#region 错误消息区域 -->
+            <ContentControl Grid.Row="0"
+                            Height="36"
+                            prism:RegionManager.RegionName="{x:Static constants:RegionNames.ErrorRegion}" />
 
+            <!--#endregion-->
             <!--#region 窗口标题栏 -->
             <Grid x:Name="AppTitleContainer"
                   Grid.Row="0"
@@ -147,6 +153,7 @@
                 </StackPanel>
             </Grid>
             <!--#endregion-->
+            
         </Grid>
 
         <!-- 提示消息区域 -->

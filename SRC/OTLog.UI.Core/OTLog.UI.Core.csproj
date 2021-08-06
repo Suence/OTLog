@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="AttachedProperties\BindableBlackoutDates.cs" />
     <Compile Include="AttachedProperties\ButtonBrush.cs" />
+    <Compile Include="Converters\IsNextDayToVisibilityConverter.cs" />
     <Compile Include="Converters\OTSeverityConverter.cs" />
     <Compile Include="Tools\BindingProxy.cs" />
   </ItemGroup>
@@ -77,6 +78,12 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\OTLog.Core\OTLog.Core.csproj">
+      <Project>{DD8CCB71-8A73-4BB3-B475-256079F515DF}</Project>
+      <Name>OTLog.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

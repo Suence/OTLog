@@ -9,6 +9,8 @@
                      Color="#FF222222"/>
     <SolidColorBrush x:Key="App.Background3"
                      Color="#FF333333" />
+    <SolidColorBrush x:Key="Error.Background"
+                     Color="#FFA02222" />
     <!-- END -->
     <!-- Title -->
     <SolidColorBrush x:Key="AppTitle.Foreground"

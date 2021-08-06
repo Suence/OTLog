@@ -64,8 +64,8 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="ViewModels\AboutViewModel.cs" />
-    <Compile Include="ViewModels\DeleteRecordTipsViewModel.cs" />
     <Compile Include="ViewModels\EditItemViewModel.cs" />
+    <Compile Include="ViewModels\ErrorTipsViewModel.cs" />
     <Compile Include="ViewModels\HomePageViewModel.cs" />
     <Compile Include="ViewModels\NewItemViewModel.cs" />
     <Compile Include="ViewModels\OverviewViewModel.cs" />
@@ -74,11 +74,11 @@
     <Compile Include="Views\About.xaml.cs">
       <DependentUpon>About.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\DeleteRecordTips.xaml.cs">
-      <DependentUpon>DeleteRecordTips.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\EditItem.xaml.cs">
       <DependentUpon>EditItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ErrorTips.xaml.cs">
+      <DependentUpon>ErrorTips.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
@@ -110,11 +110,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\DeleteRecordTips.xaml">
+    <Page Include="Views\EditItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\EditItem.xaml">
+    <Page Include="Views\ErrorTips.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

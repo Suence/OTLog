@@ -48,6 +48,7 @@
     <Compile Include="Events\GoingToNewViewEvent.cs" />
     <Compile Include="Events\NewOTRecordEvent.cs" />
     <Compile Include="Events\OTRecordChangedEvent.cs" />
+    <Compile Include="Extensions\OTRecordExtensions.cs" />
     <Compile Include="Extensions\OTSeverityExtensions.cs" />
     <Compile Include="Models\Config.cs" />
     <Compile Include="Models\OTRecord.cs" />

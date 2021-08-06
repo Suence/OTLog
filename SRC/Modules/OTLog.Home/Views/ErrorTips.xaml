@@ -1,0 +1,60 @@
+﻿<UserControl xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:prism="http://prismlibrary.com/"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             x:Class="OTLog.Home.Views.ErrorTips"
+             Background="{DynamicResource Error.Background}"
+             prism:ViewModelLocator.AutoWireViewModel="True"
+             x:Name="ErrorUserControl"
+             d:DesignWidth="770"
+             RenderTransformOrigin=".5, .5"
+             d:DesignHeight="49.875">
+    <UserControl.RenderTransform>
+        <ScaleTransform ScaleY="0"/>
+    </UserControl.RenderTransform>
+    <UserControl.Resources>
+        <Storyboard x:Key="LoadedAnimation">
+            <DoubleAnimation Storyboard.TargetProperty="(UserControl.RenderTransform).(ScaleTransform.ScaleY)"
+                             To="1"
+                             Duration="0:0:.3">
+                <DoubleAnimation.EasingFunction>
+                    <CircleEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+        <Storyboard x:Key="HidenAnimation">
+            <DoubleAnimation BeginTime="0:0:5"
+                             Storyboard.TargetName="ErrorUserControl"
+                             Storyboard.TargetProperty="(UserControl.RenderTransform).(ScaleTransform.ScaleY)"
+                             To="0"
+                             Duration="0:0:.3">
+                <DoubleAnimation.EasingFunction>
+                    <CircleEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+    </UserControl.Resources>
+    <UserControl.Triggers>
+        <EventTrigger RoutedEvent="Loaded">
+            <BeginStoryboard Storyboard="{StaticResource LoadedAnimation}" />
+        </EventTrigger>
+    </UserControl.Triggers>
+    <i:Interaction.Triggers>
+        <i:StoryboardCompletedTrigger Storyboard="{StaticResource LoadedAnimation}">
+            <i:ControlStoryboardAction Storyboard="{StaticResource HidenAnimation}" />
+        </i:StoryboardCompletedTrigger>
+        <i:StoryboardCompletedTrigger Storyboard="{StaticResource HidenAnimation}">
+            <i:InvokeCommandAction Command="{Binding CloseCommand}" />
+        </i:StoryboardCompletedTrigger>
+    </i:Interaction.Triggers>
+    <Grid>
+        <TextBlock Text="{Binding ErrorText}" 
+                   Foreground="{DynamicResource App.Foreground}"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   FontSize="16"/>
+    </Grid>
+</UserControl>

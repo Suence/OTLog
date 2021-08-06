@@ -24,7 +24,7 @@ namespace OTLog.Home
             containerRegistry.RegisterForNavigation<Settings>();
             containerRegistry.RegisterForNavigation<NewItem>();
             containerRegistry.RegisterForNavigation<EditItem>();
-            containerRegistry.RegisterForNavigation<DeleteRecordTips>();
+            containerRegistry.RegisterForNavigation<ErrorTips>();
         }
     }
 }
