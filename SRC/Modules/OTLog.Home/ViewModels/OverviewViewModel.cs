@@ -66,10 +66,10 @@ namespace OTLog.Home.ViewModels
             Search();
         }
 
-        public int MildTimes=> OTRecords.Count(r => r.OTTime.Value.Hours < 3);
-        public int ModerateTimes => OTRecords.Count(r => r.OTTime.Value.Hours < 5);
-        public int SevereTimes => OTRecords.Count(r => r.OTTime.Value.Hours >= 5);
-        public double AllTime => OTRecords.Select(r => r.OTTime ?? new TimeSpan()).Aggregate(new TimeSpan(), (left, right) => left + right).TotalHours;
+        public int MildTimes=> SearchResult.Count(r => r.OTTime.Value.Hours < 3);
+        public int ModerateTimes => SearchResult.Count(r => r.OTTime.Value.Hours > 3 && r.OTTime.Value.Hours < 5);
+        public int SevereTimes => SearchResult.Count(r => r.OTTime.Value.Hours >= 5);
+        public double AllTime => SearchResult.Select(r => r.OTTime ?? new TimeSpan()).Aggregate(new TimeSpan(), (left, right) => left + right).TotalHours;
 
         public DelegateCommand AddNewItemCommand { get; }
         private void AddNewItem()
@@ -87,6 +87,7 @@ namespace OTLog.Home.ViewModels
                     OTRecords.Where(r => r.BeginTime >= (BeginDate ?? DateTime.MinValue)  &&
                                          r.EndTime <= (EndDate?.AddDays(1) ?? DateTime.MaxValue) &&
                                          (r.Remark ?? String.Empty).Contains(Remark ?? String.Empty)));
+            UpdateStatisticalInfo();
         }
 
         public DelegateCommand<OTRecord> EditRecordCommand { get; }
@@ -149,18 +150,27 @@ namespace OTLog.Home.ViewModels
                     });
                 return;
             }
+
             OTRecords.Add(newRecord);
-            SearchResult.Add(newRecord);
+
+            var previousRecord = SearchResult.LastOrDefault(r => r.BeginTime > newRecord.BeginTime);
+            SearchResult.Insert(previousRecord == null ? 0 : SearchResult.IndexOf(previousRecord), newRecord);
+
             UpdateStatisticalInfo();
             AppFileHelper.SaveOTRecords(OTRecords.ToList());
         }
 
         private void OnOTRecordChanged(OTRecord record)
         {
-            OTRecord targetRecord = OTRecords.First(r => r.Id == record.Id);
+            OTRecord targetRecord = SearchResult.First(r => r.Id == record.Id);
             targetRecord.BeginTime = record.BeginTime;
             targetRecord.EndTime = record.EndTime;
             targetRecord.Remark = record.Remark;
+
+            SearchResult.Remove(targetRecord);
+            var previousRecord = SearchResult.LastOrDefault(r => r.BeginTime > record.BeginTime);
+            SearchResult.Insert(previousRecord == null ? 0 : SearchResult.IndexOf(previousRecord), record);
+
             UpdateStatisticalInfo();
             AppFileHelper.SaveOTRecords(OTRecords.ToList());
         }
@@ -169,7 +179,7 @@ namespace OTLog.Home.ViewModels
         {
             var data = AppFileHelper.GetOTRecords();
             OTRecords = new ObservableCollection<OTRecord>(data);
-            SearchResult = new ObservableCollection<OTRecord>(OTRecords);
+            SearchResult = new ObservableCollection<OTRecord>(OTRecords.OrderByDescending(r => r.BeginTime));
             UpdateStatisticalInfo();
         }
 

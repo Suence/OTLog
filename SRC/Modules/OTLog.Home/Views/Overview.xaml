@@ -186,7 +186,7 @@
                                     <RowDefinition Height="Auto" />
                                 </Grid.RowDefinitions>
                                 <Label Grid.Row="0"
-                                       Content="单次加班在 3 小时内"
+                                       Content="轻度加班"
                                        Margin="10"
                                        FontSize="16"
                                        Foreground="Gray" />
@@ -217,7 +217,7 @@
                                     <RowDefinition Height="Auto" />
                                 </Grid.RowDefinitions>
                                 <Label Grid.Row="0"
-                                       Content="单次加班在 5 小时内"
+                                       Content="中度加班"
                                        Margin="10"
                                        FontSize="16"
                                        Foreground="Gray" />
@@ -248,7 +248,7 @@
                                     <RowDefinition Height="Auto" />
                                 </Grid.RowDefinitions>
                                 <Label Grid.Row="0"
-                                       Content="单次加班在 5 小时以上"
+                                       Content="严重加班"
                                        Margin="10"
                                        FontSize="16"
                                        Foreground="Gray" />
