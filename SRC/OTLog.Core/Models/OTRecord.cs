@@ -12,7 +12,7 @@ namespace OTLog.Core.Models
         #region private
         private DateTime? _beginTime;
         private DateTime? _endTime;
-        private string _remark = String.Empty;
+        private string _remark;
         private Guid _id;
         #endregion
 

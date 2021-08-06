@@ -77,6 +77,11 @@ namespace OTLog.Core.Utils
         public static List<OTRecord> GetOTRecords()
         {
             string data = File.ReadAllText(DataFileFullPath);
+            if (String.IsNullOrWhiteSpace(data))
+            {
+                return new List<OTRecord>();
+            }
+
             return JsonConvert.DeserializeObject<List<OTRecord>>(data);
         }
 

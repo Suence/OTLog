@@ -85,7 +85,7 @@ namespace OTLog.Home.ViewModels
                 new ObservableCollection<OTRecord>(
                     OTRecords.Where(r => r.BeginTime >= (BeginDate ?? DateTime.MinValue)  &&
                                          r.EndTime <= (EndDate?.AddDays(1) ?? DateTime.MaxValue) &&
-                                         r.Remark.Contains(Remark ?? String.Empty)));
+                                         (r.Remark ?? String.Empty).Contains(Remark ?? String.Empty)));
         }
 
         public DelegateCommand<OTRecord> EditRecordCommand { get; }
@@ -103,7 +103,10 @@ namespace OTLog.Home.ViewModels
         public DelegateCommand<OTRecord> DeleteRecordCommand { get; }
         private void DeleteRecord(OTRecord record)
         {
-
+            OTRecords.Remove(record);
+            SearchResult.Remove(record);
+            UpdateStatisticalInfo();
+            AppFileHelper.SaveOTRecords(OTRecords.ToList());
         }
         public OverviewViewModel(IRegionManager regionManager, IEventAggregator eventAggregator)
         {

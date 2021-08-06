@@ -1,4 +1,5 @@
 ﻿using Microsoft.Toolkit.Uwp.Notifications;
+using OTLog.Core.StaticObjects;
 using System;
 using System.IO;
 using System.Threading.Tasks;
@@ -65,6 +66,9 @@ namespace OTLog.Views
         private void CloseWindowButton_Click(object sender, RoutedEventArgs e)
         {
             Hide();
+
+            if (!GlobalObjectHolder.Config.NotificationAfterMin) return;
+
             ShowToast();
         }
 
