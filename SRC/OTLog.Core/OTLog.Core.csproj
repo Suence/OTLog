@@ -50,6 +50,7 @@
     <Compile Include="Events\OTRecordChangedEvent.cs" />
     <Compile Include="Events\OTRecordDeletedEvent.cs" />
     <Compile Include="Extensions\OTSeverityExtensions.cs" />
+    <Compile Include="Models\Config.cs" />
     <Compile Include="Models\OTRecord.cs" />
     <Compile Include="Models\ViewHistory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

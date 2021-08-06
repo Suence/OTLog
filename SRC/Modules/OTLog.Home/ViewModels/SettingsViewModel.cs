@@ -1,4 +1,6 @@
-﻿using OTLog.Core.Utils;
+﻿using OTLog.Core.Models;
+using OTLog.Core.StaticObjects;
+using OTLog.Core.Utils;
 using Prism.Mvvm;
 using Prism.Regions;
 using System.IO;
@@ -8,20 +10,13 @@ namespace OTLog.Home.ViewModels
     public class SettingsViewModel : BindableBase, IRegionMemberLifetime, INavigationAware
     {
         #region private
-        private bool _openAtBoot;
-        private bool _notificationAfterMin;
+        private Config _config;
         #endregion
 
-        public bool OpenAtBoot
+        public Config Config
         {
-            get => _openAtBoot;
-            set => SetProperty(ref _openAtBoot, value);
-        }
-
-        public bool NotificationAfterMin
-        {
-            get => _notificationAfterMin;
-            set => SetProperty(ref _notificationAfterMin, value);
+            get => _config;
+            set => SetProperty(ref _config, value);
         }
 
         public SettingsViewModel()
@@ -34,20 +29,23 @@ namespace OTLog.Home.ViewModels
 
         public void OnNavigatedFrom(NavigationContext navigationContext)
         {
-            AppFileHelper.WriteAutoOpenStatus(OpenAtBoot);
+            AppFileHelper.SaveAppConfig(Config);
 
-            if (OpenAtBoot)
+            if (!Config.OpenAtBoot)
             {
-                AppFileHelper.CreateShortcut(AppFileHelper.LinkFileFullPath, "--nowindow");
+                File.Delete(AppFileHelper.LinkFileFullPath);
                 return;
             }
 
-            File.Delete(AppFileHelper.LinkFileFullPath);
+            if (!File.Exists(AppFileHelper.LinkFileFullPath))
+            {
+                AppFileHelper.CreateShortcut(AppFileHelper.LinkFileFullPath, "--nowindow");
+            }
         }
 
         public void OnNavigatedTo(NavigationContext navigationContext)
         {
-            OpenAtBoot = AppFileHelper.ReadAutoOpenStatus();
+            Config = GlobalObjectHolder.Config;
         }
     }
 }

@@ -50,9 +50,7 @@ namespace OTLog
             AppArgs = e.Args.ToList();
 
             AppFileHelper.ValidateApplicationFiles();
-            Core.Enums.Theme userTheme = AppFileHelper.ReadUserThemeSettings();
-            GlobalObjectHolder.CurrentTheme = userTheme;
-            Resources.MergedDictionaries[0] = GetThemeResource(AppFileHelper.ReadUserThemeSettings());
+            Resources.MergedDictionaries[0] = GetThemeResource(GlobalObjectHolder.Config.Theme);
 
             base.OnStartup(e);
 
@@ -60,13 +58,6 @@ namespace OTLog
             _notifyIcon.DataContext = Container.Resolve<NotifyIconViewModel>();
 
             ThemeManager.Current.AccentColor = Colors.DarkMagenta;
-
-            bool openAtBoot = AppFileHelper.ReadAutoOpenStatus();
-
-            if (openAtBoot && !File.Exists(AppFileHelper.LinkFileFullPath))
-            {
-                AppFileHelper.CreateShortcut(AppFileHelper.LinkFileFullPath, "--nowindow");
-            }
         }
 
         protected override void OnExit(ExitEventArgs e)
