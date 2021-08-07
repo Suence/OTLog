@@ -66,9 +66,9 @@ namespace OTLog.Home.ViewModels
             Search();
         }
 
-        public int MildTimes=> SearchResult.Count(r => r.OTTime.Value.Hours < 3);
-        public int ModerateTimes => SearchResult.Count(r => r.OTTime.Value.Hours > 3 && r.OTTime.Value.Hours < 5);
-        public int SevereTimes => SearchResult.Count(r => r.OTTime.Value.Hours >= 5);
+        public int MildTimes=> SearchResult.Count(r => r.OTTime.Value.Hours <= 3);
+        public int ModerateTimes => SearchResult.Count(r => r.OTTime.Value.Hours > 3 && r.OTTime.Value.Hours <= 5);
+        public int SevereTimes => SearchResult.Count(r => r.OTTime.Value.Hours > 5);
         public double AllTime => SearchResult.Select(r => r.OTTime ?? new TimeSpan()).Aggregate(new TimeSpan(), (left, right) => left + right).TotalHours;
 
         public DelegateCommand AddNewItemCommand { get; }
