@@ -19,10 +19,10 @@ namespace OTLog.UI.Core.Converters
             if (timeSpan == null) 
                 return new SolidColorBrush(Colors.Transparent);
 
-            if (timeSpan < TimeSpan.FromHours(3))
+            if (timeSpan <= TimeSpan.FromHours(3))
                 return new SolidColorBrush(Colors.Green);
 
-            if (timeSpan < TimeSpan.FromHours(5))
+            if (timeSpan <= TimeSpan.FromHours(5))
                 return new SolidColorBrush(Colors.Orange);
 
             return new SolidColorBrush(Colors.OrangeRed);

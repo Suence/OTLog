@@ -66,9 +66,9 @@ namespace OTLog.Home.ViewModels
             Search();
         }
 
-        public int MildTimes=> SearchResult.Count(r => r.OTTime.Value.Hours <= 3);
-        public int ModerateTimes => SearchResult.Count(r => r.OTTime.Value.Hours > 3 && r.OTTime.Value.Hours <= 5);
-        public int SevereTimes => SearchResult.Count(r => r.OTTime.Value.Hours > 5);
+        public int MildTimes=> SearchResult.Count(r => r.OTTime <= TimeSpan.FromHours(3));
+        public int ModerateTimes => SearchResult.Count(r => r.OTTime > TimeSpan.FromHours(3) && r.OTTime <= TimeSpan.FromHours(5));
+        public int SevereTimes => SearchResult.Count(r => r.OTTime > TimeSpan.FromHours(5));
         public double AllTime => SearchResult.Select(r => r.OTTime ?? new TimeSpan()).Aggregate(new TimeSpan(), (left, right) => left + right).TotalHours;
 
         public DelegateCommand AddNewItemCommand { get; }
@@ -86,7 +86,8 @@ namespace OTLog.Home.ViewModels
                 new ObservableCollection<OTRecord>(
                     OTRecords.Where(r => r.BeginTime >= (BeginDate ?? DateTime.MinValue)  &&
                                          r.EndTime <= (EndDate?.AddDays(1) ?? DateTime.MaxValue) &&
-                                         (r.Remark ?? String.Empty).Contains(Remark ?? String.Empty)));
+                                         (r.Remark ?? String.Empty).Contains(Remark ?? String.Empty))
+                             .OrderByDescending(r => r.BeginTime));
             UpdateStatisticalInfo();
         }
 
