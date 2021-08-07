@@ -82,7 +82,7 @@ namespace OTLog.Home.ViewModels
             _eventAggregator.GetEvent<OTRecordChangedEvent>().Publish(new OTRecord
             {
                 BeginTime = BeginDate.Value + BeginTime.Value.TimeOfDay,
-                EndTime = EndTime < BeginTime
+                EndTime = EndTime?.TimeOfDay < BeginTime?.TimeOfDay
                           ? BeginDate.Value.AddDays(1) + EndTime.Value.TimeOfDay
                           : BeginDate.Value + EndTime.Value.TimeOfDay,
                 Id = Id,

@@ -1,4 +1,7 @@
-﻿using OTLog.Views;
+﻿using OTLog.Core.Constants;
+using OTLog.Views;
+using Prism.Regions;
+using Prism.Unity;
 using System;
 using System.Windows;
 using System.Windows.Input;
