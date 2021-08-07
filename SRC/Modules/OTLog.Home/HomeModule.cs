@@ -25,6 +25,7 @@ namespace OTLog.Home
             containerRegistry.RegisterForNavigation<NewItem>();
             containerRegistry.RegisterForNavigation<EditItem>();
             containerRegistry.RegisterForNavigation<ErrorTips>();
+            containerRegistry.RegisterForNavigation<Notice>();
         }
     }
 }

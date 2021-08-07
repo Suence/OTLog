@@ -10,5 +10,6 @@
         public const string NewItem = nameof(NewItem);
         public const string EditItem = nameof(EditItem);
         public const string ErrorTips = nameof(ErrorTips);
+        public const string Notice = nameof(Notice);
     }
 }

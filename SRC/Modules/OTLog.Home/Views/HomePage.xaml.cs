@@ -26,5 +26,10 @@ namespace OTLog.Home.Views
         {
             ActiveModuleName.Text = "关于";
         }
+
+        private void NotificationButton_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            ActiveModuleName.Text = "通知";
+        }
     }
 }
