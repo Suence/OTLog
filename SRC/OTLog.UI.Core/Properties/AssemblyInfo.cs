@@ -56,8 +56,9 @@ using System.Windows.Markup;
 [assembly: AssemblyFileVersion("1.0.0.0")]
 
 
-//[assembly: XmlnsDefinition("http://software.suence.com/", "OTLog.UI.Core.Behaviors")]
 [assembly: XmlnsDefinition("http://software.suence.com/", "OTLog.UI.Core.Converters")]
 [assembly: XmlnsDefinition("http://software.suence.com/", "OTLog.UI.Core.AttachedProperties")]
 [assembly: XmlnsDefinition("http://software.suence.com/", "OTLog.UI.Core.Tools")]
+[assembly: XmlnsDefinition("http://software.suence.com/", "OTLog.UI.Core.Behaviors")]
+
 //[assembly: XmlnsDefinition("http://software.suence.com/", "OTLog.UI.Core.Selectors")]

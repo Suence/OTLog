@@ -25,21 +25,6 @@ namespace OTLog.ViewModels
 
         public MainWindowViewModel()
         {
-            SystemEvents.SessionSwitch += UpdateLastActiveTime;
-        }
-
-        private void UpdateLastActiveTime(object sender, SessionSwitchEventArgs e)
-        {
-            if (e.Reason == SessionSwitchReason.SessionLock)
-            {
-                LastActiveTime = DateTime.Now;
-                return;
-            }
-
-            //if (e.Reason == SessionSwitchReason.SessionUnlock)
-            //{
-            //    // do nothing
-            //}
         }
     }
 }

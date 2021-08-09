@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="AttachedProperties\BindableBlackoutDates.cs" />
     <Compile Include="AttachedProperties\ButtonBrush.cs" />
+    <Compile Include="Behaviors\ClearFocusOnClickBehavior.cs" />
     <Compile Include="Converters\IsNextDayToVisibilityConverter.cs" />
     <Compile Include="Converters\OTSeverityConverter.cs" />
     <Compile Include="Tools\BindingProxy.cs" />
@@ -84,6 +85,11 @@
       <Project>{DD8CCB71-8A73-4BB3-B475-256079F515DF}</Project>
       <Name>OTLog.Core</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf">
+      <Version>1.1.31</Version>
+    </PackageReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

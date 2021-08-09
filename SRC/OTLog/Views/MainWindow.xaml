@@ -11,6 +11,9 @@
         Background="{DynamicResource App.Background}"
         Height="800"
         Width="1200">
+    <i:Interaction.Behaviors>
+        <suence:ClearFocusOnClickBehavior />
+    </i:Interaction.Behaviors>
     <Window.InputBindings>
         <KeyBinding Key="Space"
                     Modifiers="Alt"

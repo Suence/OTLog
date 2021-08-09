@@ -32,5 +32,9 @@
                    HorizontalAlignment="Center"
                    VerticalAlignment="Center"
                    FontSize="30"/>
+        <TextBlock VerticalAlignment="Bottom"
+                   HorizontalAlignment="Center"
+                   FontSize="16"
+                   Text="{Binding LastUnlockTime}"/>
     </Grid>
 </UserControl>
