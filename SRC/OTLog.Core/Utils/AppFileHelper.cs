@@ -25,7 +25,11 @@ namespace OTLog.Core.Utils
         /// </summary>
         public static string SettingsFileFullPath;
 
+        // 数据文件完整路径
         public static string DataFileFullPath;
+
+
+        public static string OTRecordTodoFileFullPath;
 
         static AppFileHelper()
         {
@@ -36,6 +40,7 @@ namespace OTLog.Core.Utils
                     $"SuenceSoft/OTLog/");
             SettingsFileFullPath = Path.Combine(_basePath, "settings.json");
             DataFileFullPath = Path.Combine(_basePath, "data.json");
+            OTRecordTodoFileFullPath = Path.Combine(_basePath, "todo.json");
 
             string systemStartupFolder = Environment.GetFolderPath(Environment.SpecialFolder.Startup);
             LinkFileFullPath = Path.Combine(systemStartupFolder, "OTLog.lnk");
@@ -66,6 +71,10 @@ namespace OTLog.Core.Utils
             {
                 File.Create(DataFileFullPath);
             }
+            if (!File.Exists(OTRecordTodoFileFullPath))
+            {
+                File.Create(OTRecordTodoFileFullPath);
+            }
         }
 
         public static void SaveOTRecords(List<OTRecord> records)
@@ -95,6 +104,23 @@ namespace OTLog.Core.Utils
         {
             string configString = JsonConvert.SerializeObject(config);
             File.WriteAllText(SettingsFileFullPath, configString);
+        }
+
+        public static void SaveRecordToDo(List<OTRecordTodo> todos)
+        {
+            string data = JsonConvert.SerializeObject(todos);
+            File.WriteAllText(OTRecordTodoFileFullPath, data);
+        }
+
+        public static List<OTRecordTodo> GetOTRecordToDos()
+        {
+            string data = File.ReadAllText(OTRecordTodoFileFullPath);
+            if (String.IsNullOrWhiteSpace(data))
+            {
+                return new List<OTRecordTodo>();
+            }
+
+            return JsonConvert.DeserializeObject<List<OTRecordTodo>>(data);
         }
     }
 }

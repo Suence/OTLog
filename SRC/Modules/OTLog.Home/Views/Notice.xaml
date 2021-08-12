@@ -3,6 +3,7 @@
              xmlns:prism="http://prismlibrary.com/"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:models="clr-namespace:OTLog.Core.Models;assembly=OTLog.Core"
              mc:Ignorable="d"
              x:Class="OTLog.Home.Views.Notice"
              prism:ViewModelLocator.AutoWireViewModel="True"
@@ -29,12 +30,19 @@
     <Grid>
         <TextBlock Text="本来无一物，何处惹尘埃。"
                    Foreground="Gray"
+                   Visibility="Hidden"
                    HorizontalAlignment="Center"
                    VerticalAlignment="Center"
-                   FontSize="30"/>
-        <TextBlock VerticalAlignment="Bottom"
-                   HorizontalAlignment="Center"
-                   FontSize="16"
-                   Text="{Binding LastUnlockTime}"/>
+                   FontSize="30" />
+        <ItemsControl ItemsSource="{Binding TodoList}">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate DataType="{x:Type models:OTRecordTodo}">
+                    <StackPanel>
+                        <TextBlock Text="{Binding BeginTime, StringFormat=B:{0}}"/>
+                        <TextBlock Text="{Binding EndTime, StringFormat=E:{0}}"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
     </Grid>
 </UserControl>
