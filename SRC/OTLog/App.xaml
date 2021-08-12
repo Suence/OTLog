@@ -13,7 +13,6 @@
                 <x:Static Member="themes:DarkTheme.Instance" />
                 <ui:ThemeResources RequestedTheme="Dark"/>
                 <ui:XamlControlsResources />
-                <!--<ResourceDictionary Source="pack://application:,,,/OTLog.Themes;component/DarkTheme.xaml"/>-->
                 <ResourceDictionary Source="/Views/NotifyIcon.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
