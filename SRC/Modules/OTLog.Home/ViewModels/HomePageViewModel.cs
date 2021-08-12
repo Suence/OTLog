@@ -76,7 +76,7 @@ namespace OTLog.Home.ViewModels
         {
             var lockTime = DateTime.Now;
             var date = lockTime.Hour < 7 ? lockTime.Date.AddDays(-1) : lockTime.Date;
-
+             
             var todoItem = TodoList.FirstOrDefault(t => t.BeginTime.Date == date);
             if (todoItem == null)
             {

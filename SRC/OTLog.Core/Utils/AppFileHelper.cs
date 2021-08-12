@@ -30,7 +30,6 @@ namespace OTLog.Core.Utils
 
 
         public static string OTRecordTodoFileFullPath;
-
         static AppFileHelper()
         {
             _basePath =
@@ -58,6 +57,17 @@ namespace OTLog.Core.Utils
             shortcut.Save();
         }
 
+        public static List<OTRecordTodo> GetOTRecordToDos()
+        {
+            string data = File.ReadAllText(OTRecordTodoFileFullPath);
+            if (String.IsNullOrWhiteSpace(data))
+            {
+                return new List<OTRecordTodo>();
+            }
+
+            return JsonConvert.DeserializeObject<List<OTRecordTodo>>(data);
+        }
+
         /// <summary>
         /// 验证并修复应用程序文件
         /// </summary>
@@ -76,6 +86,14 @@ namespace OTLog.Core.Utils
                 File.Create(OTRecordTodoFileFullPath);
             }
         }
+
+        public static void SaveRecordToDo(List<OTRecordTodo> oTRecordTodos)
+        {
+            string data = JsonConvert.SerializeObject(oTRecordTodos);
+            File.WriteAllText(OTRecordTodoFileFullPath, data);
+        }
+
+
 
         public static void SaveOTRecords(List<OTRecord> records)
         {
@@ -104,23 +122,6 @@ namespace OTLog.Core.Utils
         {
             string configString = JsonConvert.SerializeObject(config);
             File.WriteAllText(SettingsFileFullPath, configString);
-        }
-
-        public static void SaveRecordToDo(List<OTRecordTodo> todos)
-        {
-            string data = JsonConvert.SerializeObject(todos);
-            File.WriteAllText(OTRecordTodoFileFullPath, data);
-        }
-
-        public static List<OTRecordTodo> GetOTRecordToDos()
-        {
-            string data = File.ReadAllText(OTRecordTodoFileFullPath);
-            if (String.IsNullOrWhiteSpace(data))
-            {
-                return new List<OTRecordTodo>();
-            }
-
-            return JsonConvert.DeserializeObject<List<OTRecordTodo>>(data);
         }
     }
 }
