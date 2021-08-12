@@ -1,5 +1,7 @@
 ﻿using OTLog.Core.Constants;
+using OTLog.Core.Events;
 using OTLog.Views;
+using Prism.Events;
 using Prism.Regions;
 using Prism.Unity;
 using System;
@@ -10,6 +12,9 @@ namespace OTLog.ViewModels
 {
     public class NotifyIconViewModel
     {
+        #region private
+        private IEventAggregator _eventAggregator;
+        #endregion
         public ICommand ShowWindowCommand { get; }
         private void ShowWindow()
         {
@@ -37,12 +42,12 @@ namespace OTLog.ViewModels
             ShowWindowCommand = new DelegateCommand(ShowWindow, CanShowWindow);
             HideWindowCommand = new DelegateCommand(HideWindow, CanHideWindow);
             ExitApplicationCommand = new DelegateCommand(ExitApplication, null);
+
+            _eventAggregator = (Application.Current as PrismApplication).Container.Resolve(typeof(IEventAggregator)) as IEventAggregator;
+            _eventAggregator.GetEvent<NewNoticeEvent>().Subscribe(ShowWindow);
         }
     }
 
-    /// <summary>
-    /// Simplistic delegate command for the demo.
-    /// </summary>
     public class DelegateCommand : ICommand
     {
         public DelegateCommand(Action commandAction, Func<bool> canExecuteFunc)
