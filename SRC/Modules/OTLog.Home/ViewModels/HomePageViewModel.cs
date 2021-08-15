@@ -20,19 +20,27 @@ namespace OTLog.Home.ViewModels
         private readonly IRegionManager _regionManager;
         private readonly IEventAggregator _eventAggregator;
         private ObservableCollection<OTRecordTodo> _todoList;
+        private string _nameOfCurrentTab;
         #endregion
+
+        public string NameOfCurrentTab
+        {
+            get => _nameOfCurrentTab;
+            set => SetProperty(ref _nameOfCurrentTab, value);
+        }
 
         public ObservableCollection<OTRecordTodo> TodoList
         {
             get => _todoList;
             set => SetProperty(ref _todoList, value);
         }
-
+    
         public DelegateCommand<string> GoToTargetViewCommand { get; }
         private async void GoToTargetView(string viewName)
         {
             await Task.Delay(150);
 
+            NameOfCurrentTab = viewName;
             _regionManager.RequestNavigate(
                 RegionNames.HomeRegion, 
                 viewName,
@@ -51,6 +59,9 @@ namespace OTLog.Home.ViewModels
 
             GoToTargetViewCommand = new DelegateCommand<string>(GoToTargetView);
             SystemEvents.SessionSwitch += UpdateScreenLockTime;
+            
+            NameOfCurrentTab = ViewNames.Overview;
+
             LoadData();
         }
 

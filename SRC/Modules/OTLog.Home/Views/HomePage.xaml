@@ -4,6 +4,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
+             xmlns:suence="http://software.suence.com/"
              x:Class="OTLog.Home.Views.HomePage"
              xmlns:constants="clr-namespace:OTLog.Core.Constants;assembly=OTLog.Core"
              prism:ViewModelLocator.AutoWireViewModel="True"
@@ -21,10 +22,17 @@
                 <RadioButton Padding="20, 10"
                              Click="OverviewButton_Click"
                              Background="Transparent"
-                             IsChecked="True"
                              Style="{DynamicResource NavigationRadioButton}"
                              Command="{Binding GoToTargetViewCommand}"
                              CommandParameter="{x:Static constants:ViewNames.Overview}">
+                    <RadioButton.IsChecked>
+                        <Binding Path="NameOfCurrentTab"
+                                 ConverterParameter="{x:Static constants:ViewNames.Overview}">
+                            <Binding.Converter>
+                                <suence:EqualsParameterConverter />
+                            </Binding.Converter>
+                        </Binding>
+                    </RadioButton.IsChecked>
                     <StackPanel Orientation="Horizontal">
                         <Viewbox Width="25"
                                  Height="25">
@@ -47,6 +55,14 @@
                              Style="{DynamicResource NavigationRadioButton}"
                              Command="{Binding GoToTargetViewCommand}"
                              CommandParameter="{x:Static constants:ViewNames.Notice}">
+                    <RadioButton.IsChecked>
+                        <Binding Path="NameOfCurrentTab"
+                                 ConverterParameter="{x:Static constants:ViewNames.Notice}">
+                            <Binding.Converter>
+                                <suence:EqualsParameterConverter />
+                            </Binding.Converter>
+                        </Binding>
+                    </RadioButton.IsChecked>
                     <StackPanel Orientation="Horizontal">
                         <Viewbox Width="25"
                                  Height="25">
@@ -71,6 +87,14 @@
                              Style="{DynamicResource NavigationRadioButton}"
                              Command="{Binding GoToTargetViewCommand}"
                              CommandParameter="{x:Static constants:ViewNames.Settings}">
+                    <RadioButton.IsChecked>
+                        <Binding Path="NameOfCurrentTab"
+                                 ConverterParameter="{x:Static constants:ViewNames.Settings}">
+                            <Binding.Converter>
+                                <suence:EqualsParameterConverter />
+                            </Binding.Converter>
+                        </Binding>
+                    </RadioButton.IsChecked>
                     <StackPanel Orientation="Horizontal">
                         <Viewbox Width="25"
                                  Height="25">
@@ -95,6 +119,14 @@
                              Style="{DynamicResource NavigationRadioButton}"
                              Command="{Binding GoToTargetViewCommand}"
                              CommandParameter="{x:Static constants:ViewNames.About}">
+                    <RadioButton.IsChecked>
+                        <Binding Path="NameOfCurrentTab"
+                                 ConverterParameter="{x:Static constants:ViewNames.About}">
+                            <Binding.Converter>
+                                <suence:EqualsParameterConverter />
+                            </Binding.Converter>
+                        </Binding>
+                    </RadioButton.IsChecked>
                     <StackPanel Orientation="Horizontal">
                         <Viewbox Width="25"
                                  Height="25">

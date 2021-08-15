@@ -178,6 +178,7 @@
     <Resource Include="Assets\Images\Refresh.png" />
     <Resource Include="Assets\Images\right.png" />
     <Resource Include="Assets\Images\logo.png" />
+    <Resource Include="Assets\Images\noticeBg.png" />
     <Content Include="Assets\Images\taskbarIcon.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
