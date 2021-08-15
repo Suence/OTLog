@@ -38,16 +38,22 @@ namespace OTLog.Home.ViewModels
         public DelegateCommand<string> GoToTargetViewCommand { get; }
         private async void GoToTargetView(string viewName)
         {
-            await Task.Delay(150);
+            await Task.Delay(100);
 
             NameOfCurrentTab = viewName;
+
+            var todo = TodoList.Skip(1).FirstOrDefault(r => r.Status == Core.Enums.TodoStatus.Default);
+
+            if (viewName == ViewNames.Notice)
+                _regionManager.Regions[RegionNames.HomeRegion].RemoveAll();
+
             _regionManager.RequestNavigate(
                 RegionNames.HomeRegion, 
                 viewName,
                 viewName == ViewNames.Notice
                 ? new NavigationParameters
                 {
-                    { "TodoList", TodoList }
+                    { "Todo", todo }
                 }
                 : null);
         }
@@ -62,7 +68,13 @@ namespace OTLog.Home.ViewModels
             
             NameOfCurrentTab = ViewNames.Overview;
 
+            _eventAggregator.GetEvent<OTRecordTodoChangedEvent>().Subscribe(ToDoChanged);
             LoadData();
+        }
+
+        private void ToDoChanged()
+        {
+            AppFileHelper.SaveRecordToDo(TodoList.ToList());
         }
 
         private void LoadData()
@@ -101,6 +113,10 @@ namespace OTLog.Home.ViewModels
             }
 
             todoItem.EndTime = lockTime;
+            if (lockTime.Hour < 7 || lockTime.Hour > 21)
+            {
+                todoItem.Status = Core.Enums.TodoStatus.Untreated;
+            }
         }
 
         private void SessionUnlocked()

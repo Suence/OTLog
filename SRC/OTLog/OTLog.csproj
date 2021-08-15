@@ -174,11 +174,11 @@
     <Resource Include="Assets\Images\向下.png" />
     <Resource Include="Assets\Images\go.png" />
     <Resource Include="Assets\Images\left.png" />
-    <Resource Include="Assets\Images\MainLog.png" />
     <Resource Include="Assets\Images\Refresh.png" />
     <Resource Include="Assets\Images\right.png" />
     <Resource Include="Assets\Images\logo.png" />
     <Resource Include="Assets\Images\noticeBg.png" />
+    <Resource Include="Assets\Images\noticeBg2.png" />
     <Content Include="Assets\Images\taskbarIcon.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

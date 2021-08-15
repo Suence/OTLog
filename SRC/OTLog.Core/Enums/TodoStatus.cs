@@ -13,12 +13,12 @@ namespace OTLog.Core.Enums
         /// </summary>
         Default,
         /// <summary>
+        /// 未处理（指加班）
+        /// </summary>
+        Untreated,
+        /// <summary>
         /// 已忽略
         /// </summary>
-        Negligible,
-        /// <summary>
-        /// 稍后提醒
-        /// </summary>
-        LaterReminder
+        Negligible
     }
 }

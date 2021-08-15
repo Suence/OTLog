@@ -5,13 +5,33 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:models="clr-namespace:OTLog.Core.Models;assembly=OTLog.Core"
              mc:Ignorable="d"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:suence="http://software.suence.com/"
+             xmlns:modernWpf="http://schemas.modernwpf.com/2019"
              x:Class="OTLog.Home.Views.Notice"
              prism:ViewModelLocator.AutoWireViewModel="True"
              d:DesignWidth="660"
-             d:DesignHeight="435">
+             d:DesignHeight="685">
     <UserControl.RenderTransform>
         <TranslateTransform Y="100" />
     </UserControl.RenderTransform>
+    <UserControl.Resources>
+        <Storyboard x:Key="HideForm">
+            <DoubleAnimation Storyboard.TargetName="FormRoot"
+                             Storyboard.TargetProperty="RenderTransform.Children[0].Y"
+                             To="800"
+                             Duration="0:0:.5">
+                <DoubleAnimation.EasingFunction>
+                    <BackEase EasingMode="EaseIn" Amplitude=".3"/>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+            <DoubleAnimation Storyboard.TargetName="FormRoot"
+                             Storyboard.TargetProperty="Opacity"
+                             To="0"
+                             Duration="0:0:.7">
+            </DoubleAnimation>
+        </Storyboard>
+    </UserControl.Resources>
     <UserControl.Triggers>
         <EventTrigger RoutedEvent="FrameworkElement.Loaded">
             <BeginStoryboard>
@@ -27,22 +47,181 @@
             </BeginStoryboard>
         </EventTrigger>
     </UserControl.Triggers>
+    <i:Interaction.Triggers>
+        <i:StoryboardCompletedTrigger Storyboard="{StaticResource HideForm}">
+            <i:InvokeCommandAction Command="{Binding ResetRecordCommand}"/>
+        </i:StoryboardCompletedTrigger>
+    </i:Interaction.Triggers>
     <Grid>
         <TextBlock Text="本来无一物，何处惹尘埃。"
                    Foreground="Gray"
-                   Visibility="Hidden"
                    HorizontalAlignment="Center"
                    VerticalAlignment="Center"
-                   FontSize="30" />
-        <ItemsControl ItemsSource="{Binding TodoList}">
-            <ItemsControl.ItemTemplate>
-                <DataTemplate DataType="{x:Type models:OTRecordTodo}">
-                    <StackPanel>
-                        <TextBlock Text="{Binding BeginTime, StringFormat=B:{0}}"/>
-                        <TextBlock Text="{Binding EndTime, StringFormat=E:{0}}"/>
+                   FontSize="30">
+            <TextBlock.Visibility>
+                <Binding Path="Record">
+                    <Binding.Converter>
+                        <suence:EmptyObjectToVisibilityConverter EmptyValue="Visible"
+                                                                 NotEmptyValue="Hidden"/>
+                    </Binding.Converter>
+                </Binding>
+            </TextBlock.Visibility>
+        </TextBlock>
+        <Border x:Name="FormRoot" 
+                BorderThickness="1"
+                BorderBrush="#FF333333"
+                Width="500"
+                RenderTransformOrigin=".5, .5"
+                VerticalAlignment="Top"
+                Height="650">
+            <Border.Effect>
+                <DropShadowEffect Color="#FF333333"
+                                  ShadowDepth="5"
+                                  BlurRadius="10"/>
+            </Border.Effect>
+            <Border.Visibility>
+                <Binding Path="Record">
+                    <Binding.Converter>
+                        <suence:EmptyObjectToVisibilityConverter EmptyValue="Hidden"
+                                                                 NotEmptyValue="Visible" />
+                    </Binding.Converter>
+                </Binding>
+            </Border.Visibility>
+            <Border.RenderTransform>
+                <TransformGroup>
+                    <TranslateTransform X="0" Y="0"/>
+                    <ScaleTransform ScaleX="1" ScaleY="1"/>
+                </TransformGroup>
+            </Border.RenderTransform>
+            <Grid Background="{DynamicResource App.Background2}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition />
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <Image Height="200"
+                       Stretch="UniformToFill"
+                       Source="pack://application:,,,/Assets/Images/noticeBg2.png"/>
+                    <Rectangle Fill="#90000000" />
+                    <StackPanel Margin="20, 20, 20, 0" HorizontalAlignment="Center"
+                                VerticalAlignment="Center">
+                        
+                    <TextBlock Text="{Binding UserName}"
+                               FontWeight="SemiBold"
+                               FontSize="25" />
+                        <TextBlock />
+                        <TextBlock TextWrapping="Wrap"
+                                   FontSize="18"
+                                   Foreground="#FFDEDEDE">
+                            <Run Text="{Binding Record.BeginTime, StringFormat={}{0:M月dd日}}"
+                                 Foreground="#FF226BC3" 
+                                 FontWeight="SemiBold"/>
+                            
+                             <Run Text="你本来已经打算好好放松，出去玩玩，但是接到领导的加班通知，你不得不又跑到公司加班，那天你工作到很晚才回家。"/>
+                        </TextBlock>
+                        <TextBlock />
+                        <TextBlock Text="你可以通过下方的表单，来记录此次加班的信息。"
+                                   FontSize="14"
+                                   LineHeight="25"
+                                   Foreground="Gray"
+                                   TextWrapping="Wrap" />
                     </StackPanel>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
+
+                </Grid>
+            <Grid Grid.Row="1">
+                    <StackPanel Grid.Row="1"
+                                Margin="20, 10"
+                                TextBlock.FontSize="16">
+                        <StackPanel Margin="0, 5" >
+                            <TextBlock Text="开始"
+                                       Foreground="Gray"
+                                       Margin="0, 5" />
+                            <modernWpf:SimpleTimePicker SelectedDateTime="{Binding BeginTime}"
+                                                        PickerVisibility="All"
+                                                        modernWpf:ControlHelper.CornerRadius="0"
+                                                        Culture="zh-CN"
+                                                        HorizontalAlignment="Left" />
+                        </StackPanel>
+                        <StackPanel Margin="0, 5" >
+                            <TextBlock Text="结束"
+                                       Margin="0, 5"
+                                       Foreground="Gray" />
+                            <StackPanel Orientation="Horizontal">
+
+                                <modernWpf:SimpleTimePicker PickerVisibility="All"
+                                                            SelectedDateTime="{Binding EndTime}"
+                                                            modernWpf:ControlHelper.CornerRadius="0"
+                                                            Culture="zh-CN"
+                                                            HorizontalAlignment="Left" />
+                                <Label Background="OrangeRed"
+                                       Content="第二天"
+                                       Margin="10, 0"
+                                       Padding="10, 5">
+                                    <Label.Visibility>
+                                        <Binding Path="IsNextDay">
+                                            <Binding.Converter>
+                                                <suence:BooleanToObjectConverter TrueValue="Visible"
+                                                                                 FalseValue="Hidden" />
+                                            </Binding.Converter>
+                                        </Binding>
+                                    </Label.Visibility>
+                                </Label>
+                            </StackPanel>
+                        </StackPanel>
+                        <StackPanel Margin="0, 5">
+                            <TextBlock Text="时长"
+                                       Margin="0, 5"
+                                       Foreground="Gray" />
+                            <TextBlock Margin="0, 5">
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat="{}{0} 小时 {1:00} 分 {2:00} 秒">
+                                        <Binding Path="TotalTime.Hours" />
+                                        <Binding Path="TotalTime.Minutes" />
+                                        <Binding Path="TotalTime.Seconds" />
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+                        </StackPanel>
+                        <StackPanel Margin="0, 5">
+                            <TextBlock Text="备注"
+                                       Foreground="Gray"
+                                       Margin="0,5 " />
+                            <TextBox AcceptsReturn="True"
+                                     AcceptsTab="True"
+                                     Text="{Binding Remark}"
+                                     modernWpf:ControlHelper.CornerRadius="0"
+                                     MinHeight="100"
+                                     MaxHeight="200" />
+                        </StackPanel>
+                    </StackPanel>
+                </Grid>
+                <StackPanel Grid.Row="2"
+                            Margin="10"
+                            HorizontalAlignment="Right"
+                            Orientation="Horizontal">
+                    <Button FontSize="16"
+                            Padding="30, 5"
+                            Margin="5"
+                            Content="确定"
+                            IsEnabled="{Binding CanCreate}"
+                            Command="{Binding ConfirmCommand}"
+                            Style="{DynamicResource Win10ButtonStyle}" />
+
+                    <Button FontSize="16"
+                            Padding="30, 5"
+                            Content="忽略"
+                            Command="{Binding NeglectCommand}"
+                            Style="{DynamicResource Win10ButtonStyle}"
+                            Margin="5">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Click">
+                                <i:ControlStoryboardAction Storyboard="{StaticResource HideForm}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </Button>
+                </StackPanel>
+            </Grid>
+        </Border>
     </Grid>
 </UserControl>
