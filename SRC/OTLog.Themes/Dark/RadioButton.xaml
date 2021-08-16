@@ -25,6 +25,7 @@
                             </Grid.ColumnDefinitions>
                             <Rectangle x:Name="line"
                                        Grid.Column="0"
+                                       Margin="0,8"
                                        Fill="{TemplateBinding BorderBrush}"
                                        Width="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=Tag}"
                                        VerticalAlignment="Stretch" />

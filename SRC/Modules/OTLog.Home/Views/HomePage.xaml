@@ -4,22 +4,89 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:suence="http://software.suence.com/"
              x:Class="OTLog.Home.Views.HomePage"
              xmlns:constants="clr-namespace:OTLog.Core.Constants;assembly=OTLog.Core"
              prism:ViewModelLocator.AutoWireViewModel="True"
              d:DesignWidth="710"
              d:DesignHeight="530">
+    <UserControl.Resources>
+        <Storyboard x:Key="OpenSliderBar">
+            <DoubleAnimation Storyboard.TargetName="SliderBarRoot"
+                             Storyboard.TargetProperty="Width"
+                             To="250"
+                             Duration="0:0:.2">
+                <DoubleAnimation.EasingFunction>
+                    <CircleEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+        <Storyboard x:Key="FoldSliderBar">
+            <DoubleAnimation Storyboard.TargetName="SliderBarRoot"
+                             Storyboard.TargetProperty="Width"
+                             To="60"
+                             Duration="0:0:.2">
+                <DoubleAnimation.EasingFunction>
+                    <CircleEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+    </UserControl.Resources>
     <Grid Background="{DynamicResource App.Background}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
-        <Grid Grid.Column="0"
+        <Grid x:Name="SliderBarRoot"
+              Grid.Column="0"
+              Width="250"
               Background="{DynamicResource App.Background2}">
-            <StackPanel Width="250"
-                        Margin="0, 40, 0, 0">
-                <RadioButton Padding="20, 10"
+            <StackPanel Margin="0, 40, 0, 0">
+                <Grid HorizontalAlignment="Left">
+                    <Button x:Name="FoldSliderBarButton"
+                            Padding="15, 10, 15, 10"
+                            Click="FoldSliderBarButton_Click"
+                            Background="Transparent"
+                            HorizontalAlignment="Left"
+                            Style="{DynamicResource AppTitleButtonStyle}">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Click">
+                                <i:ControlStoryboardAction Storyboard="{StaticResource FoldSliderBar}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                        <Viewbox Width="25"
+                                 Height="25">
+                            <Canvas Width="24"
+                                    Height="24">
+                                <Path Fill="{DynamicResource App.Foreground}"
+                                      Data="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" />
+                            </Canvas>
+                        </Viewbox>
+                    </Button>
+                    <Button x:Name="OpenSliderBarButton"
+                            Padding="15, 10, 15, 10"
+                            Click="OpenSliderBarButton_Click"
+                            Background="Transparent"
+                            HorizontalAlignment="Left"
+                            Visibility="Hidden"
+                            Style="{DynamicResource AppTitleButtonStyle}">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="Click">
+                                <i:ControlStoryboardAction Storyboard="{StaticResource OpenSliderBar}" />
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                        <Viewbox Width="25"
+                                 Height="25">
+                            <Canvas Width="24"
+                                    Height="24">
+                                <Path Fill="{DynamicResource App.Foreground}"
+                                      Data="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" />
+                            </Canvas>
+                        </Viewbox>
+                    </Button>
+                </Grid>
+                <RadioButton Padding="10"
                              Click="OverviewButton_Click"
                              Background="Transparent"
                              Style="{DynamicResource NavigationRadioButton}"
@@ -43,13 +110,13 @@
                             </Canvas>
                         </Viewbox>
                         <TextBlock Text="总览"
-                                   FontSize="16"
+                                   FontSize="18"
                                    Margin="10, 0"
                                    VerticalAlignment="Center"
                                    Foreground="{DynamicResource App.Foreground}" />
                     </StackPanel>
                 </RadioButton>
-                <RadioButton Padding="20, 10"
+                <RadioButton Padding="10"
                              Click="NotificationButton_Click"
                              Background="Transparent"
                              Style="{DynamicResource NavigationRadioButton}"
@@ -79,9 +146,8 @@
                                    Foreground="{DynamicResource App.Foreground}" />
                     </StackPanel>
                 </RadioButton>
-                
                 <RadioButton FontSize="18"
-                             Padding="20, 10"
+                             Padding="10"
                              Click="SettingsButton_Click"
                              Background="Transparent"
                              Style="{DynamicResource NavigationRadioButton}"
@@ -112,7 +178,7 @@
                     </StackPanel>
                 </RadioButton>
                 <RadioButton FontSize="18"
-                             Padding="20, 10"
+                             Padding="10"
                              Background="Transparent"
                              Click="AboutButton_Click"
                              Foreground="{DynamicResource App.Foreground}"
@@ -143,13 +209,6 @@
                     </StackPanel>
                 </RadioButton>
             </StackPanel>
-
-            <TextBlock Text="Version 1.0.1"
-                       HorizontalAlignment="Center"
-                       VerticalAlignment="Bottom"
-                       Foreground="{DynamicResource SecondryText.Foreground}"
-                       Margin="10"
-                       FontSize="14" />
         </Grid>
         <Grid Grid.Column="1"
               Margin="40, 40, 0, 10">
@@ -160,10 +219,10 @@
             <ContentControl Grid.Row="1"
                             Margin="0, 20, 0, 10"
                             prism:RegionManager.RegionName="{x:Static constants:RegionNames.HomeRegion}" />
-            <TextBlock x:Name="ActiveModuleName" 
+            <TextBlock x:Name="ActiveModuleName"
                        FontSize="35"
                        Text="总览"
-                       Foreground="{DynamicResource PrimaryText.Foreground}"/>
+                       Foreground="{DynamicResource PrimaryText.Foreground}" />
         </Grid>
     </Grid>
 </UserControl>

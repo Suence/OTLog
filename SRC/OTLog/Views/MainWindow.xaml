@@ -8,6 +8,7 @@
         prism:ViewModelLocator.AutoWireViewModel="True"
         Title="{Binding Title}"
         Loaded="Window_Loaded"
+        WindowStartupLocation="CenterScreen"
         Background="{DynamicResource App.Background}"
         Height="800"
         Width="1200">

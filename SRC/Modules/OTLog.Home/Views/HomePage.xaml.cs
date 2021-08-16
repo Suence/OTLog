@@ -31,5 +31,17 @@ namespace OTLog.Home.Views
         {
             ActiveModuleName.Text = "通知";
         }
+
+        private void FoldSliderBarButton_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            OpenSliderBarButton.Visibility = System.Windows.Visibility.Visible;
+            FoldSliderBarButton.Visibility = System.Windows.Visibility.Hidden;
+        }
+
+        private void OpenSliderBarButton_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            OpenSliderBarButton.Visibility = System.Windows.Visibility.Hidden;
+            FoldSliderBarButton.Visibility = System.Windows.Visibility.Visible;
+        }
     }
 }
