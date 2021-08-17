@@ -2,8 +2,8 @@
 {
     public enum Theme
     {
-        Default = 0,
-        DarkTheme = 1,
-        LightTheme = 2
+        DarkTheme = 0,
+        LightTheme = 1,
+        SystemTheme = 2
     }
 }

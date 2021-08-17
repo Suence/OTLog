@@ -61,9 +61,9 @@ namespace OTLog
             _notifyIcon = (TaskbarIcon)FindResource("NotifyIcon");
             _notifyIcon.DataContext = Container.Resolve<NotifyIconViewModel>();
 
-            ThemeManager.Current.AccentColor = Colors.Green;
+            ThemeManager.Current.AccentColor = GlobalObjectHolder.Config.ThemeColor;
 
-            uISettings = new Windows.UI.ViewManagement.UISettings();
+            uISettings = new UISettings();
             var color = uISettings.GetColorValue(UIColorType.Background);
 
             uISettings.ColorValuesChanged += UiSettings_ColorValuesChanged;

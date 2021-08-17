@@ -40,11 +40,9 @@ namespace OTLog.Home.ViewModels
         {
             await Task.Delay(100);
 
-            NameOfCurrentTab = viewName;
-
             var todo = TodoList.Skip(1).FirstOrDefault(r => r.Status == Core.Enums.TodoStatus.Default);
 
-            if (viewName == ViewNames.Notice)
+            if (viewName == ViewNames.Notice && NameOfCurrentTab == ViewNames.Notice)
                 _regionManager.Regions[RegionNames.HomeRegion].RemoveAll();
 
             _regionManager.RequestNavigate(
@@ -56,6 +54,8 @@ namespace OTLog.Home.ViewModels
                     { "Todo", todo }
                 }
                 : null);
+
+            NameOfCurrentTab = viewName;
         }
 
         public HomePageViewModel(IRegionManager regionManager, IEventAggregator eventAggregator)

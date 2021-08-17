@@ -1,4 +1,5 @@
 ﻿using OTLog.Core.Enums;
+using System.Windows.Media;
 
 namespace OTLog.Core.Models
 {
@@ -6,7 +7,7 @@ namespace OTLog.Core.Models
     {
         public bool OpenAtBoot { get; set; }
         public bool NotificationAfterMin { get; set; }
-        public string ThemeColor { get; set; }
+        public Color ThemeColor { get; set; }
         public Theme Theme { get; set; }
     }
 }
