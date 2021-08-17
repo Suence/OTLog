@@ -63,30 +63,60 @@
                            Foreground="{DynamicResource PrimaryText.Foreground}" />
                 <StackPanel Orientation="Horizontal"
                             Margin="0, 10, 5, 5">
-                    <Rectangle Width="50"
-                               Height="50"
-                               Fill="DarkMagenta"
-                               Margin="0, 2, 2, 2" />
-                    <Rectangle Width="50"
-                               Height="50"
-                               Fill="Orange"
-                               Margin="2" />
-                    <Rectangle Width="50"
-                               Height="50"
-                               Fill="BlueViolet"
-                               Margin="2" />
-                    <Rectangle Width="50"
-                               Height="50"
-                               Fill="DarkSlateBlue"
-                               Margin="2" />
-                    <Rectangle Width="50"
-                               Height="50"
-                               Fill="DeepSkyBlue"
-                               Margin="2" />
-                    <Rectangle Width="50"
-                               Height="50"
-                               Fill="DeepPink"
-                               Margin="2" />
+                    <RadioButton BorderThickness="2"
+                                 Checked="RadioButton_Checked"
+                                 Tag="{x:Static Colors.Green}"
+                                 Style="{DynamicResource ThemeSelectorRadioButton}"
+                                 Margin="0, 2, 2, 2">
+                        <Rectangle Fill="Green"
+                                   Width="50"
+                                   Height="50"/>
+                    </RadioButton>
+                    <RadioButton BorderThickness="2"
+                                 Checked="RadioButton_Checked"
+                                 Tag="{x:Static Colors.Orange}"
+                                 Style="{DynamicResource ThemeSelectorRadioButton}"
+                                 Margin="0, 2, 2, 2">
+                        <Rectangle Fill="Orange"
+                                   Width="50"
+                                   Height="50" />
+                    </RadioButton>
+                    <RadioButton BorderThickness="2"
+                                 Checked="RadioButton_Checked"
+                                 Tag="{x:Static Colors.BlueViolet}"
+                                 Style="{DynamicResource ThemeSelectorRadioButton}"
+                                 Margin="0, 2, 2, 2">
+                        <Rectangle Fill="BlueViolet"
+                                   Width="50"
+                                   Height="50" />
+                    </RadioButton>
+                    <RadioButton BorderThickness="2"
+                                 Checked="RadioButton_Checked"
+                                 Tag="{x:Static Colors.DarkSlateGray}"
+                                 Style="{DynamicResource ThemeSelectorRadioButton}"
+                                 Margin="0, 2, 2, 2">
+                        <Rectangle Fill="DarkSlateGray"
+                                   Width="50"
+                                   Height="50" />
+                    </RadioButton>
+                    <RadioButton BorderThickness="2"
+                                 Checked="RadioButton_Checked"
+                                 Tag="{x:Static Colors.DeepSkyBlue}"
+                                 Style="{DynamicResource ThemeSelectorRadioButton}"
+                                 Margin="0, 2, 2, 2">
+                        <Rectangle Fill="DeepSkyBlue"
+                                   Width="50"
+                                   Height="50" />
+                    </RadioButton>
+                    <RadioButton BorderThickness="2"
+                                 Checked="RadioButton_Checked"
+                                 Tag="{x:Static Colors.DeepPink}"
+                                 Style="{DynamicResource ThemeSelectorRadioButton}"
+                                 Margin="0, 2, 2, 2">
+                        <Rectangle Fill="DeepPink"
+                                   Width="50"
+                                   Height="50" />
+                    </RadioButton>
                 </StackPanel>
             </StackPanel>
             <!--#endregion-->

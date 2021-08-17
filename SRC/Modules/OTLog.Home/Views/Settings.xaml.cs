@@ -1,4 +1,6 @@
 ﻿using System.Windows.Controls;
+using System.Windows.Media;
+using ModernWpf;
 
 namespace OTLog.Home.Views
 {
@@ -10,6 +12,11 @@ namespace OTLog.Home.Views
         public Settings()
         {
             InitializeComponent();
+        }
+
+        private void RadioButton_Checked(object sender, System.Windows.RoutedEventArgs e)
+        {
+            ThemeManager.Current.AccentColor = (Color)((sender as RadioButton).Tag);
         }
     }
 }

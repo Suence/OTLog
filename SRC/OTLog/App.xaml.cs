@@ -17,6 +17,7 @@ using System.Reflection;
 using System.Threading;
 using System.Windows;
 using System.Windows.Media;
+using Windows.UI.ViewManagement;
 
 namespace OTLog
 {
@@ -46,7 +47,7 @@ namespace OTLog
                 DarkTheme.Instance as ResourceDictionary,
                 LightTheme.Instance as ResourceDictionary
             }[(int)theme];
-
+        private UISettings uISettings;
         protected override void OnStartup(StartupEventArgs e)
         {
             AppOnStartup();
@@ -60,7 +61,17 @@ namespace OTLog
             _notifyIcon = (TaskbarIcon)FindResource("NotifyIcon");
             _notifyIcon.DataContext = Container.Resolve<NotifyIconViewModel>();
 
-            ThemeManager.Current.AccentColor = Colors.DarkMagenta;
+            ThemeManager.Current.AccentColor = Colors.Green;
+
+            uISettings = new Windows.UI.ViewManagement.UISettings();
+            var color = uISettings.GetColorValue(UIColorType.Background);
+
+            uISettings.ColorValuesChanged += UiSettings_ColorValuesChanged;
+        }
+
+        private void UiSettings_ColorValuesChanged(UISettings sender, object args)
+        {
+            var color = uISettings.GetColorValue(UIColorType.Background);
         }
 
         protected override void OnExit(ExitEventArgs e)

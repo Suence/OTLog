@@ -7,11 +7,13 @@
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:suence="http://software.suence.com/"
              x:Class="OTLog.Home.Views.HomePage"
+             xmlns:modernWpf="http://schemas.modernwpf.com/2019"
              xmlns:constants="clr-namespace:OTLog.Core.Constants;assembly=OTLog.Core"
              prism:ViewModelLocator.AutoWireViewModel="True"
              d:DesignWidth="710"
              d:DesignHeight="530">
     <UserControl.Resources>
+        <suence:ColorToSolidColorBrushConverter x:Key="ColorToSolidColorBrush"/>
         <Storyboard x:Key="OpenSliderBar">
             <DoubleAnimation Storyboard.TargetName="SliderBarRoot"
                              Storyboard.TargetProperty="Width"
@@ -89,6 +91,7 @@
                 <RadioButton Padding="10"
                              Click="OverviewButton_Click"
                              Background="Transparent"
+                             BorderBrush="{Binding Source={x:Static modernWpf:ThemeManager.Current}, Path=AccentColor, Converter={StaticResource ColorToSolidColorBrush}}"
                              Style="{DynamicResource NavigationRadioButton}"
                              Command="{Binding GoToTargetViewCommand}"
                              CommandParameter="{x:Static constants:ViewNames.Overview}">
@@ -119,6 +122,7 @@
                 <RadioButton Padding="10"
                              Click="NotificationButton_Click"
                              Background="Transparent"
+                             BorderBrush="{Binding Source={x:Static modernWpf:ThemeManager.Current}, Path=AccentColor, Converter={StaticResource ColorToSolidColorBrush}}"
                              Style="{DynamicResource NavigationRadioButton}"
                              Command="{Binding GoToTargetViewCommand}"
                              CommandParameter="{x:Static constants:ViewNames.Notice}">
@@ -150,6 +154,7 @@
                              Padding="10"
                              Click="SettingsButton_Click"
                              Background="Transparent"
+                             BorderBrush="{Binding Source={x:Static modernWpf:ThemeManager.Current}, Path=AccentColor, Converter={StaticResource ColorToSolidColorBrush}}"
                              Style="{DynamicResource NavigationRadioButton}"
                              Command="{Binding GoToTargetViewCommand}"
                              CommandParameter="{x:Static constants:ViewNames.Settings}">
@@ -181,6 +186,7 @@
                              Padding="10"
                              Background="Transparent"
                              Click="AboutButton_Click"
+                             BorderBrush="{Binding Source={x:Static modernWpf:ThemeManager.Current}, Path=AccentColor, Converter={StaticResource ColorToSolidColorBrush}}"
                              Foreground="{DynamicResource App.Foreground}"
                              Style="{DynamicResource NavigationRadioButton}"
                              Command="{Binding GoToTargetViewCommand}"

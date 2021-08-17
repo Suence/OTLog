@@ -26,6 +26,7 @@
                             <Rectangle x:Name="line"
                                        Grid.Column="0"
                                        Margin="0,8"
+                                       Visibility="Hidden"
                                        Fill="{TemplateBinding BorderBrush}"
                                        Width="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=Tag}"
                                        VerticalAlignment="Stretch" />
@@ -61,12 +62,10 @@
                         <Trigger Property="IsChecked"
                                  Value="True">
                             <Setter TargetName="line"
-                                    Property="Fill"
-                                    Value="#FF7719AA" />
+                                    Property="Visibility"
+                                    Value="Visible" />
                             <Setter Property="Background"
                                     Value="#30A6A1A1" />
-                            <!--<Setter Property="FontWeight"
-                                    Value="Bold" />-->
                             <Setter Property="Foreground"
                                     Value="#FF7719AA" />
                         </Trigger>
@@ -77,37 +76,43 @@
     </Style>
     <Style x:Key="ThemeSelectorRadioButton"
            TargetType="{x:Type RadioButton}">
+        <Setter Property="Background"
+                Value="White" />
+        <Setter Property="BorderBrush"
+                Value="White" />
+        <Setter Property="Foreground"
+                Value="Black" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type RadioButton}">
                     <Grid x:Name="templateRoot"
                           Background="Transparent"
                           SnapsToDevicePixels="True">
-                        <Border x:Name="radioButtonBorder"
-                                BorderBrush="Transparent"
-                                BorderThickness="{TemplateBinding BorderThickness}"
-                                Background="{TemplateBinding Background}"
-                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
 
-                            <ContentPresenter x:Name="contentPresenter"
+                        <ContentPresenter x:Name="contentPresenter"
                                               Focusable="False"
                                               HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                               Margin="{TemplateBinding Padding}"
                                               RecognizesAccessKey="True"
                                               SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
                                               VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                        <Border x:Name="radioButtonBorder"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                Visibility="Hidden"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}">
                         </Border>
                         <Grid x:Name="checkedGrid"
                               HorizontalAlignment="Right"
-                              VerticalAlignment="Bottom"
+                              VerticalAlignment="Top"
                               Visibility="Hidden"
                               TextBlock.FontFamily="Segoe MDL2 Assets"
-                              TextBlock.FontSize="30">
+                              TextBlock.FontSize="20">
                             <TextBlock Text="&#xE73B;"
-                                       Foreground="{TemplateBinding BorderBrush}" />
+                                       Foreground="{TemplateBinding Background}" />
                             <TextBlock Text="&#xE73E;"
-                                       Foreground="White" />
+                                       Foreground="{TemplateBinding Foreground}" />
                         </Grid>
                     </Grid>
                     <ControlTemplate.Triggers>
@@ -131,9 +136,9 @@
                             <Setter Property="Visibility"
                                     TargetName="checkedGrid"
                                     Value="Visible" />
-                            <Setter Property="BorderBrush"
+                            <Setter Property="Visibility"
                                     TargetName="radioButtonBorder"
-                                    Value="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=BorderBrush}" />
+                                    Value="Visible" />
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

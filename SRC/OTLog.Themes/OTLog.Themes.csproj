@@ -116,5 +116,10 @@
       <Name>OTLog.UI.Core</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="ModernWpfUI">
+      <Version>0.9.4</Version>
+    </PackageReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

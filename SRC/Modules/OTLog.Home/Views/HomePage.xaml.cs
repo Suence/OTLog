@@ -1,5 +1,6 @@
 ﻿using System.Windows.Controls;
-
+using System.Windows.Media;
+using ModernWpf;
 namespace OTLog.Home.Views
 {
     /// <summary>
