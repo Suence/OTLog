@@ -70,6 +70,7 @@ namespace OTLog.Home.ViewModels
 
             _eventAggregator.GetEvent<OTRecordTodoChangedEvent>().Subscribe(ToDoChanged);
             LoadData();
+            SessionUnlocked();
         }
 
         private void ToDoChanged()
@@ -79,7 +80,7 @@ namespace OTLog.Home.ViewModels
 
         private void LoadData()
         {
-            TodoList = new ObservableCollection<OTRecordTodo>(AppFileHelper.GetOTRecordToDos());
+            TodoList = new ObservableCollection<OTRecordTodo>(AppFileHelper.GetOTRecordToDos().OrderByDescending(r => r.BeginTime));
         }
         private void UpdateScreenLockTime(object sender, SessionSwitchEventArgs e)
         {
@@ -103,7 +104,7 @@ namespace OTLog.Home.ViewModels
             var todoItem = TodoList.FirstOrDefault(t => t.BeginTime.Date == date);
             if (todoItem == null)
             {
-                TodoList.Add(new OTRecordTodo
+                TodoList.Insert(0, new OTRecordTodo
                 {
                     Id = Guid.NewGuid(),
                     BeginTime = lockTime,
@@ -126,7 +127,7 @@ namespace OTLog.Home.ViewModels
             var todoItem = TodoList.FirstOrDefault(t => t.BeginTime.Date == date);
             if (todoItem == null)
             {
-                TodoList.Add(new OTRecordTodo
+                TodoList.Insert(0, new OTRecordTodo
                 {
                     Id = Guid.NewGuid(),
                     BeginTime = activeTime,
@@ -135,7 +136,7 @@ namespace OTLog.Home.ViewModels
                 return;
             }
 
-            if (TodoList.Any())
+            if (TodoList.Skip(1).FirstOrDefault(r => r.Status == Core.Enums.TodoStatus.Untreated) != null)
             {
                 GoToTargetView(ViewNames.Notice);
                 _eventAggregator.GetEvent<NewNoticeEvent>().Publish();
