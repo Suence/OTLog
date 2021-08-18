@@ -1,6 +1,7 @@
 ﻿using OTLog.Core.Enums;
 using OTLog.Core.Models;
 using OTLog.Core.Utils;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Windows.Media;
@@ -78,8 +79,10 @@ namespace OTLog.Core.StaticObjects
                 {
                     NotificationAfterMin = true,
                     OpenAtBoot = true,
-                    ThemeColor = Colors.DarkMagenta,
-                    Theme = Theme.DarkTheme
+                    ThemeColor = Color.FromRgb(0, 120, 212),
+                    Theme = Theme.DarkTheme,
+                    //UserName = WindowsIdentity.GetCurrent().Name;
+                    UserName = Environment.UserName
                 };
 
                 using (File.Create(AppFileHelper.SettingsFileFullPath)) { }

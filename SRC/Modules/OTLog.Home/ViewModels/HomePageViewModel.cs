@@ -40,7 +40,7 @@ namespace OTLog.Home.ViewModels
         {
             await Task.Delay(100);
 
-            var todo = TodoList.Skip(1).FirstOrDefault(r => r.Status == Core.Enums.TodoStatus.Default);
+            var todo = TodoList.Skip(1).FirstOrDefault(r => r.Status == Core.Enums.TodoStatus.Untreated);
 
             if (viewName == ViewNames.Notice && NameOfCurrentTab == ViewNames.Notice)
                 _regionManager.Regions[RegionNames.HomeRegion].RemoveAll();

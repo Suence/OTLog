@@ -36,17 +36,23 @@ namespace OTLog.Home.ViewModels
             get => _colors;
             set => SetProperty(ref _colors, value);
         }
-        public Config Config
-        {
-            get => _config;
-            set => SetProperty(ref _config, value);
-        }
 
         public DelegateCommand<Color?> ChangeThemeColorCommand { get; }
         private void ChangeThemeColor(Color? color)
         {
-            Config.ThemeColor = (Color)color;
+            GlobalObjectHolder.Config.ThemeColor = (Color)color;
             ThemeManager.Current.AccentColor = color;
+        }
+
+        public DelegateCommand ChangeThemeColorSchemeCommand { get; }
+        private void ChangeThemeColorScheme()
+        {
+            if (GlobalObjectHolder.Config.UseSystemThemeColorScheme)
+            {
+                _eventAggregator.GetEvent<ThemeColorSchemeChangedEvent>().Publish();
+                return;
+            }
+            ThemeManager.Current.AccentColor = GlobalObjectHolder.Config.ThemeColor;
         }
 
         public DelegateCommand<Theme?> ChangeThemeCommand { get; }
@@ -59,6 +65,7 @@ namespace OTLog.Home.ViewModels
         {
             _eventAggregator = eventAggregator;
 
+            ChangeThemeColorSchemeCommand = new DelegateCommand(ChangeThemeColorScheme);
             ChangeThemeColorCommand = new DelegateCommand<Color?>(ChangeThemeColor);
             ChangeThemeCommand = new DelegateCommand<Theme?>(ChangeTheme);
             Colors = new ObservableCollection<ThemeColor>(GlobalObjectHolder.ThemeColors);
@@ -71,9 +78,9 @@ namespace OTLog.Home.ViewModels
 
         public void OnNavigatedFrom(NavigationContext navigationContext)
         {
-            AppFileHelper.SaveAppConfig(Config);
+            AppFileHelper.SaveAppConfig(GlobalObjectHolder.Config);
 
-            if (!Config.OpenAtBoot)
+            if (!GlobalObjectHolder.Config.OpenAtBoot)
             {
                 File.Delete(AppFileHelper.LinkFileFullPath);
                 return;
@@ -87,7 +94,6 @@ namespace OTLog.Home.ViewModels
 
         public void OnNavigatedTo(NavigationContext navigationContext)
         {
-            Config = GlobalObjectHolder.Config;
         }
     }
 }

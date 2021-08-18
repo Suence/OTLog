@@ -122,15 +122,6 @@
                                     TargetName="radioButtonBorder"
                                     Value="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=BorderBrush}" />
                         </Trigger>
-                        <Trigger Property="IsEnabled"
-                                 Value="false">
-                            <Setter Property="Background"
-                                    TargetName="radioButtonBorder"
-                                    Value="{StaticResource RadioButton.Disabled.Background}" />
-                            <Setter Property="BorderBrush"
-                                    TargetName="radioButtonBorder"
-                                    Value="{StaticResource RadioButton.Disabled.Border}" />
-                        </Trigger>
                         <Trigger Property="IsChecked"
                                  Value="true">
                             <Setter Property="Visibility"
@@ -139,6 +130,15 @@
                             <Setter Property="Visibility"
                                     TargetName="radioButtonBorder"
                                     Value="Visible" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled"
+                                 Value="false">
+                            <Setter Property="Background"
+                                    Value="LightGray" />
+                            <Setter Property="BorderBrush"
+                                    Value="LightGray" />
+                            <Setter Property="Foreground"
+                                    Value="Gray"></Setter>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

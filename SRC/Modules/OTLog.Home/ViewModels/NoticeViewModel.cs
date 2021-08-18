@@ -107,12 +107,6 @@ namespace OTLog.Home.ViewModels
         private OTRecordTodo _record;
         private string _userName;
         #endregion
-        
-        public string UserName
-        {
-            get => _userName;
-            set => SetProperty(ref _userName, value);
-        }
 
         public OTRecordTodo Record
         {
@@ -128,8 +122,6 @@ namespace OTLog.Home.ViewModels
             NeglectCommand = new DelegateCommand(Neglect);
             ConfirmCommand = new DelegateCommand(Confirm);
 
-            //UserName = WindowsIdentity.GetCurrent().Name;
-            UserName = Environment.UserName;
             ResetRecordCommand = new DelegateCommand(ResetRecord);
         }
 

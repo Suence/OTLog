@@ -41,10 +41,9 @@ namespace OTLog
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
-
         }
 
-        private void SetTheme(Core.Enums.Theme theme)
+        private void SetTheme(Theme theme)
         {
             if (theme == Theme.DarkTheme)
             {
@@ -86,18 +85,43 @@ namespace OTLog
             _notifyIcon = (TaskbarIcon)FindResource("NotifyIcon");
             _notifyIcon.DataContext = Container.Resolve<NotifyIconViewModel>();
 
-            ThemeManager.Current.AccentColor = GlobalObjectHolder.Config.ThemeColor;
+            SetThemeColor();
+            uISettings.ColorValuesChanged += WindowsColorValueChanged;
 
-            uISettings.ColorValuesChanged += 
-                (sender, para) => SyncToSystemTheme(uISettings.GetColorValue(UIColorType.Background));
             Container.Resolve<IEventAggregator>().GetEvent<ThemeChangedEvent>().Subscribe(SetTheme);
+            Container.Resolve<IEventAggregator>().GetEvent<ThemeColorSchemeChangedEvent>().Subscribe(SetThemeColor);
+        }
+
+        private void WindowsColorValueChanged(UISettings sender, object args)
+        {
+            Dispatcher.Invoke(() =>
+            {
+                if (GlobalObjectHolder.Config.Theme == Theme.SystemTheme)
+                    SyncToSystemTheme();
+
+                if (GlobalObjectHolder.Config.UseSystemThemeColorScheme)
+                    SetThemeColor();
+            });
+        }
+
+        private void SyncToSystemTheme()
+        {
+            SyncToSystemTheme(uISettings.GetColorValue(UIColorType.Background));
+        }
+
+        private void SetThemeColor()
+        {
+            if (GlobalObjectHolder.Config.UseSystemThemeColorScheme)
+            {
+                var color = uISettings.GetColorValue(UIColorType.Accent);
+                ThemeManager.Current.AccentColor = Color.FromArgb(color.A, color.R, color.G, color.B);
+                return;
+            }
+
+            ThemeManager.Current.AccentColor = GlobalObjectHolder.Config.ThemeColor;
         }
 
         private void SyncToSystemTheme(Windows.UI.Color color)
-        //=> Resources.MergedDictionaries[1] = 
-        //    color.ToString() == "#FF000000" 
-        //    ? (ResourceDictionary)DarkTheme.Instance 
-        //    : LightTheme.Instance;
         {
             SetTheme(color.ToString() == "#FF000000" ? Theme.DarkTheme : Theme.LightTheme);
         }

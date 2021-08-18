@@ -5,6 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:models="clr-namespace:OTLog.Core.Models;assembly=OTLog.Core"
              mc:Ignorable="d"
+             xmlns:gb="clr-namespace:OTLog.Core.StaticObjects;assembly=OTLog.Core"
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:suence="http://software.suence.com/"
              xmlns:modernWpf="http://schemas.modernwpf.com/2019"
@@ -107,7 +108,7 @@
                     <StackPanel Margin="20, 20, 20, 0" HorizontalAlignment="Center"
                                 VerticalAlignment="Center">
                         
-                    <TextBlock Text="{Binding UserName}"
+                    <TextBlock Text="{Binding Source={x:Static gb:GlobalObjectHolder.Config}, Path=UserName}"
                                FontWeight="SemiBold"
                                FontSize="25" />
                         <TextBlock />
