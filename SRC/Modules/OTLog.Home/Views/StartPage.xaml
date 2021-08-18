@@ -31,12 +31,12 @@
                 <TextBlock Text="This is a piece of text —— AAA"
                            Margin="5"
                            FontSize="30"
-                           Foreground="Gray"
+                           Foreground="{DynamicResource App.Foreground2}"
                            HorizontalAlignment="Center" />
                 <TextBlock Text="这是一段文字 —— 一二三"
                            Margin="5"
                            FontSize="30"
-                           Foreground="LightGray"
+                           Foreground="{DynamicResource App.Foreground}"
                            HorizontalAlignment="Center" />
             </StackPanel>
             <Grid HorizontalAlignment="Center"

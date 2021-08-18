@@ -32,6 +32,7 @@
                              Duration="0:0:.7">
             </DoubleAnimation>
         </Storyboard>
+        <suence:ColorToSolidColorBrushConverter x:Key="ColorToBrush"/>
     </UserControl.Resources>
     <UserControl.Triggers>
         <EventTrigger RoutedEvent="FrameworkElement.Loaded">
@@ -55,7 +56,7 @@
     </i:Interaction.Triggers>
     <Grid>
         <TextBlock Text="本来无一物，何处惹尘埃。"
-                   Foreground="Gray"
+                   Foreground="{DynamicResource App.Foreground2}"
                    HorizontalAlignment="Center"
                    VerticalAlignment="Center"
                    FontSize="30">
@@ -70,13 +71,13 @@
         </TextBlock>
         <Border x:Name="FormRoot" 
                 BorderThickness="1"
-                BorderBrush="#FF333333"
+                BorderBrush="{DynamicResource App.Background3}"
                 Width="500"
                 RenderTransformOrigin=".5, .5"
                 VerticalAlignment="Top"
                 Height="650">
             <Border.Effect>
-                <DropShadowEffect Color="#FF333333"
+                <DropShadowEffect Color="{DynamicResource Notice.Shadow}"
                                   ShadowDepth="5"
                                   BlurRadius="10"/>
             </Border.Effect>
@@ -94,38 +95,37 @@
                     <ScaleTransform ScaleX="1" ScaleY="1"/>
                 </TransformGroup>
             </Border.RenderTransform>
-            <Grid Background="{DynamicResource App.Background2}">
+            <Grid Background="{DynamicResource App.Background}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition />
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <Grid Grid.Row="0">
-                <Image Height="200"
-                       Stretch="UniformToFill"
-                       Source="pack://application:,,,/Assets/Images/noticeBg2.png"/>
-                    <Rectangle Fill="#90000000" />
+                    <Label Background="{DynamicResource Notice.Cover}" 
+                           Height="200"/>
+                    <Rectangle Fill="{DynamicResource Notice.Cover.Mask}" />
                     <StackPanel Margin="20, 20, 20, 0" HorizontalAlignment="Center"
                                 VerticalAlignment="Center">
                         
                     <TextBlock Text="{Binding Source={x:Static gb:GlobalObjectHolder.Config}, Path=UserName}"
                                FontWeight="SemiBold"
+                               Foreground="{DynamicResource App.Foreground}"
                                FontSize="25" />
                         <TextBlock />
                         <TextBlock TextWrapping="Wrap"
                                    FontSize="18"
-                                   Foreground="#FFDEDEDE">
+                                   Foreground="{DynamicResource App.Foreground}">
                             <Run Text="{Binding Record.BeginTime, StringFormat={}{0:M月dd日}}"
-                                 Foreground="#FF226BC3" 
-                                 FontWeight="SemiBold"/>
-                            
+                                 Foreground="{Binding Source={x:Static modernWpf:ThemeManager.Current}, Path=AccentColor, Converter={StaticResource ColorToBrush}}"
+                                 FontWeight="SemiBold" />
                              <Run Text="你本来已经打算好好放松，出去玩玩，但是接到领导的加班通知，你不得不又跑到公司加班，那天你工作到很晚才回家。"/>
                         </TextBlock>
                         <TextBlock />
                         <TextBlock Text="你可以通过下方的表单，来记录此次加班的信息。"
                                    FontSize="14"
                                    LineHeight="25"
-                                   Foreground="Gray"
+                                   Foreground="{DynamicResource App.Foreground2}"
                                    TextWrapping="Wrap" />
                     </StackPanel>
 
@@ -136,7 +136,7 @@
                                 TextBlock.FontSize="16">
                         <StackPanel Margin="0, 5" >
                             <TextBlock Text="开始"
-                                       Foreground="Gray"
+                                       Foreground="{DynamicResource App.Foreground2}"
                                        Margin="0, 5" />
                             <modernWpf:SimpleTimePicker SelectedDateTime="{Binding BeginTime}"
                                                         PickerVisibility="All"
@@ -147,7 +147,7 @@
                         <StackPanel Margin="0, 5" >
                             <TextBlock Text="结束"
                                        Margin="0, 5"
-                                       Foreground="Gray" />
+                                       Foreground="{DynamicResource App.Foreground2}" />
                             <StackPanel Orientation="Horizontal">
 
                                 <modernWpf:SimpleTimePicker PickerVisibility="All"
@@ -155,9 +155,10 @@
                                                             modernWpf:ControlHelper.CornerRadius="0"
                                                             Culture="zh-CN"
                                                             HorizontalAlignment="Left" />
-                                <Label Background="OrangeRed"
+                                <Label Background="{Binding Source={x:Static modernWpf:ThemeManager.Current}, Path=AccentColor, Converter={StaticResource ColorToBrush}}"
                                        Content="第二天"
                                        Margin="10, 0"
+                                       Foreground="{DynamicResource App.Foreground3}"
                                        Padding="10, 5">
                                     <Label.Visibility>
                                         <Binding Path="IsNextDay">
@@ -173,8 +174,9 @@
                         <StackPanel Margin="0, 5">
                             <TextBlock Text="时长"
                                        Margin="0, 5"
-                                       Foreground="Gray" />
-                            <TextBlock Margin="0, 5">
+                                       Foreground="{DynamicResource App.Foreground2}" />
+                            <TextBlock Margin="0, 5"
+                                       Foreground="{DynamicResource App.Foreground}">
                                 <TextBlock.Text>
                                     <MultiBinding StringFormat="{}{0} 小时 {1:00} 分 {2:00} 秒">
                                         <Binding Path="TotalTime.Hours" />
@@ -186,7 +188,7 @@
                         </StackPanel>
                         <StackPanel Margin="0, 5">
                             <TextBlock Text="备注"
-                                       Foreground="Gray"
+                                       Foreground="{DynamicResource App.Foreground2}"
                                        Margin="0,5 " />
                             <TextBox AcceptsReturn="True"
                                      AcceptsTab="True"

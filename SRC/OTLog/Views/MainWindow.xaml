@@ -8,7 +8,7 @@
         prism:ViewModelLocator.AutoWireViewModel="True"
         Title="{Binding Title}"
         Loaded="Window_Loaded"
-        Foreground="#FF212121"
+        Foreground="{DynamicResource App.Foreground}"
         WindowStartupLocation="CenterScreen"
         Background="{DynamicResource App.Background}"
         Height="800"
@@ -93,7 +93,7 @@
                     <TextBlock FontSize="12"
                                VerticalAlignment="Center"
                                Margin="15, 0"
-                               Foreground="{DynamicResource AppTitle.Foreground}"
+                               Foreground="{DynamicResource App.Foreground2}"
                                Text="{Binding Title}" />
                 </StackPanel>
                 <StackPanel Grid.Column="2"
@@ -102,7 +102,7 @@
                     <Button Width="47"
                             IsTabStop="False"
                             BorderThickness="0"
-                            Foreground="White"
+                            Foreground="{DynamicResource App.Foreground}"
                             FontWeight="Bold"
                             ToolTip="最小化"
                             Style="{DynamicResource AppTitleButtonStyle}"
@@ -122,13 +122,10 @@
                                      Height="20">
                                 <Canvas Width="24"
                                         Height="24">
-                                    <Path Fill="{DynamicResource AppButton.Foreground}"
+                                    <Path Fill="{DynamicResource App.Foreground2}"
                                           Data="M19,13H5V11H19V13Z" />
                                 </Canvas>
                             </Viewbox>
-                            <!--<Image Source="pack://application:,,,/OTLog;component/Assets/Images/最小化.png"
-                                   Width="20"
-                                   Height="20" />-->
                         </Button.Content>
                     </Button>
                     <Button Width="47"
@@ -146,7 +143,7 @@
                                      Height="20">
                                 <Canvas Width="24"
                                         Height="24">
-                                    <Path Fill="{DynamicResource AppButton.Foreground}"
+                                    <Path Fill="{DynamicResource App.Foreground2}"
                                           Data="M22,4V2H2V4H11V18.17L5.5,12.67L4.08,14.08L12,22L19.92,14.08L18.5,12.67L13,18.17V4H22Z" />
                                 </Canvas>
                             </Viewbox>

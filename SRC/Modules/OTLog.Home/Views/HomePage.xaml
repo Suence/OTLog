@@ -228,7 +228,7 @@
             <TextBlock x:Name="ActiveModuleName"
                        FontSize="35"
                        Text="总览"
-                       Foreground="{DynamicResource PrimaryText.Foreground}" />
+                       Foreground="{DynamicResource App.Foreground}" />
         </Grid>
     </Grid>
 </UserControl>

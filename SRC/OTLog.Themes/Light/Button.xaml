@@ -430,16 +430,16 @@
             <Trigger Property="IsEnabled"
                      Value="False">
                 <Setter Property="Foreground"
-                        Value="#FF858585" />
+                        Value="{DynamicResource App.Foreground2}" />
                 <Setter Property="Background"
-                        Value="#FF515151" />
+                        Value="{DynamicResource App.Background2}" />
             </Trigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
     <Style x:Key="Win10ButtonStyle"
            TargetType="{x:Type Button}">
         <Setter Property="Background"
-                Value="#FF333333" />
+                Value="{DynamicResource App.Background2}" />
         <Setter Property="BorderBrush"
                 Value="#FF858585" />
         <Setter Property="BorderThickness"
@@ -449,6 +449,6 @@
         <Setter Property="Padding"
                 Value="5" />
         <Setter Property="Foreground"
-                Value="White" />
+                Value="{DynamicResource App.Foreground}" />
     </Style>
 </ResourceDictionary>

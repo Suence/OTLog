@@ -47,9 +47,10 @@
                     <TextBlock Grid.Row="1"
                                FontSize="20"
                                Text="启动"
-                               Foreground="{DynamicResource PrimaryText.Foreground}" />
+                               Foreground="{DynamicResource App.Foreground}" />
                     <CheckBox Content="随系统启动"
                               modernWpf:ControlHelper.CornerRadius="0"
+                              Foreground="{DynamicResource App.Foreground}"
                               IsChecked="{Binding Source={x:Static gb:GlobalObjectHolder.Config},Path=OpenAtBoot}"
                               Margin="0, 10" />
                 </StackPanel>
@@ -60,9 +61,10 @@
                     <TextBlock Grid.Row="1"
                                Text="通知"
                                FontSize="20"
-                               Foreground="{DynamicResource PrimaryText.Foreground}" />
+                               Foreground="{DynamicResource App.Foreground}" />
                     <CheckBox Content="最小化到系统托盘"
                               Margin="0, 10"
+                              Foreground="{DynamicResource App.Foreground}"
                               modernWpf:ControlHelper.CornerRadius="0"
                               IsChecked="{Binding Source={x:Static gb:GlobalObjectHolder.Config},Path=NotificationAfterMin}" />
                 </StackPanel>
@@ -73,7 +75,7 @@
                     <TextBlock Grid.Row="1"
                                Text="我应该如何称呼你"
                                FontSize="20"
-                               Foreground="{DynamicResource PrimaryText.Foreground}" />
+                               Foreground="{DynamicResource App.Foreground}" />
                     <TextBox Width="215"
                              modernWpf:ControlHelper.PlaceholderText="{x:Static system:Environment.UserName}"
                              Margin="0, 10, 15, 5"
@@ -89,7 +91,7 @@
                     <TextBlock Grid.Row="1"
                                Text="颜色"
                                FontSize="20"
-                               Foreground="{DynamicResource PrimaryText.Foreground}" />
+                               Foreground="{DynamicResource App.Foreground}" />
                     <CheckBox Content="主题色跟随系统"
                               Margin="0, 10"
                               modernWpf:ControlHelper.CornerRadius="0"
@@ -149,7 +151,7 @@
                     <TextBlock Grid.Row="1"
                                Text="主题"
                                FontSize="20"
-                               Foreground="{DynamicResource PrimaryText.Foreground}" />
+                               Foreground="{DynamicResource App.Foreground}" />
                     <ComboBox SelectedIndex="0"
                               Margin="0, 10"
                               ItemsSource="{Binding Themes}"

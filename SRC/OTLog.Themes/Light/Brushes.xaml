@@ -2,16 +2,28 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <!-- APP -->
     <SolidColorBrush x:Key="App.Foreground"
-                     Color="White" />
+                     Color="#FF1D1D1F" />
+    <SolidColorBrush x:Key="App.Foreground2"
+                     Color="#FF7F7F83" />
+    <SolidColorBrush x:Key="App.Foreground3"
+                     Color="White"/>
+    
     <SolidColorBrush x:Key="App.Background"
-                     Color="#FF1A1B1C" />
+                     Color="#FFF5F5F7" />
     <SolidColorBrush x:Key="App.Background2"
-                     Color="#FF222222" />
+                     Color="#FFFFFFFF" />
+    
     <SolidColorBrush x:Key="App.Background3"
-                     Color="#FF333333" />
+                     Color="#FFCCCCCC" />
     <SolidColorBrush x:Key="Error.Background"
                      Color="#FFA02222" />
     <!-- END -->
+
+    <ImageBrush x:Key="Notice.Cover"
+                ImageSource="pack://application:,,,/Assets/Images/noticeBg.png"/>
+    <SolidColorBrush x:Key="Notice.Cover.Mask"
+                     Color="#90FFFFFF" />
+    <Color x:Key="Notice.Shadow">#FFCCCCCC</Color>
     <!-- Title -->
     <SolidColorBrush x:Key="AppTitle.Foreground"
                      Color="LightGray" />

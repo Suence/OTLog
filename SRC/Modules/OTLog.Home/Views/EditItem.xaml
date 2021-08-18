@@ -86,7 +86,6 @@
         </Grid>
         <Border Grid.Row="1"
                 x:Name="TipLayout"
-                Background="White"
                 RenderTransformOrigin=".5, .5"
                 Width="450"
                 CornerRadius="5"
@@ -97,7 +96,7 @@
             </Border.RenderTransform>
             <Border BorderBrush="{DynamicResource Control.BorderBrush}"
                     BorderThickness="1"
-                    Background="{DynamicResource App.Background2}">
+                    Background="{DynamicResource App.Background}">
 
                 <Grid>
                     <Grid.RowDefinitions>
@@ -107,20 +106,21 @@
                     </Grid.RowDefinitions>
                     <Grid Grid.Row="0"
                           Height="40"
-                          Background="{DynamicResource App.Background}">
+                          Background="{DynamicResource App.Background2}">
                         <TextBlock Text="编辑"
                                    FontSize="16"
                                    Margin="10, 5"
+                                   Foreground="{DynamicResource App.Foreground}"
                                    VerticalAlignment="Center" />
                     </Grid>
                     <StackPanel Grid.Row="1" Margin="20" TextBlock.FontSize="16">
                         <StackPanel Margin="0, 5">
-                            <TextBlock Text="日期" Foreground="Gray" Margin="0, 5"/>
+                            <TextBlock Text="日期" Foreground="{DynamicResource App.Foreground2}" Margin="0, 5"/>
                             <DatePicker Width="240" SelectedDate="{Binding BeginDate}" modernWpf:ControlHelper.CornerRadius="0" 
                                                         HorizontalAlignment="Left" />
                         </StackPanel>
                         <StackPanel Margin="0, 5">
-                            <TextBlock Text="开始" Foreground="Gray" Margin="0, 5"/>
+                            <TextBlock Text="开始" Foreground="{DynamicResource App.Foreground2}" Margin="0, 5"/>
                             <modernWpf:SimpleTimePicker PickerVisibility="All"
                                                         modernWpf:ControlHelper.CornerRadius="0"  
                                                         Culture="zh-CN" 
@@ -128,7 +128,7 @@
                                                         HorizontalAlignment="Left" />
                         </StackPanel>
                         <StackPanel Margin="0, 5">
-                            <TextBlock Text="结束" Margin="0, 5" Foreground="Gray"/>
+                            <TextBlock Text="结束" Margin="0, 5" Foreground="{DynamicResource App.Foreground2}"/>
                             <StackPanel Orientation="Horizontal">
                                 <modernWpf:SimpleTimePicker PickerVisibility="All"
                                                             modernWpf:ControlHelper.CornerRadius="0"  
@@ -138,6 +138,7 @@
                                 <Label Background="{Binding Source={x:Static modernWpf:ThemeManager.Current}, Path=AccentColor, Converter={StaticResource ColorToBrush}}"
                                        Content="第二天"
                                        Margin="10, 0"
+                                       Foreground="{DynamicResource App.Foreground3}"
                                        Padding="10, 5">
                                     <Label.Visibility>
                                         <Binding Path="IsNextDay">
@@ -151,8 +152,9 @@
                             </StackPanel>
                         </StackPanel>
                         <StackPanel Margin="0, 5">
-                            <TextBlock Text="时长" Margin="0, 5" Foreground="Gray"/>
-                            <TextBlock Margin="0, 5" >
+                            <TextBlock Text="时长" Margin="0, 5" Foreground="{DynamicResource App.Foreground2}"/>
+                            <TextBlock Margin="0, 5" 
+                                       Foreground="{DynamicResource App.Foreground}">
                                 <TextBlock.Text>
                                     <MultiBinding StringFormat="{}{0} 小时 {1:00} 分 {2:00} 秒">
                                         <Binding Path="TotalTime.Hours"/>
@@ -163,10 +165,11 @@
                             </TextBlock>
                         </StackPanel>
                         <StackPanel Margin="0, 5">
-                            <TextBlock Text="备注" Foreground="Gray" Margin="0,5 "/>
+                            <TextBlock Text="备注" Foreground="{DynamicResource App.Foreground2}" Margin="0,5 "/>
                             <TextBox AcceptsReturn="True"
                                      AcceptsTab="True"
                                      Text="{Binding Remark}"
+                                     Background="{DynamicResource App.Background}"
                                      modernWpf:ControlHelper.CornerRadius="0"
                                      MinHeight="100"
                                      MaxHeight="200"/>
@@ -180,7 +183,9 @@
                                 Padding="40, 5"
                                 Command="{Binding ConfirmCommand}"
                                 Margin="5"
+                                FontSize="14"
                                 IsEnabled="{Binding CanEdit}"
+                                Foreground="{DynamicResource App.Foreground}"
                                 Style="{DynamicResource Win10ButtonStyle}"
                                 modernWpf:ControlHelper.CornerRadius="0">
                             <Button.Triggers>
@@ -192,6 +197,8 @@
                         <Button Content="取消"
                                 Padding="40, 7"
                                 Margin="5"
+                                FontSize="14"
+                                Foreground="{DynamicResource App.Foreground}"
                                 Style="{DynamicResource Win10ButtonStyle}"
                                 modernWpf:ControlHelper.CornerRadius="0">
                             <Button.Triggers>

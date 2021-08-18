@@ -36,7 +36,7 @@
         <TextBlock Grid.Row="1"
                    Text="版本信息"
                    FontSize="18"
-                   Foreground="{DynamicResource PrimaryText.Foreground}"/>
+                   Foreground="{DynamicResource App.Foreground}"/>
         <Grid Grid.Row="2"
               HorizontalAlignment="Left"
               Margin="0, 10, 0, 20">
@@ -61,6 +61,7 @@
                        HorizontalAlignment="Left"
                        Width="200"
                        Margin="5"
+                       Foreground="{DynamicResource App.Foreground}"
                        VerticalAlignment="Bottom"
                        Text="OTLog For Windows"
                        FontSize="14"/>
@@ -68,7 +69,7 @@
                        Grid.Column="1"
                        HorizontalAlignment="Left"
                        Width="250"
-                       Foreground="Gray"
+                       Foreground="{DynamicResource App.Foreground2}"
                        VerticalAlignment="Top"
                        Margin="5"
                        Text="版本 1.0.1"
@@ -79,7 +80,7 @@
                        Text="此版本的新增功能"
                        FontSize="18"
                        Margin="0, 0, 0, 20"
-                       Foreground="{DynamicResource PrimaryText.Foreground}" />
+                       Foreground="{DynamicResource App.Foreground}" />
             <StackPanel Orientation="Horizontal">
                 <Rectangle Grid.Row="0"
                            Grid.Column="0"
@@ -87,14 +88,14 @@
                            Width="50"
                            Height="50"
                            Margin="5"
-                           Fill="#FF333333" />
+                           Fill="{DynamicResource App.Background2}" />
                 <Rectangle Grid.Row="0"
                            Grid.Column="0"
                            Grid.RowSpan="2"
                            Height="50"
                            Width="400"
                            Margin="5"
-                           Fill="#FF333333" />
+                           Fill="{DynamicResource App.Background2}" />
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Rectangle Grid.Row="0"
@@ -103,14 +104,14 @@
                            Width="50"
                            Height="50"
                            Margin="5"
-                           Fill="#FF333333" />
+                           Fill="{DynamicResource App.Background2}" />
                 <Rectangle Grid.Row="0"
                            Grid.Column="0"
                            Grid.RowSpan="2"
                            Height="50"
                            Width="300"
                            Margin="5"
-                           Fill="#FF333333" />
+                           Fill="{DynamicResource App.Background2}" />
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Rectangle Grid.Row="0"
@@ -119,14 +120,14 @@
                            Width="50"
                            Height="50"
                            Margin="5"
-                           Fill="#FF333333" />
+                           Fill="{DynamicResource App.Background2}" />
                 <Rectangle Grid.Row="0"
                            Grid.Column="0"
                            Grid.RowSpan="2"
                            Height="50"
                            Width="700"
                            Margin="5"
-                           Fill="#FF333333" />
+                           Fill="{DynamicResource App.Background2}" />
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Rectangle Grid.Row="0"
@@ -135,14 +136,14 @@
                            Width="50"
                            Height="50"
                            Margin="5"
-                           Fill="#FF333333" />
+                           Fill="{DynamicResource App.Background2}" />
                 <Rectangle Grid.Row="0"
                            Grid.Column="0"
                            Grid.RowSpan="2"
                            Height="50"
                            Width="440"
                            Margin="5"
-                           Fill="#FF333333" />
+                           Fill="{DynamicResource App.Background2}" />
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Rectangle Grid.Row="0"
@@ -151,14 +152,14 @@
                            Width="50"
                            Height="50"
                            Margin="5"
-                           Fill="#FF333333" />
+                           Fill="{DynamicResource App.Background2}" />
                 <Rectangle Grid.Row="0"
                            Grid.Column="0"
                            Grid.RowSpan="2"
                            Height="50"
                            Width="200"
                            Margin="5"
-                           Fill="#FF333333" />
+                           Fill="{DynamicResource App.Background2}" />
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Rectangle Grid.Row="0"
@@ -167,14 +168,14 @@
                            Width="50"
                            Height="50"
                            Margin="5"
-                           Fill="#FF333333" />
+                           Fill="{DynamicResource App.Background2}" />
                 <Rectangle Grid.Row="0"
                            Grid.Column="0"
                            Grid.RowSpan="2"
                            Height="50"
                            Width="400"
                            Margin="5"
-                           Fill="#FF333333" />
+                           Fill="{DynamicResource App.Background2}" />
             </StackPanel>
         </StackPanel>
     </Grid>
