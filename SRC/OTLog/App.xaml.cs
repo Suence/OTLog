@@ -1,11 +1,14 @@
 ﻿using Hardcodet.Wpf.TaskbarNotification;
 using ModernWpf;
+using OTLog.Core.Enums;
+using OTLog.Core.Events;
 using OTLog.Core.StaticObjects;
 using OTLog.Core.Utils;
 using OTLog.Home;
 using OTLog.Themes;
 using OTLog.ViewModels;
 using OTLog.Views;
+using Prism.Events;
 using Prism.Ioc;
 using Prism.Modularity;
 using System;
@@ -28,6 +31,7 @@ namespace OTLog
     {
         private TaskbarIcon _notifyIcon;
         public static List<string> AppArgs;
+        private UISettings uISettings = new UISettings();
 
         protected override Window CreateShell()
         {
@@ -40,22 +44,43 @@ namespace OTLog
 
         }
 
-        private ResourceDictionary GetThemeResource(Core.Enums.Theme theme)
-            => new[]
+        private void SetTheme(Core.Enums.Theme theme)
+        {
+            if (theme == Theme.DarkTheme)
             {
-                DarkTheme.Instance as ResourceDictionary,
-                DarkTheme.Instance as ResourceDictionary,
-                LightTheme.Instance as ResourceDictionary
-            }[(int)theme];
-        private UISettings uISettings;
+                Resources.MergedDictionaries[1] = DarkTheme.Instance;
+                (Resources.MergedDictionaries[2] as ThemeResources).RequestedTheme = ApplicationTheme.Dark;
+                return;
+            }
+
+            if (theme == Theme.LightTheme)
+            {
+                Resources.MergedDictionaries[1] = LightTheme.Instance;
+                (Resources.MergedDictionaries[2] as ThemeResources).RequestedTheme = ApplicationTheme.Light;
+                return;
+            }
+
+            var color = uISettings.GetColorValue(UIColorType.Background);
+            if (color.ToString() == "#FF000000")
+            {
+                Resources.MergedDictionaries[1] = DarkTheme.Instance;
+                (Resources.MergedDictionaries[2] as ThemeResources).RequestedTheme = ApplicationTheme.Dark;
+                return;
+            }
+
+            Resources.MergedDictionaries[1] = LightTheme.Instance;
+            (Resources.MergedDictionaries[2] as ThemeResources).RequestedTheme = ApplicationTheme.Light;
+            return;
+        }
+
+       
         protected override void OnStartup(StartupEventArgs e)
         {
             AppOnStartup();
             AppArgs = e.Args.ToList();
 
             AppFileHelper.ValidateApplicationFiles();
-            Resources.MergedDictionaries[0] = GetThemeResource(GlobalObjectHolder.Config.Theme);
-
+            SetTheme(GlobalObjectHolder.Config.Theme);
             base.OnStartup(e);
 
             _notifyIcon = (TaskbarIcon)FindResource("NotifyIcon");
@@ -63,15 +88,18 @@ namespace OTLog
 
             ThemeManager.Current.AccentColor = GlobalObjectHolder.Config.ThemeColor;
 
-            uISettings = new UISettings();
-            var color = uISettings.GetColorValue(UIColorType.Background);
-
-            uISettings.ColorValuesChanged += UiSettings_ColorValuesChanged;
+            uISettings.ColorValuesChanged += 
+                (sender, para) => SyncToSystemTheme(uISettings.GetColorValue(UIColorType.Background));
+            Container.Resolve<IEventAggregator>().GetEvent<ThemeChangedEvent>().Subscribe(SetTheme);
         }
 
-        private void UiSettings_ColorValuesChanged(UISettings sender, object args)
+        private void SyncToSystemTheme(Windows.UI.Color color)
+        //=> Resources.MergedDictionaries[1] = 
+        //    color.ToString() == "#FF000000" 
+        //    ? (ResourceDictionary)DarkTheme.Instance 
+        //    : LightTheme.Instance;
         {
-            var color = uISettings.GetColorValue(UIColorType.Background);
+            SetTheme(color.ToString() == "#FF000000" ? Theme.DarkTheme : Theme.LightTheme);
         }
 
         protected override void OnExit(ExitEventArgs e)

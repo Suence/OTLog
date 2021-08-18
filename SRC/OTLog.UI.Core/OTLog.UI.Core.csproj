@@ -58,6 +58,7 @@
     <Compile Include="Converters\IsNextDayToVisibilityConverter.cs" />
     <Compile Include="Converters\NoticeMessageConverter.cs" />
     <Compile Include="Converters\OTSeverityConverter.cs" />
+    <Compile Include="Converters\ThemeDisplayTextConverter.cs" />
     <Compile Include="Tools\BindingProxy.cs" />
   </ItemGroup>
   <ItemGroup>

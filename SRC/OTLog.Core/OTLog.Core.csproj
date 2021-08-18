@@ -52,8 +52,10 @@
     <Compile Include="Events\NewOTRecordEvent.cs" />
     <Compile Include="Events\OTRecordChangedEvent.cs" />
     <Compile Include="Events\OTRecordTodoChangedEvent.cs" />
+    <Compile Include="Events\ThemeChangedEvent.cs" />
     <Compile Include="Extensions\OTRecordExtensions.cs" />
     <Compile Include="Extensions\OTSeverityExtensions.cs" />
+    <Compile Include="Extensions\ThemeExtensions.cs" />
     <Compile Include="Models\Config.cs" />
     <Compile Include="Models\OTRecord.cs" />
     <Compile Include="Models\OTRecordTodo.cs" />

@@ -1,6 +1,7 @@
 ﻿using OTLog.Core.Constants;
 using OTLog.Core.Events;
 using OTLog.Views;
+using Prism.Commands;
 using Prism.Events;
 using Prism.Regions;
 using Prism.Unity;
@@ -39,33 +40,31 @@ namespace OTLog.ViewModels
 
         public NotifyIconViewModel()
         {
-            ShowWindowCommand = new DelegateCommand(ShowWindow, CanShowWindow);
-            HideWindowCommand = new DelegateCommand(HideWindow, CanHideWindow);
-            ExitApplicationCommand = new DelegateCommand(ExitApplication, null);
+            ExitApplicationCommand = new DelegateCommand(ExitApplication);
 
             _eventAggregator = (Application.Current as PrismApplication).Container.Resolve(typeof(IEventAggregator)) as IEventAggregator;
             _eventAggregator.GetEvent<NewNoticeEvent>().Subscribe(ShowWindow);
         }
     }
 
-    public class DelegateCommand : ICommand
-    {
-        public DelegateCommand(Action commandAction, Func<bool> canExecuteFunc)
-            => (CommandAction, CanExecuteFunc) = (commandAction, canExecuteFunc);
+    //public class DelegateCommand : ICommand
+    //{
+    //    public DelegateCommand(Action commandAction, Func<bool> canExecuteFunc)
+    //        => (CommandAction, CanExecuteFunc) = (commandAction, canExecuteFunc);
 
-        public Action CommandAction { get; set; }
-        public Func<bool> CanExecuteFunc { get; set; }
+    //    public Action CommandAction { get; set; }
+    //    public Func<bool> CanExecuteFunc { get; set; }
 
-        public void Execute(object parameter)
-            => CommandAction();
+    //    public void Execute(object parameter)
+    //        => CommandAction();
 
-        public bool CanExecute(object parameter)
-            => CanExecuteFunc?.Invoke() ?? true;
+    //    public bool CanExecute(object parameter)
+    //        => CanExecuteFunc?.Invoke() ?? true;
 
-        public event EventHandler CanExecuteChanged
-        {
-            add => CommandManager.RequerySuggested += value; 
-            remove => CommandManager.RequerySuggested -= value; 
-        }
-    }
+    //    public event EventHandler CanExecuteChanged
+    //    {
+    //        add => CommandManager.RequerySuggested += value; 
+    //        remove => CommandManager.RequerySuggested -= value; 
+    //    }
+    //}
 }
