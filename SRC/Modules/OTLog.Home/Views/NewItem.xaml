@@ -32,6 +32,7 @@
         </Storyboard>
         <suence:BindingProxy x:Key="BindingProxy"
                              Data="{Binding}" />
+        <suence:ColorToSolidColorBrushConverter x:Key="ColorToBrush"/>
     </UserControl.Resources>
     <i:Interaction.Triggers>
         <i:StoryboardCompletedTrigger Storyboard="{StaticResource HidenAnimation}">
@@ -131,7 +132,7 @@
                                 <modernWpf:SimpleTimePicker PickerVisibility="All"
                                                         SelectedDateTime="{Binding EndTime}" modernWpf:ControlHelper.CornerRadius="0"  
                                                         Culture="zh-CN" HorizontalAlignment="Left" />
-                                <Label Background="OrangeRed"
+                                <Label Background="{Binding Source={x:Static modernWpf:ThemeManager.Current}, Path=AccentColor, Converter={StaticResource ColorToBrush}}"
                                        Content="第二天"
                                        Margin="10, 0"
                                        Padding="10, 5">

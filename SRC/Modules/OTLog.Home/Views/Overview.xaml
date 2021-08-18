@@ -18,6 +18,7 @@
         <suence:BindingProxy x:Key="BindingProxy"
                              Data="{Binding}" />
         <suence:IsNextDayToVisibilityConverter x:Key="IsNextDay" />
+        <suence:ColorToSolidColorBrushConverter x:Key="ColorToBrush"/>
     </UserControl.Resources>
 
     <UserControl.Triggers>
@@ -395,7 +396,7 @@
                                                        Foreground="Gray" />
                                             <TextBlock Text="{Binding EndTime, StringFormat={}{0:HH:mm:ss}}"
                                                        Margin="5" />
-                                            <Label Background="OrangeRed"
+                                            <Label Background="{Binding Source={x:Static modernWpf:ThemeManager.Current}, Path=AccentColor, Converter={StaticResource ColorToBrush}}"
                                                    Content="第二天"
                                                    Padding="5, 3"
                                                    Visibility="{Binding Converter={StaticResource IsNextDay}}"

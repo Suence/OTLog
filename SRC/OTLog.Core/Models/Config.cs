@@ -1,5 +1,6 @@
 ﻿using OTLog.Core.Enums;
 using Prism.Mvvm;
+using System;
 using System.Windows.Media;
 
 namespace OTLog.Core.Models
@@ -43,7 +44,7 @@ namespace OTLog.Core.Models
         public string UserName
         {
             get => _userName;
-            set => SetProperty(ref _userName, value);
+            set => SetProperty(ref _userName, String.IsNullOrEmpty(value.Trim()) ? Environment.UserName : value.Trim());
         }
     }
 }
