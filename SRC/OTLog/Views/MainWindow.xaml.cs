@@ -40,32 +40,32 @@ namespace OTLog.Views
             //var inlineUri = new Uri("E:\\Personal\\Windows10Notification\\Windows10Notification\\bin\\Debug\\net5.0-windows10.0.17763.0\\WallHaven.jpg");
             //var inlineUri = new Uri("D:\\Document\\Media\\Image\\GIF\\TextBoxFocus.gif");
             var inlineUri = new Uri(Path.GetFullPath("./Assets/Images/toastinline800.gif"));
-            //var heroImageUri = new Uri("E:\\Personal\\Windows10Notification\\Windows10Notification\\bin\\Debug\\net5.0-windows10.0.17763.0\\WallHaven.jpg");
+            var heroImageUri = new Uri("E:\\Personal\\Windows10Notification\\Windows10Notification\\bin\\Debug\\net5.0-windows10.0.17763.0\\WallHaven.jpg");
             var appLogoUri = new Uri(Path.GetFullPath("./Assets/Images/timer.png"));
 
             int conversationId = 384928;
 
             // Requires Microsoft.Toolkit.Uwp.Notifications NuGet package version 7.0 or greater
             new ToastContentBuilder().AddArgument("conversationId", conversationId)
-                                     .AddText("TextA")
-                                     .AddText("TextB")
-                                     .AddAttributionText("TimeRecorder")
-                                     .AddInlineImage(inlineUri)
+                                     .AddText("程序已最小化到系统托盘")
+                                     .AddText("可转到个性化界面关闭推送通知")
+                                     //.AddAttributionText("可转到个性化界面关闭推送通知")
+                                     //.AddInlineImage(inlineUri)
                                      //.AddAppLogoOverride(appLogoUri, ToastGenericAppLogoCrop.Circle)
                                      .AddAppLogoOverride(appLogoUri, ToastGenericAppLogoCrop.Default)
-                                     //.AddHeroImage(heroImageUri)
-                                     .AddToastInput(BuildToastSelectionBox())
-                                     .AddInputTextBox("tbReply", placeHolderContent: "回复:")
-                                     .AddButton(new ToastButton().SetContent("Reply")
-                                                                 .AddArgument("action", "reply")
-                                                                 .SetBackgroundActivation())
-                                     .AddButton(new ToastButton().SetContent("Like")
-                                                                 .AddArgument("action", "like")
-                                                                 .SetBackgroundActivation())
-                                     .AddButton(new ToastButton().SetContent("View")
-                                                                 .AddArgument("action", "viewImage")
-                                                                 .AddArgument("imageUrl", "imageUrl"))
-                                     .AddButton(new ToastButtonSnooze())
+                                     .AddHeroImage(heroImageUri)
+                                     //.AddToastInput(BuildToastSelectionBox())
+                                     //.AddInputTextBox("tbReply", placeHolderContent: "回复:")
+                                     //.AddButton(new ToastButton().SetContent("Reply")
+                                     //                            .AddArgument("action", "reply")
+                                     //                            .SetBackgroundActivation())
+                                     //.AddButton(new ToastButton().SetContent("Like")
+                                     //                            .AddArgument("action", "like")
+                                     //                            .SetBackgroundActivation())
+                                     //.AddButton(new ToastButton().SetContent("View")
+                                     //                            .AddArgument("action", "viewImage")
+                                     //                            .AddArgument("imageUrl", "imageUrl"))
+                                     //.AddButton(new ToastButtonSnooze())
                                      .Show();
 
             ToastSelectionBox BuildToastSelectionBox()
@@ -99,19 +99,19 @@ namespace OTLog.Views
             // Listen to notification activation
             ToastNotificationManagerCompat.OnActivated += toastArgs =>
             {
-                // Obtain the arguments from the notification
-                ToastArguments args = ToastArguments.Parse(toastArgs.Argument);
+                //// Obtain the arguments from the notification
+                //ToastArguments args = ToastArguments.Parse(toastArgs.Argument);
 
-                // Obtain any user input (text boxes, menu selections) from the notification
-                ValueSet userInput = toastArgs.UserInput;
-                // 文本框内容
-                var textBoxContent = userInput["tbReply"].ToString();
-                // Need to dispatch to UI thread if performing UI operations
-                Application.Current.Dispatcher.Invoke(delegate
-                {
-                    // TODO: Show the corresponding content
-                    MessageBox.Show("Toast activated. Args: " + toastArgs.Argument);
-                });
+                //// Obtain any user input (text boxes, menu selections) from the notification
+                //ValueSet userInput = toastArgs.UserInput;
+                //// 文本框内容
+                //var textBoxContent = userInput["tbReply"].ToString();
+                //// Need to dispatch to UI thread if performing UI operations
+                //Application.Current.Dispatcher.Invoke(delegate
+                //{
+                //    // TODO: Show the corresponding content
+                //    MessageBox.Show("Toast activated. Args: " + toastArgs.Argument);
+                //});
             };
         }
     }

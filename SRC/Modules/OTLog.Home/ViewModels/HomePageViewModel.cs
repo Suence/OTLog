@@ -69,6 +69,7 @@ namespace OTLog.Home.ViewModels
             NameOfCurrentTab = ViewNames.Overview;
 
             _eventAggregator.GetEvent<OTRecordTodoChangedEvent>().Subscribe(ToDoChanged);
+            _eventAggregator.GetEvent<RequestViewEvent>().Subscribe(GoToTargetView);
             LoadData();
             SessionUnlocked();
         }
@@ -120,7 +121,7 @@ namespace OTLog.Home.ViewModels
             }
         }
 
-        private void SessionUnlocked()
+        private async void SessionUnlocked()
         {
             var activeTime = DateTime.Now;
             var date = activeTime.Hour < 7 ? activeTime.Date.AddDays(-1) : activeTime.Date;
@@ -138,8 +139,9 @@ namespace OTLog.Home.ViewModels
 
             if (TodoList.Skip(1).FirstOrDefault(r => r.Status == Core.Enums.TodoStatus.Untreated) != null)
             {
-                GoToTargetView(ViewNames.Notice);
                 _eventAggregator.GetEvent<NewNoticeEvent>().Publish();
+                await Task.Delay(1000);
+                GoToTargetView(ViewNames.Notice);
             }
         }
 

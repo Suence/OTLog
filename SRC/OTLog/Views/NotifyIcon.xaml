@@ -2,6 +2,7 @@
                     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:tb="http://www.hardcodet.net/taskbar"
                     xmlns:prism="http://prismlibrary.com/"
+                    xmlns:constants="clr-namespace:OTLog.Core.Constants;assembly=OTLog.Core"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:vm="clr-namespace:OTLog.ViewModels">
     <ContextMenu x:Shared="false"
@@ -11,8 +12,20 @@
         <MenuItem Header="Hide Window"
                   Command="{Binding HideWindowCommand}" />
         <Separator />-->
+        <MenuItem Header="总览"
+                  Command="{Binding GoToTargetViewCommand}" 
+                  CommandParameter="{x:Static constants:ViewNames.Overview}"/>
+        <MenuItem Header="通知"
+                  Command="{Binding GoToTargetViewCommand}"
+                  CommandParameter="{x:Static constants:ViewNames.Notice}"/>
+        <MenuItem Header="个性化设置"
+                  Command="{Binding GoToTargetViewCommand}"
+                  CommandParameter="{x:Static constants:ViewNames.Settings}"/>
+        <MenuItem Header="关于"
+                  Command="{Binding GoToTargetViewCommand}"
+                  CommandParameter="{x:Static constants:ViewNames.About}"/>
         <MenuItem Header="退出"
-                  Command="{Binding ExitApplicationCommand}" />
+                  Command="{Binding ExitApplicationCommand}"/>
     </ContextMenu>
 
     <tb:TaskbarIcon x:Key="NotifyIcon"

@@ -52,6 +52,7 @@
     <Compile Include="Events\NewOTRecordEvent.cs" />
     <Compile Include="Events\OTRecordChangedEvent.cs" />
     <Compile Include="Events\OTRecordTodoChangedEvent.cs" />
+    <Compile Include="Events\RequestViewEvent.cs" />
     <Compile Include="Events\ThemeChangedEvent.cs" />
     <Compile Include="Events\ThemeColorSchemeChangedEvent.cs" />
     <Compile Include="Extensions\OTRecordExtensions.cs" />

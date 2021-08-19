@@ -8,9 +8,9 @@
     <SolidColorBrush x:Key="App.Foreground3"
                      Color="White"/>
     
-    <SolidColorBrush x:Key="App.Background"
-                     Color="#FFF5F5F7" />
     <SolidColorBrush x:Key="App.Background2"
+                     Color="#FFF5F5F7" />
+    <SolidColorBrush x:Key="App.Background"
                      Color="#FFFFFFFF" />
     
     <SolidColorBrush x:Key="App.Background3"
@@ -79,82 +79,4 @@
     <SolidColorBrush x:Key="OTRecord.Background"
                      Color="#FF333333" />
     <!-- END -->
-    <SolidColorBrush x:Key="CloseWindowButton.MouseOver.Background"
-                     Color="#FFFF3B30" />
-    <SolidColorBrush x:Key="CloseWindowButton.Pressed.Background"
-                     Color="#FFDB0C00" />
-
-    <SolidColorBrush x:Key="Mask.Background"
-                     Color="#90000000" />
-
-    <SolidColorBrush x:Key="Window.BorderBrush"
-                     Color="#FF0077D9" />
-    <SolidColorBrush x:Key="Window.Foregound"
-                     Color="White" />
-    <SolidColorBrush x:Key="App.Second.Background"
-                     Color="White" />
-    <SolidColorBrush x:Key="WindowTitle.Background"
-                     Color="#FF27296D" />
-
-    <SolidColorBrush x:Key="GrayText.Foreground"
-                     Color="Gray" />
-    <SolidColorBrush x:Key="LightGrayText.Foreground"
-                     Color="LightGray" />
-    <SolidColorBrush x:Key="ErrorText.Foreground"
-                     Color="#FFD70000" />
-
-    <SolidColorBrush x:Key="TextButton.Foreground"
-                     Color="#FF0768AB" />
-    <SolidColorBrush x:Key="TextButton.MouseOver.Foreground"
-                     Color="#FF0986DC" />
-    <SolidColorBrush x:Key="TextButton.Pressed.Foreground"
-                     Color="#FF054A7A" />
-
-    <SolidColorBrush x:Key="PrimaryButton.Background"
-                     Color="#FF0768AB" />
-    <SolidColorBrush x:Key="PrimaryButton.Foreground"
-                     Color="White" />
-    <SolidColorBrush x:Key="PrimaryButton.MouseOver.Background"
-                     Color="#FF0986DC" />
-    <SolidColorBrush x:Key="PrimaryButton.Pressed.Background"
-                     Color="#FF054A7A" />
-
-    <SolidColorBrush x:Key="SelectPicButton.MouseOver.Background"
-                     Color="Gray" />
-    <SolidColorBrush x:Key="SelectPicButton.Pressed.Background"
-                     Color="#FF4D4D4D" />
-    <LinearGradientBrush x:Key="ModuleButton.MouseOver.Background"
-                         StartPoint="0,0"
-                         EndPoint="1,0">
-        <GradientStop Color="#FF5FB0B3"
-                      Offset="0" />
-        <GradientStop Color="#FF0B6B99"
-                      Offset="1" />
-    </LinearGradientBrush>
-
-    <LinearGradientBrush x:Key="ModuleButton.Pressed.Background"
-                         StartPoint="0,0"
-                         EndPoint="1,0">
-        <GradientStop Color="#FF63B2C6"
-                      Offset="0" />
-        <GradientStop Color="#FF096AAC"
-                      Offset="1" />
-    </LinearGradientBrush>
-
-    <SolidColorBrush x:Key="SystemConfig.Background"
-                     Color="#FFEFEFEF" />
-    <SolidColorBrush x:Key="GrayButton.Background"
-                     Color="#FF7F7F7F" />
-    <Color x:Key="ShadowColor"
-           A="255"
-           R="211"
-           G="211"
-           B="211" />
-
-    <SolidColorBrush x:Key="SecondryButton.Foreground"
-                     Color="Black" />
-    <SolidColorBrush x:Key="SecondryButton.MouseOver.Background"
-                     Color="#FFDDDDDD" />
-    <SolidColorBrush x:Key="SecondryButton.Pressed.Background"
-                     Color="#FF249ADA" />
 </ResourceDictionary>

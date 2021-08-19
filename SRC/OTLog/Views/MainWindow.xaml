@@ -8,6 +8,8 @@
         prism:ViewModelLocator.AutoWireViewModel="True"
         Title="{Binding Title}"
         Loaded="Window_Loaded"
+        xmlns:modernWpf="http://schemas.modernwpf.com/2019"
+        modernWpf:ControlHelper.CornerRadius="0"
         Foreground="{DynamicResource App.Foreground}"
         WindowStartupLocation="CenterScreen"
         Background="{DynamicResource App.Background}"
@@ -107,7 +109,7 @@
                             ToolTip="最小化"
                             Style="{DynamicResource AppTitleButtonStyle}"
                             suence:ButtonBrush.ButtonPressBackground="{DynamicResource AppTitleButton.Pressed.Background}"
-                            suence:ButtonBrush.ButtonMouseOverBackground="{DynamicResource AppTitleButton.MouseOver.Background}"
+                            suence:ButtonBrush.ButtonMouseOverBackground="{DynamicResource App.Background2}"
                             FontFamily="Segoe MDL2 Assets"
                             FontSize="15">
                         <i:Interaction.Triggers>
@@ -135,7 +137,7 @@
                             Click="CloseWindowButton_Click"
                             Style="{DynamicResource CloseWindowButtonStyle}"
                             suence:ButtonBrush.ButtonPressBackground="{DynamicResource AppTitleButton.Pressed.Background}"
-                            suence:ButtonBrush.ButtonMouseOverBackground="{DynamicResource AppTitleButton.MouseOver.Background}"
+                            suence:ButtonBrush.ButtonMouseOverBackground="{DynamicResource App.Background2}"
                             FontFamily="Segoe MDL2 Assets"
                             FontSize="15">
                         <Button.Content>

@@ -6,6 +6,7 @@ using Prism.Events;
 using Prism.Regions;
 using Prism.Unity;
 using System;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
@@ -15,7 +16,9 @@ namespace OTLog.ViewModels
     {
         #region private
         private IEventAggregator _eventAggregator;
+        private IRegionManager _regionManager;
         #endregion
+
         public ICommand ShowWindowCommand { get; }
         private void ShowWindow()
         {
@@ -23,26 +26,32 @@ namespace OTLog.ViewModels
                 Application.Current.MainWindow.WindowState = WindowState.Normal;
 
             Application.Current.MainWindow.Show();
+            Application.Current.MainWindow.Activate();
+            Application.Current.MainWindow.Topmost = true;
+            Application.Current.MainWindow.Topmost = false;
+            Application.Current.MainWindow.Focus();
         }
-        private bool CanShowWindow() => 
-            Application.Current.MainWindow.WindowState == WindowState.Minimized || 
-            !Application.Current.MainWindow.IsVisible;
-
-        public ICommand HideWindowCommand { get; }
-        private void HideWindow()
-        {
-            Application.Current.MainWindow.Hide();
-        }
-        private bool CanHideWindow() => Application.Current.MainWindow.IsVisible;
 
         public ICommand ExitApplicationCommand { get; }
         private void ExitApplication() => Application.Current.Shutdown();
 
+
+        public DelegateCommand<string> GoToTargetViewCommand { get; }
+        private async void GoToTargetView(string viewName)
+        {
+            _eventAggregator.GetEvent<RequestViewEvent>().Publish(viewName);
+            await Task.Delay(100);
+            ShowWindow();
+        }
         public NotifyIconViewModel()
         {
             ExitApplicationCommand = new DelegateCommand(ExitApplication);
+            ShowWindowCommand = new DelegateCommand(ShowWindow);
+            GoToTargetViewCommand = new DelegateCommand<string>(GoToTargetView);
 
-            _eventAggregator = (Application.Current as PrismApplication).Container.Resolve(typeof(IEventAggregator)) as IEventAggregator;
+            var container = (Application.Current as PrismApplication).Container;
+            _eventAggregator = container.Resolve(typeof(IEventAggregator)) as IEventAggregator;
+            _regionManager = container.Resolve(typeof(IRegionManager)) as IRegionManager;
             _eventAggregator.GetEvent<NewNoticeEvent>().Subscribe(ShowWindow);
         }
     }

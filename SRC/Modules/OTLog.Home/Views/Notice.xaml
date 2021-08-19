@@ -59,7 +59,7 @@
                    Foreground="{DynamicResource App.Foreground2}"
                    HorizontalAlignment="Center"
                    VerticalAlignment="Center"
-                   FontSize="30">
+                   FontSize="22">
             <TextBlock.Visibility>
                 <Binding Path="Record">
                     <Binding.Converter>

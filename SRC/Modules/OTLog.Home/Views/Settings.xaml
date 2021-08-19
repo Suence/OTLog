@@ -56,10 +56,10 @@
                 </StackPanel>
                 <!--#endregion-->
 
-                <!--#region 通知 -->
+                <!--#region 推送通知 -->
                 <StackPanel Margin="0, 10">
                     <TextBlock Grid.Row="1"
-                               Text="通知"
+                               Text="推送通知"
                                FontSize="20"
                                Foreground="{DynamicResource App.Foreground}" />
                     <CheckBox Content="最小化到系统托盘"
@@ -70,26 +70,41 @@
                 </StackPanel>
                 <!--#endregion-->
                 
-                <!--#region 我应该如何称呼你 -->
+                <!--#region 主题 -->
                 <StackPanel Margin="0, 10">
                     <TextBlock Grid.Row="1"
-                               Text="我应该如何称呼你"
+                               Text="主题"
                                FontSize="20"
                                Foreground="{DynamicResource App.Foreground}" />
-                    <TextBox Width="215"
-                             modernWpf:ControlHelper.PlaceholderText="{x:Static system:Environment.UserName}"
-                             Margin="0, 10, 15, 5"
-                             HorizontalAlignment="Left"
-                             Text="{Binding Source={x:Static gb:GlobalObjectHolder.Config},Path=UserName}"
-                             modernWpf:ControlHelper.CornerRadius="0"
-                             modernWpf:ControlHelper.PlaceholderForeground="{DynamicResource PlaceHolder.Foreground}" />
+                    <ComboBox SelectedIndex="0"
+                              Margin="0, 10"
+                              ItemsSource="{Binding Themes}"
+                              SelectedItem="{Binding Source={x:Static gb:GlobalObjectHolder.Config},Path=Theme}"
+                              modernWpf:FocusVisualHelper.UseSystemFocusVisuals="False"
+                              modernWpf:ControlHelper.CornerRadius="0"
+                              BorderBrush="{DynamicResource Control.BorderBrush}"
+                              BorderThickness="2"
+                              Width="200">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Converter={StaticResource ThemeDisplayText}}"/>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger EventName="SelectionChanged">
+                                <i:InvokeCommandAction Command="{Binding ChangeThemeCommand}"
+                                                       CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ComboBox}}, Path=SelectedItem}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </ComboBox>
+
                 </StackPanel>
                 <!--#endregion-->
                 
                 <!--#region 颜色 -->
                 <StackPanel Margin="0, 10">
                     <TextBlock Grid.Row="1"
-                               Text="颜色"
+                               Text="选择你的主题色"
                                FontSize="20"
                                Foreground="{DynamicResource App.Foreground}" />
                     <CheckBox Content="主题色跟随系统"
@@ -145,37 +160,23 @@
                     </ItemsControl>
                 </StackPanel>
                 <!--#endregion-->
-
-                <!--#region 主题 -->
+                
+                <!--#region 我应该如何称呼你 -->
                 <StackPanel Margin="0, 10">
                     <TextBlock Grid.Row="1"
-                               Text="主题"
+                               Text="我应该如何称呼你"
                                FontSize="20"
                                Foreground="{DynamicResource App.Foreground}" />
-                    <ComboBox SelectedIndex="0"
-                              Margin="0, 10"
-                              ItemsSource="{Binding Themes}"
-                              SelectedItem="{Binding Source={x:Static gb:GlobalObjectHolder.Config},Path=Theme}"
-                              modernWpf:FocusVisualHelper.UseSystemFocusVisuals="False"
-                              modernWpf:ControlHelper.CornerRadius="0"
-                              BorderBrush="{DynamicResource Control.BorderBrush}"
-                              BorderThickness="2"
-                              Width="200">
-                        <ComboBox.ItemTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding Converter={StaticResource ThemeDisplayText}}"/>
-                            </DataTemplate>
-                        </ComboBox.ItemTemplate>
-                        <i:Interaction.Triggers>
-                            <i:EventTrigger EventName="SelectionChanged">
-                                <i:InvokeCommandAction Command="{Binding ChangeThemeCommand}"
-                                                       CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ComboBox}}, Path=SelectedItem}"/>
-                            </i:EventTrigger>
-                        </i:Interaction.Triggers>
-                    </ComboBox>
-
+                    <TextBox Width="215"
+                             modernWpf:ControlHelper.PlaceholderText="{x:Static system:Environment.UserName}"
+                             Margin="0, 10, 15, 5"
+                             HorizontalAlignment="Left"
+                             Text="{Binding Source={x:Static gb:GlobalObjectHolder.Config},Path=UserName}"
+                             modernWpf:ControlHelper.CornerRadius="0"
+                             modernWpf:ControlHelper.PlaceholderForeground="{DynamicResource PlaceHolder.Foreground}" />
                 </StackPanel>
                 <!--#endregion-->
+
             </StackPanel>
         </ScrollViewer>
     </Grid>

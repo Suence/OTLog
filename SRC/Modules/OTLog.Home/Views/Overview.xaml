@@ -435,10 +435,10 @@
                                             </TextBlock>
                                         </StackPanel>
                                         <StackPanel Grid.Row="4">
-                                            <TextBlock FontSize="16"
+                                            <!--<TextBlock FontSize="16"
                                                        Margin="5"
                                                        Foreground="{DynamicResource App.Foreground2}"
-                                                       Text="备注" />
+                                                       Text="备注" />-->
                                             <TextBlock Margin="5, 5, 5, 10"
                                                    MinHeight="30"
                                                    Text="{Binding Remark}"

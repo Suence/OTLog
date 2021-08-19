@@ -55,6 +55,7 @@
     <Compile Include="Converters\AllEqualsConverter.cs" />
     <Compile Include="Converters\ColorToSolidColorBrushConverter.cs" />
     <Compile Include="Converters\EqualsParameterConverter.cs" />
+    <Compile Include="Converters\HomeTabNameConverter.cs" />
     <Compile Include="Converters\IsNextDayToVisibilityConverter.cs" />
     <Compile Include="Converters\NoticeMessageConverter.cs" />
     <Compile Include="Converters\OTSeverityConverter.cs" />

@@ -169,43 +169,21 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="logo32.ico" />
-    <Resource Include="Assets\Images\夜间.png" />
     <Resource Include="Assets\Images\向下2.png" />
-    <Resource Include="Assets\Images\向下.png" />
-    <Resource Include="Assets\Images\go.png" />
-    <Resource Include="Assets\Images\left.png" />
-    <Resource Include="Assets\Images\Refresh.png" />
-    <Resource Include="Assets\Images\right.png" />
     <Resource Include="Assets\Images\logo.png" />
     <Resource Include="Assets\Images\noticeBg.png" />
     <Resource Include="Assets\Images\noticeBg2.png" />
-    <Content Include="Assets\Images\taskbarIcon.ico">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="Assets\Images\toastinline800.gif">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Resource Include="Assets\Images\关闭Gray.png" />
-    <Resource Include="Assets\Images\删除.png" />
     <Resource Include="Assets\Images\加载中.png" />
     <Resource Include="Assets\Images\对号.png" />
     <Resource Include="Assets\Images\展开.png" />
-    <Resource Include="Assets\Images\收起.png" />
-    <Resource Include="Assets\Images\数据.png" />
-    <Resource Include="Assets\Images\模块.png" />
-    <Resource Include="Assets\Images\添加.png" />
-    <Resource Include="Assets\Images\添加2.png" />
     <Resource Include="Assets\Images\用户.png" />
-    <Resource Include="Assets\Images\编辑.png" />
     <Resource Include="Assets\Images\关闭.png" />
-    <Resource Include="Assets\Images\willow.png" />
-    <Resource Include="Assets\Images\Willow_trans_new.png" />
-    <Content Include="Assets\Images\work_overtime_4x.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Resource Include="Assets\Images\最小化.png" />
     <Resource Include="Assets\Images\后退.png" />
-    <Resource Include="timer32.ico" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Modules\OTLog.Home\OTLog.Home.csproj">
