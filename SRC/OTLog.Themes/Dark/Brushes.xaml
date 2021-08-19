@@ -16,6 +16,9 @@
                      Color="#FF333333" />
     <SolidColorBrush x:Key="Error.Background"
                      Color="#FFA02222" />
+
+    <SolidColorBrush x:Key="Mask.Background"
+                     Color="#90000000" />
     <!-- END -->
     <ImageBrush x:Key="Notice.Cover"
                 ImageSource="pack://application:,,,/Assets/Images/noticeBg2.png" />

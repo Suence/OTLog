@@ -10,17 +10,16 @@
         <!--<MenuItem Header="Show Window"
                   Command="{Binding ShowWindowCommand}" />
         <MenuItem Header="Hide Window"
-                  Command="{Binding HideWindowCommand}" />
-        <Separator />-->
-        <MenuItem Header="总览"
-                  Command="{Binding GoToTargetViewCommand}" 
-                  CommandParameter="{x:Static constants:ViewNames.Overview}"/>
+                  Command="{Binding HideWindowCommand}" />-->
+        <MenuItem Header="添加加班记录"
+                  Command="{Binding AddRecordCommand}" />
         <MenuItem Header="通知"
                   Command="{Binding GoToTargetViewCommand}"
                   CommandParameter="{x:Static constants:ViewNames.Notice}"/>
         <MenuItem Header="个性化设置"
                   Command="{Binding GoToTargetViewCommand}"
                   CommandParameter="{x:Static constants:ViewNames.Settings}"/>
+        <Separator />
         <MenuItem Header="关于"
                   Command="{Binding GoToTargetViewCommand}"
                   CommandParameter="{x:Static constants:ViewNames.About}"/>

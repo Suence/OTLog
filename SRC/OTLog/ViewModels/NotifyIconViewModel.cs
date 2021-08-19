@@ -35,6 +35,13 @@ namespace OTLog.ViewModels
         public ICommand ExitApplicationCommand { get; }
         private void ExitApplication() => Application.Current.Shutdown();
 
+        public DelegateCommand AddRecordCommand { get; }
+        private void AddRecord()
+        {
+            _eventAggregator.GetEvent<RequestViewEvent>().Publish(ViewNames.Overview);
+            _regionManager.RequestNavigate(RegionNames.MessageRegion, ViewNames.NewItem);
+            ShowWindow();
+        }
 
         public DelegateCommand<string> GoToTargetViewCommand { get; }
         private async void GoToTargetView(string viewName)
@@ -48,7 +55,8 @@ namespace OTLog.ViewModels
             ExitApplicationCommand = new DelegateCommand(ExitApplication);
             ShowWindowCommand = new DelegateCommand(ShowWindow);
             GoToTargetViewCommand = new DelegateCommand<string>(GoToTargetView);
-
+            AddRecordCommand = new DelegateCommand(AddRecord);
+                 
             var container = (Application.Current as PrismApplication).Container;
             _eventAggregator = container.Resolve(typeof(IEventAggregator)) as IEventAggregator;
             _regionManager = container.Resolve(typeof(IRegionManager)) as IRegionManager;

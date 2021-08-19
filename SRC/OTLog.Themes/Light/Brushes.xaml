@@ -17,6 +17,9 @@
                      Color="#FFCCCCCC" />
     <SolidColorBrush x:Key="Error.Background"
                      Color="#FFA02222" />
+
+    <SolidColorBrush x:Key="Mask.Background"
+                     Color="#90FFFFFF" />
     <!-- END -->
 
     <ImageBrush x:Key="Notice.Cover"

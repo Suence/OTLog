@@ -154,9 +154,8 @@ namespace OTLog.Home.ViewModels
 
             OTRecords.Add(newRecord);
 
-            var previousRecord = SearchResult.LastOrDefault(r => r.BeginTime > newRecord.BeginTime);
-            SearchResult.Insert(previousRecord == null ? 0 : SearchResult.IndexOf(previousRecord), newRecord);
-
+            SearchResult.Add(newRecord);
+            SearchResult = new ObservableCollection<OTRecord>(SearchResult.OrderByDescending(r => r.BeginTime));
             UpdateStatisticalInfo();
             AppFileHelper.SaveOTRecords(OTRecords.ToList());
         }

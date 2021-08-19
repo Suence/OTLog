@@ -134,7 +134,6 @@ namespace OTLog.Home.ViewModels
                     BeginTime = activeTime,
                     EndTime = activeTime
                 });
-                return;
             }
 
             if (TodoList.Skip(1).FirstOrDefault(r => r.Status == Core.Enums.TodoStatus.Untreated) != null)

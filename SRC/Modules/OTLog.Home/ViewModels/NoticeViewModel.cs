@@ -11,18 +11,28 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using OTLog.Core.Utils;
+using OTLog.Core.Extensions;
 
 namespace OTLog.Home.ViewModels
 {
     public class NoticeViewModel : BindableBase, IRegionMemberLifetime, INavigationAware
     {
         #region private
-
+        private readonly IRegionManager _regionManager;
+        private readonly IEventAggregator _eventAggregator;
+        private OTRecordTodo _record;
         private DateTime? _beginDate;
         private DateTime? _beginTime;
         private DateTime? _endTime;
         private string _remark;
+        private bool _finished;
         #endregion 
+
+        public bool Finished
+        {
+            get => _finished;
+            set => SetProperty(ref _finished, value);
+        }
 
 
         public DateTime? BeginDate
@@ -73,6 +83,7 @@ namespace OTLog.Home.ViewModels
         {
             Record.Status = Core.Enums.TodoStatus.Negligible;
             SaveRecord();
+            Finished = true;
         }
         public DelegateCommand ResetRecordCommand { get; }
         private void ResetRecord()
@@ -91,22 +102,33 @@ namespace OTLog.Home.ViewModels
                           : BeginDate.Value + EndTime.Value.TimeOfDay,
                 Remark = Remark
             };
+
             List<OTRecord> records = AppFileHelper.GetOTRecords();
+            OTRecord conflictRecord = records.FirstOrDefault(r => r.CheckIsCoincidence(newRecord));
+            if (conflictRecord != null)
+            {
+                (DateTime? beginTime, DateTime? endTime) = conflictRecord.CoincidenceInterval(newRecord);
+                string errorMessage = $"{beginTime.Value.Month} 月 {beginTime.Value.Day} 日 {beginTime:HH:mm:ss} - {endTime.Value.Month} 月 {endTime.Value.Day} 日 {endTime:HH:mm:ss} 已存在记录，添加失败。";
+                _regionManager.RequestNavigate(
+                    RegionNames.ErrorRegion,
+                    ViewNames.ErrorTips,
+                    new NavigationParameters
+                    {
+                        { "Message", errorMessage }
+                    });
+                return;
+            }
             records.Add(newRecord);
             AppFileHelper.SaveOTRecords(records);
 
             Record.Status = Core.Enums.TodoStatus.Negligible;
             SaveRecord();
+
+            Finished = true;
         }
 
         private void SaveRecord()
             => _eventAggregator.GetEvent<OTRecordTodoChangedEvent>().Publish();
-        #region private
-        private readonly IRegionManager _regionManager;
-        private readonly IEventAggregator _eventAggregator;
-        private OTRecordTodo _record;
-        private string _userName;
-        #endregion
 
         public OTRecordTodo Record
         {

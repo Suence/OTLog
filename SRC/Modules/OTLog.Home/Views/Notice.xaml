@@ -53,6 +53,10 @@
         <i:StoryboardCompletedTrigger Storyboard="{StaticResource HideForm}">
             <i:InvokeCommandAction Command="{Binding ResetRecordCommand}"/>
         </i:StoryboardCompletedTrigger>
+        <i:DataTrigger Binding="{Binding Finished}"
+                       Value="True">
+            <i:ControlStoryboardAction Storyboard="{StaticResource HideForm}"/>
+        </i:DataTrigger>
     </i:Interaction.Triggers>
     <Grid>
         <TextBlock Text="本来无一物，何处惹尘埃。"
@@ -178,10 +182,10 @@
                             <TextBlock Margin="0, 5"
                                        Foreground="{DynamicResource App.Foreground}">
                                 <TextBlock.Text>
-                                    <MultiBinding StringFormat="{}{0} 小时 {1:00} 分 {2:00} 秒">
-                                        <Binding Path="TotalTime.Hours" />
-                                        <Binding Path="TotalTime.Minutes" />
-                                        <Binding Path="TotalTime.Seconds" />
+                                    <MultiBinding StringFormat="{}{0} 小时 {1:00} 分 {2:00} 秒" >
+                                        <Binding Path="TotalTime.Hours" TargetNullValue="0"/>
+                                        <Binding Path="TotalTime.Minutes" TargetNullValue="0"/>
+                                        <Binding Path="TotalTime.Seconds" TargetNullValue="0"/>
                                     </MultiBinding>
                                 </TextBlock.Text>
                             </TextBlock>
@@ -216,13 +220,8 @@
                             Content="忽略"
                             Command="{Binding NeglectCommand}"
                             Style="{DynamicResource Win10ButtonStyle}"
-                            Margin="5">
-                        <i:Interaction.Triggers>
-                            <i:EventTrigger EventName="Click">
-                                <i:ControlStoryboardAction Storyboard="{StaticResource HideForm}"/>
-                            </i:EventTrigger>
-                        </i:Interaction.Triggers>
-                    </Button>
+                            Margin="5" />
+
                 </StackPanel>
             </Grid>
         </Border>
