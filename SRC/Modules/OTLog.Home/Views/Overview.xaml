@@ -19,6 +19,7 @@
                              Data="{Binding}" />
         <suence:IsNextDayToVisibilityConverter x:Key="IsNextDay" />
         <suence:ColorToSolidColorBrushConverter x:Key="ColorToBrush"/>
+        <suence:FriendlyTimeTextConverter x:Key="FriendlyTimeText"/>
     </UserControl.Resources>
 
     <UserControl.Triggers>
@@ -345,7 +346,7 @@
                                             <RowDefinition Height="Auto" />
                                         </Grid.RowDefinitions>
                                         <Grid Grid.Row="0">
-                                            <TextBlock Text="{Binding BeginTime, StringFormat={}{0:yyyy/MM/dd}}"
+                                            <TextBlock Text="{Binding BeginTime, Converter={StaticResource FriendlyTimeText}}"
                                                        FontSize="16"
                                                        FontWeight="Bold"
                                                        Foreground="{DynamicResource App.Foreground2}"
@@ -426,7 +427,7 @@
                                             <TextBlock Margin="5"
                                                        Foreground="{DynamicResource App.Foreground}">
                                                 <TextBlock.Text>
-                                                    <MultiBinding StringFormat="{}{0}h {1}m {2:00}s">
+                                                    <MultiBinding StringFormat="{}{0:0小时;;#} {1:0分钟;;''} {2:0秒;;''}">
                                                         <Binding Path="OTTime.Hours" />
                                                         <Binding Path="OTTime.Minutes" />
                                                         <Binding Path="OTTime.Seconds" />

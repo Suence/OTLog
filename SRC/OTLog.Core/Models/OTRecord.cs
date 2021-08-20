@@ -40,7 +40,6 @@ namespace OTLog.Core.Models
                 SetProperty(ref _endTime, value);
                 RaisePropertyChanged(nameof(OTTime));
             }
-
         }
 
         public string Remark
