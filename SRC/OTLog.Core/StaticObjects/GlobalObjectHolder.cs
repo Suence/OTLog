@@ -11,7 +11,7 @@ namespace OTLog.Core.StaticObjects
     public static class GlobalObjectHolder
     {
         public static Config Config { get; set; }
-
+        public const string StartupTaskId = "OTLog";
         static GlobalObjectHolder()
         {
             InitConfig();
@@ -78,9 +78,9 @@ namespace OTLog.Core.StaticObjects
                 Config = new Config
                 {
                     NotificationAfterMin = true,
-                    OpenAtBoot = true,
                     ThemeColor = Color.FromRgb(0, 120, 212),
                     Theme = Theme.DarkTheme,
+                    StartupScheme = StartupScheme.Normal,
                     //UserName = WindowsIdentity.GetCurrent().Name;
                     UserName = Environment.UserName
                 };

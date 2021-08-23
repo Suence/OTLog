@@ -5,6 +5,7 @@
     <UseWPF>true</UseWPF>
     <AssemblyName>OTLog</AssemblyName>
     <ApplicationIcon>Assets\Icons\logo32.ico</ApplicationIcon>
+    <Platforms>AnyCPU;x64</Platforms>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="Assets\Icons\logo32.ico" />

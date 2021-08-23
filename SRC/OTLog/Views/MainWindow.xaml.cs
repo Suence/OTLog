@@ -1,9 +1,12 @@
 ﻿using Microsoft.Toolkit.Uwp.Notifications;
+using OTLog.Core.Enums;
 using OTLog.Core.StaticObjects;
+using OTLog.Core.Utils;
 using System;
 using System.IO;
 using System.Threading.Tasks;
 using System.Windows;
+using Windows.ApplicationModel;
 using Windows.Foundation.Collections;
 
 namespace OTLog.Views
@@ -89,8 +92,12 @@ namespace OTLog.Views
 
         private async void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            if (App.AppArgs?.Contains("--nowindow") ?? false)
+            var otLogStartupTask = await StartupTask.GetAsync(GlobalObjectHolder.StartupTaskId);
+            if (GlobalObjectHolder.Config.StartupScheme == StartupScheme.NoWindow &&
+                otLogStartupTask.State == StartupTaskState.Enabled)
             {
+                GlobalObjectHolder.Config.StartupScheme = StartupScheme.Normal;
+                AppFileHelper.SaveAppConfig(GlobalObjectHolder.Config);
                 await Task.Delay(10);
                 Hide();
             }
