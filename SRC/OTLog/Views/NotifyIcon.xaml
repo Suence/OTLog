@@ -28,7 +28,7 @@
     </ContextMenu>
 
     <tb:TaskbarIcon x:Key="NotifyIcon"
-                    IconSource="/Assets/Icons/logo32.ico"
+                    IconSource="/Assets/Icons/OTLog.ico"
                     ToolTipText="OTLog v1.0.1"
                     DoubleClickCommand="{Binding ShowWindowCommand}"
                     ContextMenu="{StaticResource SysTrayMenu}">
