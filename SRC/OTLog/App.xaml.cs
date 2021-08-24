@@ -20,6 +20,7 @@ using System.Reflection;
 using System.Threading;
 using System.Windows;
 using System.Windows.Media;
+using Windows.ApplicationModel;
 using Windows.UI.ViewManagement;
 
 namespace OTLog
@@ -72,7 +73,12 @@ namespace OTLog
             return;
         }
 
-       
+        private void PrismApplication_SessionEnding(object sender, SessionEndingCancelEventArgs e)
+        {
+            GlobalObjectHolder.Config.StartupScheme = StartupScheme.NoWindow;
+            AppFileHelper.SaveAppConfig(GlobalObjectHolder.Config);
+        }
+
         protected override void OnStartup(StartupEventArgs e)
         {
             AppOnStartup();
@@ -197,5 +203,7 @@ namespace OTLog
         }
 
         #endregion
+
+
     }
 }

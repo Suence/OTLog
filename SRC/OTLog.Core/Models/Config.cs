@@ -8,17 +8,18 @@ namespace OTLog.Core.Models
     public class Config : BindableBase
     {
         #region private
-        private bool _openAtBoot;
         private bool _notificationAfterMin;
         private Color _themeColor;
         private Theme _theme;
         private string _userName;
         private bool _useSystemThemeColorScheme;
+        private StartupScheme _StartupScheme;
         #endregion
-        public bool OpenAtBoot
+
+        public StartupScheme StartupScheme
         {
-            get => _openAtBoot;
-            set => SetProperty(ref _openAtBoot, value);
+            get => _StartupScheme;
+            set => SetProperty(ref _StartupScheme, value);
         }
 
         public bool NotificationAfterMin

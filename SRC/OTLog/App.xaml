@@ -5,6 +5,7 @@
                         ShutdownMode="OnExplicitShutdown"
                         xmlns:local="clr-namespace:OTLog"
                         xmlns:ui="http://schemas.modernwpf.com/2019"
+                        SessionEnding="PrismApplication_SessionEnding"
                         xmlns:themes="clr-namespace:OTLog.Themes;assembly=OTLog.Themes"
                         xmlns:tb="http://www.hardcodet.net/taskbar">
     <Application.Resources>

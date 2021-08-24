@@ -80,16 +80,16 @@ namespace OTLog.Home.ViewModels
         {
             AppFileHelper.SaveAppConfig(GlobalObjectHolder.Config);
 
-            if (!GlobalObjectHolder.Config.OpenAtBoot)
-            {
-                File.Delete(AppFileHelper.LinkFileFullPath);
-                return;
-            }
+            //if (!GlobalObjectHolder.Config.OpenAtBoot)
+            //{
+            //    File.Delete(AppFileHelper.LinkFileFullPath);
+            //    return;
+            //}
 
-            if (!File.Exists(AppFileHelper.LinkFileFullPath))
-            {
-                AppFileHelper.CreateShortcut(AppFileHelper.LinkFileFullPath, "--nowindow");
-            }
+            //if (!File.Exists(AppFileHelper.LinkFileFullPath))
+            //{
+            //    AppFileHelper.CreateShortcut(AppFileHelper.LinkFileFullPath, "--nowindow");
+            //}
         }
 
         public void OnNavigatedTo(NavigationContext navigationContext)

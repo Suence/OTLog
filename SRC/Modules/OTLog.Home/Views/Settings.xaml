@@ -11,6 +11,7 @@
              xmlns:modernWpf="http://schemas.modernwpf.com/2019"
              xmlns:system="clr-namespace:System;assembly=mscorlib"
              x:Class="OTLog.Home.Views.Settings"
+             Loaded="UserControl_Loaded"
              prism:ViewModelLocator.AutoWireViewModel="True"
              d:DesignWidth="490"
              d:DesignHeight="555">
@@ -48,10 +49,12 @@
                                FontSize="20"
                                Text="启动"
                                Foreground="{DynamicResource App.Foreground}" />
-                    <CheckBox Content="随系统启动"
+                    <CheckBox x:Name="StartupCheckBox"
+                              Content="随系统启动"
                               modernWpf:ControlHelper.CornerRadius="0"
                               Foreground="{DynamicResource App.Foreground}"
-                              IsChecked="{Binding Source={x:Static gb:GlobalObjectHolder.Config},Path=OpenAtBoot}"
+                              Checked="StartupCheckBox_Checked"
+                              Unchecked="StartupCheckBox_Unchecked"
                               Margin="0, 10" />
                 </StackPanel>
                 <!--#endregion-->
