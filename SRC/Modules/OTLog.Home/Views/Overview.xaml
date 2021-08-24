@@ -182,6 +182,7 @@
                             </Grid>
                             <Grid Background="{DynamicResource App.Background2}"
                                   Width="164"
+                                  Height="100"
                                   Margin="0, 5, 10, 5">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto" />
@@ -209,6 +210,7 @@
                             </Grid>
                             <Grid Background="{DynamicResource App.Background2}"
                                   Width="164"
+                                  Height="100"
                                   Margin="0, 5, 10, 5">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto" />
@@ -236,6 +238,7 @@
                             </Grid>
                             <Grid Background="{DynamicResource App.Background2}"
                                   Width="164"
+                                  Height="100"
                                   Margin="0, 5, 10, 5">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto" />
@@ -260,11 +263,6 @@
                                                Margin="5, 0, 0, 3"
                                                Foreground="{DynamicResource App.Foreground2}" />
                                 </StackPanel>
-                                <!--<Button Grid.Row="2"
-                                        HorizontalAlignment="Stretch"
-                                        Margin="0, 10, 0, 0"
-                                        Foreground="{DynamicResource App.Foreground}"
-                                        Content="了解更多" />-->
                             </Grid>
                         </WrapPanel>
                     </StackPanel>
@@ -418,10 +416,6 @@
                                             </TextBlock>
                                         </StackPanel>
                                         <StackPanel Grid.Row="4">
-                                            <!--<TextBlock FontSize="16"
-                                                       Margin="5"
-                                                       Foreground="{DynamicResource App.Foreground2}"
-                                                       Text="备注" />-->
                                             <TextBlock Margin="5, 5, 5, 10"
                                                    MinHeight="30"
                                                    Text="{Binding Remark}"
