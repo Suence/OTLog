@@ -8,12 +8,16 @@
   </PropertyGroup>
   <ItemGroup>
     <None Remove="Assets\Icons\logo32.ico" />
+    <None Remove="Assets\Images\github.png" />
     <None Remove="Assets\Images\logo.png" />
     <None Remove="Assets\Images\logo32.ico" />
     <None Remove="Assets\Images\logo32.png" />
     <None Remove="Assets\Images\noticeBg.png" />
     <None Remove="Assets\Images\noticeBg2.png" />
+    <None Remove="Assets\Images\outlook.png" />
     <None Remove="Assets\Images\toastinline800.gif" />
+    <None Remove="Assets\Images\wechat.png" />
+    <None Remove="Assets\Images\wechatQR.png" />
     <None Remove="Assets\Images\关闭.png" />
     <None Remove="Assets\Images\关闭Gray.png" />
     <None Remove="Assets\Images\加载中.png" />
@@ -43,12 +47,16 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\Icons\logo32.ico" />
+    <Resource Include="Assets\Images\github.png" />
     <Resource Include="Assets\Images\logo.png" />
     <Resource Include="Assets\Images\logo32.ico" />
     <Resource Include="Assets\Images\logo32.png" />
     <Resource Include="Assets\Images\noticeBg.png" />
     <Resource Include="Assets\Images\noticeBg2.png" />
+    <Resource Include="Assets\Images\outlook.png" />
     <Resource Include="Assets\Images\toastinline800.gif" />
+    <Resource Include="Assets\Images\wechat.png" />
+    <Resource Include="Assets\Images\wechatQR.png" />
     <Resource Include="Assets\Images\关闭.png" />
     <Resource Include="Assets\Images\关闭Gray.png" />
     <Resource Include="Assets\Images\加载中.png" />

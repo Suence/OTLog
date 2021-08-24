@@ -122,8 +122,8 @@
                         <StackPanel Margin="0, 5">
                             <TextBlock Text="开始" Foreground="{DynamicResource App.Foreground2}" Margin="0, 5"/>
                             <modernWpf:SimpleTimePicker PickerVisibility="All"
-                                                        modernWpf:ControlHelper.CornerRadius="0"  
-                                                        Culture="zh-CN" 
+                                                        modernWpf:ControlHelper.CornerRadius="0"
+                                                        Culture="de-DE"
                                                         SelectedDateTime="{Binding BeginTime}"
                                                         HorizontalAlignment="Left" />
                         </StackPanel>
@@ -131,8 +131,8 @@
                             <TextBlock Text="结束" Margin="0, 5" Foreground="{DynamicResource App.Foreground2}"/>
                             <StackPanel Orientation="Horizontal">
                                 <modernWpf:SimpleTimePicker PickerVisibility="All"
-                                                            modernWpf:ControlHelper.CornerRadius="0"  
-                                                            Culture="zh-CN" 
+                                                            modernWpf:ControlHelper.CornerRadius="0"
+                                                            Culture="de-DE"
                                                             SelectedDateTime="{Binding EndTime}"
                                                             HorizontalAlignment="Left" />
                                 <Label Background="{Binding Source={x:Static modernWpf:ThemeManager.Current}, Path=AccentColor, Converter={StaticResource ColorToBrush}}"
@@ -156,10 +156,10 @@
                             <TextBlock Margin="0, 5" 
                                        Foreground="{DynamicResource App.Foreground}">
                                 <TextBlock.Text>
-                                    <MultiBinding StringFormat="{}{0} 小时 {1:00} 分 {2:00} 秒">
-                                        <Binding Path="TotalTime.Hours"/>
-                                        <Binding Path="TotalTime.Minutes"/>
-                                        <Binding Path="TotalTime.Seconds"/>
+                                    <MultiBinding StringFormat="{}{0:0小时;;#} {1:0分钟;;''} {2:0秒;;''}">
+                                        <Binding Path="TotalTime.Hours" />
+                                        <Binding Path="TotalTime.Minutes" />
+                                        <Binding Path="TotalTime.Seconds" />
                                     </MultiBinding>
                                 </TextBlock.Text>
                             </TextBlock>

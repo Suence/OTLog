@@ -13,6 +13,9 @@
         Foreground="{DynamicResource App.Foreground}"
         WindowStartupLocation="CenterScreen"
         Background="{DynamicResource App.Background}"
+        ResizeMode="CanResizeWithGrip"
+        MinHeight="800"
+        MinWidth="900"
         Height="800"
         Width="1200">
     <i:Interaction.Behaviors>
