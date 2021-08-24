@@ -11,7 +11,7 @@
     <SolidColorBrush x:Key="App.Background2"
                      Color="#FFF5F5F7" />
     <SolidColorBrush x:Key="App.Background"
-                     Color="#FFFFFFFF" />
+                     Color="#FFFDFDFD" />
     
     <SolidColorBrush x:Key="App.Background3"
                      Color="#FFCCCCCC" />

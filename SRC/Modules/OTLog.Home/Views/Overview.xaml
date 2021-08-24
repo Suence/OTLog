@@ -153,20 +153,20 @@
                                    Margin="0, 10" />
                         <WrapPanel Orientation="Horizontal">
                             <Grid Background="{DynamicResource App.Background2}"
-                                  Width="180"
+                                  Width="164"
+                                  Height="100"
                                   Margin="0, 5, 10, 5">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto" />
-                                    <RowDefinition />
                                     <RowDefinition Height="Auto" />
                                 </Grid.RowDefinitions>
                                 <Label Grid.Row="0"
                                        Content="总时长"
-                                       Margin="10"
+                                       Margin="14, 10"
                                        FontSize="16"
                                        Foreground="{DynamicResource App.Foreground2}" />
                                 <StackPanel Grid.Row="1"
-                                            Margin="10, 0"
+                                            Margin="14, 0"
                                             Orientation="Horizontal"
                                             VerticalAlignment="Center">
                                     <TextBlock Grid.Row="1"
@@ -179,27 +179,21 @@
                                                Margin="5, 0, 0, 3"
                                                Foreground="{DynamicResource App.Foreground2}" />
                                 </StackPanel>
-                                <Button Grid.Row="2"
-                                        HorizontalAlignment="Stretch"
-                                        Margin="0, 10, 0, 0"
-                                        Foreground="{DynamicResource App.Foreground}"
-                                        Content="了解更多" />
                             </Grid>
                             <Grid Background="{DynamicResource App.Background2}"
-                                  Width="180"
+                                  Width="164"
                                   Margin="0, 5, 10, 5">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto" />
-                                    <RowDefinition />
                                     <RowDefinition Height="Auto" />
                                 </Grid.RowDefinitions>
                                 <Label Grid.Row="0"
                                        Content="轻度加班"
-                                       Margin="10"
+                                       Margin="14, 10"
                                        FontSize="16"
                                        Foreground="{DynamicResource App.Foreground2}" />
                                 <StackPanel Grid.Row="1"
-                                            Margin="10, 0"
+                                            Margin="14, 0"
                                             Orientation="Horizontal"
                                             VerticalAlignment="Center">
                                     <TextBlock Grid.Row="1"
@@ -212,27 +206,21 @@
                                                Margin="5, 0, 0, 3"
                                                Foreground="{DynamicResource App.Foreground2}" />
                                 </StackPanel>
-                                <Button Grid.Row="2"
-                                        HorizontalAlignment="Stretch"
-                                        Margin="0, 10, 0, 0"
-                                        Foreground="{DynamicResource App.Foreground}"
-                                        Content="了解更多" />
                             </Grid>
                             <Grid Background="{DynamicResource App.Background2}"
-                                  Width="180"
+                                  Width="164"
                                   Margin="0, 5, 10, 5">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto" />
-                                    <RowDefinition />
                                     <RowDefinition Height="Auto" />
                                 </Grid.RowDefinitions>
                                 <Label Grid.Row="0"
                                        Content="中度加班"
-                                       Margin="10"
+                                       Margin="14, 10"
                                        FontSize="16"
                                        Foreground="{DynamicResource App.Foreground2}" />
                                 <StackPanel Grid.Row="1"
-                                            Margin="10, 0"
+                                            Margin="14, 0"
                                             Orientation="Horizontal"
                                             VerticalAlignment="Center">
                                     <TextBlock Grid.Row="1"
@@ -245,27 +233,21 @@
                                                Margin="5, 0, 0, 3"
                                                Foreground="{DynamicResource App.Foreground2}" />
                                 </StackPanel>
-                                <Button Grid.Row="2"
-                                        HorizontalAlignment="Stretch"
-                                        Margin="0, 10, 0, 0"
-                                        Foreground="{DynamicResource App.Foreground}"
-                                        Content="了解更多" />
                             </Grid>
                             <Grid Background="{DynamicResource App.Background2}"
-                                  Width="180"
+                                  Width="164"
                                   Margin="0, 5, 10, 5">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto" />
-                                    <RowDefinition />
                                     <RowDefinition Height="Auto" />
                                 </Grid.RowDefinitions>
                                 <Label Grid.Row="0"
                                        Content="严重加班"
-                                       Margin="10"
+                                       Margin="14, 10"
                                        FontSize="16"
                                        Foreground="{DynamicResource App.Foreground2}" />
                                 <StackPanel Grid.Row="1"
-                                            Margin="10, 0"
+                                            Margin="14, 0"
                                             Orientation="Horizontal"
                                             VerticalAlignment="Center">
                                     <TextBlock Grid.Row="1"
@@ -278,11 +260,11 @@
                                                Margin="5, 0, 0, 3"
                                                Foreground="{DynamicResource App.Foreground2}" />
                                 </StackPanel>
-                                <Button Grid.Row="2"
+                                <!--<Button Grid.Row="2"
                                         HorizontalAlignment="Stretch"
                                         Margin="0, 10, 0, 0"
                                         Foreground="{DynamicResource App.Foreground}"
-                                        Content="了解更多" />
+                                        Content="了解更多" />-->
                             </Grid>
                         </WrapPanel>
                     </StackPanel>
