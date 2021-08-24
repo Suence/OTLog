@@ -63,7 +63,7 @@
                        Margin="5"
                        Foreground="{DynamicResource App.Foreground}"
                        VerticalAlignment="Bottom"
-                       Text="OTLog For Windows"
+                       Text="OTLog for Windows 10"
                        FontSize="14"/>
             <TextBlock Grid.Row="1"
                        Grid.Column="1"
@@ -72,7 +72,7 @@
                        Foreground="{DynamicResource App.Foreground2}"
                        VerticalAlignment="Top"
                        Margin="5"
-                       Text="版本 1.0.1"
+                       Text="版本 1.0.0"
                        FontSize="14"/>
         </Grid>
         <StackPanel Grid.Row="3" Margin="0, 10">
