@@ -6,7 +6,9 @@
                      Color="Gray"/>
     <SolidColorBrush x:Key="App.Foreground3"
                      Color="#FFE6E6E6" />
-    
+    <SolidColorBrush x:Key="App.Foreground4"
+                     Color="White" />
+
     <SolidColorBrush x:Key="App.Background"
                      Color="#FF171717" />
     <SolidColorBrush x:Key="App.Background2"
@@ -26,12 +28,8 @@
     <SolidColorBrush x:Key="AppTitleButton.Pressed.Background"
                      Color="#60000000" />
 
-    <RadialGradientBrush x:Key="StartScreen.Background">
-        <GradientStop Color="Black"
-                      Offset="0" />
-        <GradientStop Color="Gray"
-                      Offset="3" />
-    </RadialGradientBrush>
+    <SolidColorBrush x:Key="StartScreen.Background"
+                     Color="#FF111111" />
     <DrawingBrush x:Key="Gridlines"
                   Viewport="0,0,20,20"
                   ViewportUnits="Absolute"

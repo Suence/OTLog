@@ -14,6 +14,7 @@
         WindowStartupLocation="CenterScreen"
         Background="{DynamicResource App.Background}"
         ResizeMode="CanResizeWithGrip"
+        Closing="Window_Closing"
         MinHeight="800"
         MinWidth="900"
         Height="800"
@@ -44,102 +45,105 @@
                             Grid.RowSpan="2"
                             Foreground="{DynamicResource SecondryText.Foreground}"
                             prism:RegionManager.RegionName="{x:Static constants:RegionNames.MainRegion}" />
-            
+
             <!--#region 错误消息区域 -->
             <ContentControl Grid.Row="0"
                             Height="36"
                             prism:RegionManager.RegionName="{x:Static constants:RegionNames.ErrorRegion}" />
-
-            <!--#endregion-->
-            <!--#region 窗口标题栏 -->
-            <Grid x:Name="AppTitleContainer"
-                  Grid.Row="0"
-                  Height="36"
-                  Background="Transparent"
-                  UseLayoutRounding="True">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition />
-                    <ColumnDefinition Width="Auto" />
-                </Grid.ColumnDefinitions>
-                <i:Interaction.Triggers>
-                    <i:EventTrigger EventName="MouseLeftButtonDown">
-                        <i:CallMethodAction TargetObject="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
-                                            MethodName="DragMove" />
-                    </i:EventTrigger>
-                </i:Interaction.Triggers>
-                <StackPanel Grid.Column="0"
-                            Orientation="Horizontal">
-                    <TextBlock FontSize="12"
-                               VerticalAlignment="Center"
-                               Margin="15, 0"
-                               Foreground="{DynamicResource App.Foreground2}"
-                               Text="{Binding Title}" />
-                </StackPanel>
-                <StackPanel Grid.Column="2"
-                            Orientation="Horizontal">
-    
-                    <Button Width="47"
-                            IsTabStop="False"
-                            BorderThickness="0"
-                            Foreground="{DynamicResource App.Foreground}"
-                            FontWeight="Bold"
-                            ToolTip="最小化"
-                            Style="{DynamicResource AppTitleButtonStyle}"
-                            suence:ButtonBrush.ButtonPressBackground="{DynamicResource AppTitleButton.Pressed.Background}"
-                            suence:ButtonBrush.ButtonMouseOverBackground="{DynamicResource App.Background2}"
-                            FontFamily="Segoe MDL2 Assets"
-                            FontSize="15">
-                        <i:Interaction.Triggers>
-                            <i:EventTrigger EventName="Click">
-                                <i:ChangePropertyAction TargetObject="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
-                                                        PropertyName="WindowState"
-                                                        Value="Minimized" />
-                            </i:EventTrigger>
-                        </i:Interaction.Triggers>
-                        <Button.Content>
-                            <Viewbox Width="20"
-                                     Height="20">
-                                <Canvas Width="24"
-                                        Height="24">
-                                    <Path Fill="{DynamicResource App.Foreground2}"
-                                          Data="M19,13H5V11H19V13Z" />
-                                </Canvas>
-                            </Viewbox>
-                        </Button.Content>
-                    </Button>
-                    <Button Width="47"
-                            IsTabStop="False"
-                            BorderThickness="0"
-                            ToolTip="最小化到托盘"
-                            Click="CloseWindowButton_Click"
-                            Style="{DynamicResource CloseWindowButtonStyle}"
-                            suence:ButtonBrush.ButtonPressBackground="{DynamicResource AppTitleButton.Pressed.Background}"
-                            suence:ButtonBrush.ButtonMouseOverBackground="{DynamicResource App.Background2}"
-                            FontFamily="Segoe MDL2 Assets"
-                            FontSize="15">
-                        <Button.Content>
-                            <Viewbox Width="20"
-                                     Height="20">
-                                <Canvas Width="24"
-                                        Height="24">
-                                    <Path Fill="{DynamicResource App.Foreground2}"
-                                          Data="M22,4V2H2V4H11V18.17L5.5,12.67L4.08,14.08L12,22L19.92,14.08L18.5,12.67L13,18.17V4H22Z" />
-                                </Canvas>
-                            </Viewbox>
-                            <!--<Image Source="pack://application:,,,/OTLog;component/Assets/Images/向下2.png"
-                                   Width="20"
-                                   Height="20" />-->
-                        </Button.Content>
-                    </Button>
-                </StackPanel>
-            </Grid>
             <!--#endregion-->
             
-        </Grid>
+            <!-- 提示消息区域 -->
+            <ContentControl Grid.Row="0"
+                            Grid.RowSpan="2"
+                            Foreground="{DynamicResource SecondryText.Foreground}"
+                            prism:RegionManager.RegionName="{x:Static constants:RegionNames.MessageRegion}" />
 
-        <!-- 提示消息区域 -->
-        <ContentControl Foreground="{DynamicResource SecondryText.Foreground}"
-                        prism:RegionManager.RegionName="{x:Static constants:RegionNames.MessageRegion}" />
+        </Grid>
+        <!--#region 窗口标题栏 -->
+        <Grid x:Name="AppTitleContainer"
+              Grid.Row="0"
+              Height="36"
+              Background="Transparent"
+              VerticalAlignment="Top"
+              UseLayoutRounding="True">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="MouseLeftButtonDown">
+                    <i:CallMethodAction TargetObject="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                                        MethodName="DragMove" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+            <StackPanel Grid.Column="0"
+                        Orientation="Horizontal">
+                <TextBlock FontSize="12"
+                           VerticalAlignment="Center"
+                           Margin="15, 0"
+                           Foreground="{DynamicResource App.Foreground2}"
+                           Text="{Binding Title}" />
+            </StackPanel>
+            <StackPanel Grid.Column="2"
+                        Orientation="Horizontal">
+
+                <Button Width="47"
+                        IsTabStop="False"
+                        BorderThickness="0"
+                        Foreground="{DynamicResource App.Foreground}"
+                        FontWeight="Bold"
+                        ToolTip="最小化"
+                        Style="{DynamicResource AppTitleButtonStyle}"
+                        suence:ButtonBrush.ButtonPressBackground="{DynamicResource AppTitleButton.Pressed.Background}"
+                        suence:ButtonBrush.ButtonMouseOverBackground="{DynamicResource App.Background2}"
+                        FontFamily="Segoe MDL2 Assets"
+                        FontSize="15">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <i:ChangePropertyAction TargetObject="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                                                    PropertyName="WindowState"
+                                                    Value="Minimized" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    <Button.Content>
+                        <Viewbox Width="20"
+                                 Height="20">
+                            <Canvas Width="24"
+                                    Height="24">
+                                <Path Fill="{DynamicResource App.Foreground2}"
+                                      Data="M19,13H5V11H19V13Z" />
+                            </Canvas>
+                        </Viewbox>
+                    </Button.Content>
+                </Button>
+                <Button Width="47"
+                        IsTabStop="False"
+                        BorderThickness="0"
+                        ToolTip="最小化到托盘"
+                        Click="CloseWindowButton_Click"
+                        Style="{DynamicResource CloseWindowButtonStyle}"
+                        suence:ButtonBrush.ButtonPressBackground="{DynamicResource AppTitleButton.Pressed.Background}"
+                        suence:ButtonBrush.ButtonMouseOverBackground="{DynamicResource App.Background2}"
+                        FontFamily="Segoe MDL2 Assets"
+                        FontSize="15">
+                    <Button.Content>
+                        <Viewbox Width="20"
+                                 Height="20">
+                            <Canvas Width="24"
+                                    Height="24">
+                                <Path Fill="{DynamicResource App.Foreground2}"
+                                      Data="M22,4V2H2V4H11V18.17L5.5,12.67L4.08,14.08L12,22L19.92,14.08L18.5,12.67L13,18.17V4H22Z" />
+                            </Canvas>
+                        </Viewbox>
+                        <!--<Image Source="pack://application:,,,/OTLog;component/Assets/Images/向下2.png"
+                                   Width="20"
+                                   Height="20" />-->
+                    </Button.Content>
+                </Button>
+            </StackPanel>
+        </Grid>
+        <!--#endregion-->
+
     </Grid>
 </Window>
