@@ -45,7 +45,6 @@
     <ProjectReference Include="..\OTLog.UI.Core\OTLog.UI.Core.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Assets\Icons\logo32.ico" />
     <Resource Include="Assets\Images\github.png" />
     <Resource Include="Assets\Icons\OTLog.ico" />
     <Resource Include="Assets\Images\logo.png" />
