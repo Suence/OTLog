@@ -131,7 +131,7 @@ namespace OTLog.Home.ViewModels
                 TodoList.Insert(0, new OTRecordTodo
                 {
                     Id = Guid.NewGuid(),
-                    BeginTime = activeTime,
+                    BeginTime = date.Date + TimeSpan.FromHours(8),
                     EndTime = activeTime
                 });
             }

@@ -32,7 +32,8 @@ namespace OTLog.Home.ViewModels
         private async void LoadData()
         {
             await Task.Delay(2000);
-            GoToHomePage();
+            //GoToHomePage();
+            _regionManager.Regions[RegionNames.MessageRegion].RemoveAll();
         }
     }
 }

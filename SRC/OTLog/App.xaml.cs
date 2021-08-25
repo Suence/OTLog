@@ -86,12 +86,12 @@ namespace OTLog
 
             AppFileHelper.ValidateApplicationFiles();
             SetTheme(GlobalObjectHolder.Config.Theme);
+            SetThemeColor();
             base.OnStartup(e);
 
             _notifyIcon = (TaskbarIcon)FindResource("NotifyIcon");
             _notifyIcon.DataContext = Container.Resolve<NotifyIconViewModel>();
 
-            SetThemeColor();
             uISettings.ColorValuesChanged += WindowsColorValueChanged;
 
             Container.Resolve<IEventAggregator>().GetEvent<ThemeChangedEvent>().Subscribe(SetTheme);
