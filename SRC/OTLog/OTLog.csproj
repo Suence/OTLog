@@ -4,13 +4,12 @@
     <TargetFramework>net5.0-windows10.0.18362.0</TargetFramework>
     <UseWPF>true</UseWPF>
     <AssemblyName>OTLog</AssemblyName>
-    <ApplicationIcon>Assets\Icons\logo32.ico</ApplicationIcon>
+    <ApplicationIcon>Assets\Icons\OTLog.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <None Remove="Assets\Icons\logo32.ico" />
+    <None Remove="Assets\Icons\OTLog.ico" />
     <None Remove="Assets\Images\github.png" />
     <None Remove="Assets\Images\logo.png" />
-    <None Remove="Assets\Images\logo32.ico" />
     <None Remove="Assets\Images\logo32.png" />
     <None Remove="Assets\Images\noticeBg.png" />
     <None Remove="Assets\Images\noticeBg2.png" />
@@ -46,10 +45,9 @@
     <ProjectReference Include="..\OTLog.UI.Core\OTLog.UI.Core.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Assets\Icons\logo32.ico" />
+    <Resource Include="Assets\Icons\OTLog.ico" />
     <Resource Include="Assets\Images\github.png" />
     <Resource Include="Assets\Images\logo.png" />
-    <Resource Include="Assets\Images\logo32.ico" />
     <Resource Include="Assets\Images\logo32.png" />
     <Resource Include="Assets\Images\noticeBg.png" />
     <Resource Include="Assets\Images\noticeBg2.png" />
