@@ -10,6 +10,7 @@
     <None Remove="Assets\Icons\OTLog.ico" />
     <None Remove="Assets\Images\github.png" />
     <None Remove="Assets\Images\logo.png" />
+    <None Remove="Assets\Images\logo150.png" />
     <None Remove="Assets\Images\logo32.png" />
     <None Remove="Assets\Images\noticeBg.png" />
     <None Remove="Assets\Images\noticeBg2.png" />
@@ -48,6 +49,7 @@
     <Resource Include="Assets\Icons\OTLog.ico" />
     <Resource Include="Assets\Images\github.png" />
     <Resource Include="Assets\Images\logo.png" />
+    <Resource Include="Assets\Images\logo150.png" />
     <Resource Include="Assets\Images\logo32.png" />
     <Resource Include="Assets\Images\noticeBg.png" />
     <Resource Include="Assets\Images\noticeBg2.png" />

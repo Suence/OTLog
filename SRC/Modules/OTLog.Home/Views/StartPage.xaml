@@ -8,6 +8,7 @@
              x:Class="OTLog.Home.Views.StartPage"
              prism:ViewModelLocator.AutoWireViewModel="True"
              d:DesignWidth="750"
+             IsHitTestVisible="False"
              d:DesignHeight="445">
     <!--#region 空动画问题，在 Debug 模式下正常，但直接运行可执行文件，则不会结束和跳转 -->
     <!--<UserControl.Resources>
@@ -23,21 +24,101 @@
         </i:StoryboardCompletedTrigger>
     </i:Interaction.Triggers>-->
     <!--#endregion-->
-    
+    <UserControl.Resources>
+        <Storyboard x:Key="AppLogoAnimation" RepeatBehavior="Forever">
+            <DoubleAnimation BeginTime="0:0:1"
+                             Storyboard.TargetName="LogoPanel"
+                             Storyboard.TargetProperty="(StackPanel.RenderTransform).(TransformGroup.Children)[1].ScaleX"
+                             To="1"
+                             Duration="0:0:.5">
+                <DoubleAnimation.EasingFunction>
+                    <CircleEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+            <DoubleAnimation BeginTime="0:0:1"
+                             Storyboard.TargetName="LogoPanel"
+                             Storyboard.TargetProperty="(StackPanel.RenderTransform).(TransformGroup.Children)[1].ScaleY"
+                             To="1"
+                             Duration="0:0:.5">
+                <DoubleAnimation.EasingFunction>
+                    <CircleEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+            <DoubleAnimation BeginTime="0:0:1"
+                             Storyboard.TargetName="AppLogoImage"
+                             Storyboard.TargetProperty="Opacity"
+                             To="1"
+                             Duration="0:0:.5">
+                <DoubleAnimation.EasingFunction>
+                    <CircleEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+            <DoubleAnimation BeginTime="0:0:2.5" Storyboard.TargetName="LogoPanel"
+                             Storyboard.TargetProperty="(StackPanel.RenderTransform).(TransformGroup.Children)[0].X"
+                             To="0"
+                             Duration="0:0:.5">
+                <DoubleAnimation.EasingFunction>
+                    <CircleEase EasingMode="EaseOut"/>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+            <DoubleAnimation BeginTime="0:0:3.5" Storyboard.TargetName="AppNameText"
+                             Storyboard.TargetProperty="(TextBlock.OpacityMask).(LinearGradientBrush.GradientStops)[1].Offset"
+                             To="1"
+                             Duration="0:0:.3">
+                <DoubleAnimation.EasingFunction>
+                    <CircleEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+            <DoubleAnimation BeginTime="0:0:3.5"
+                             Storyboard.TargetName="AppNameText"
+                             Storyboard.TargetProperty="(TextBlock.OpacityMask).(LinearGradientBrush.GradientStops)[0].Offset"
+                             To="1"
+                             Duration="0:0:1">
+                <DoubleAnimation.EasingFunction>
+                    <CircleEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
+        </Storyboard>
+    </UserControl.Resources>
+    <UserControl.Triggers>
+        <EventTrigger RoutedEvent="Loaded">
+            <BeginStoryboard Storyboard="{StaticResource AppLogoAnimation}"/>
+        </EventTrigger>
+    </UserControl.Triggers>
     <Grid Background="{DynamicResource StartScreen.Background}">
         <Grid Background="{DynamicResource Gridlines}">
-            <StackPanel VerticalAlignment="Center"
+            <StackPanel x:Name="LogoPanel" VerticalAlignment="Center"
+                        Orientation="Horizontal"
+                        RenderTransformOrigin=".5, .5"
                         HorizontalAlignment="Center">
-                <TextBlock Text="This is a piece of text —— AAA"
-                           Margin="5"
-                           FontSize="30"
-                           Foreground="{DynamicResource App.Foreground2}"
-                           HorizontalAlignment="Center" />
-                <TextBlock Text="这是一段文字 —— 一二三"
-                           Margin="5"
-                           FontSize="30"
+                <StackPanel.RenderTransform>
+                    <TransformGroup>
+                        <TranslateTransform X="232" />
+                        <ScaleTransform ScaleX="2"
+                                        ScaleY="2" />
+                    </TransformGroup>
+                </StackPanel.RenderTransform>
+                <Image x:Name="AppLogoImage"
+                       Width="100"
+                       Height="100"
+                       Opacity="0"
+                       Source="pack://application:,,,/Assets/Images/logo150.png" />
+
+                <TextBlock x:Name="AppNameText" 
+                           Text="OTLog for Windows 10"
+                           FontSize="40"
+                           Margin="10, 0"
+                           RenderTransformOrigin=".5, .5"
                            Foreground="{DynamicResource App.Foreground}"
-                           HorizontalAlignment="Center" />
+                           VerticalAlignment="Center">
+                    <TextBlock.OpacityMask>
+                        <LinearGradientBrush StartPoint="0, 0"
+                                             EndPoint="1, 0">
+                            <GradientStop Color="Black" Offset="0"/>
+                            <GradientStop Color="Transparent" Offset="0"/>
+                        </LinearGradientBrush>
+                    </TextBlock.OpacityMask>
+                </TextBlock>
             </StackPanel>
             <Grid HorizontalAlignment="Center"
                   VerticalAlignment="Bottom"
