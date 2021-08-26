@@ -11,8 +11,7 @@ namespace OTLog.Home
         public void OnInitialized(IContainerProvider containerProvider)
         {
             containerProvider.Resolve<IRegionManager>()
-                             .RegisterViewWithRegion(RegionNames.MainRegion, typeof(HomePage))
-                             .RegisterViewWithRegion(RegionNames.MessageRegion, typeof(StartPage))
+                             .RegisterViewWithRegion(RegionNames.MainRegion, typeof(StartPage))
                              .RegisterViewWithRegion(RegionNames.HomeRegion, typeof(Overview));
         }
 

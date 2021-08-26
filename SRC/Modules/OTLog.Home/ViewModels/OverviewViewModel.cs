@@ -86,7 +86,7 @@ namespace OTLog.Home.ViewModels
                 new ObservableCollection<OTRecord>(
                     OTRecords.Where(r => r.BeginTime >= (BeginDate ?? DateTime.MinValue)  &&
                                          r.EndTime <= (EndDate?.AddDays(1) ?? DateTime.MaxValue) &&
-                                         (r.Remark ?? String.Empty).Contains(Remark ?? String.Empty))
+                                         (r.Remark ?? String.Empty).Contains(Remark?.Trim() ?? String.Empty))
                              .OrderByDescending(r => r.BeginTime));
             UpdateStatisticalInfo();
         }
