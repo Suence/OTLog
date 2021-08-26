@@ -89,6 +89,7 @@ namespace OTLog.Home.ViewModels
         private void ResetRecord()
         {
             Record = null;
+            _regionManager.Regions[RegionNames.ErrorRegion].RemoveAll();
         }
         public DelegateCommand ConfirmCommand { get; }
         private void Confirm()
@@ -109,6 +110,8 @@ namespace OTLog.Home.ViewModels
             {
                 (DateTime? beginTime, DateTime? endTime) = conflictRecord.CoincidenceInterval(newRecord);
                 string errorMessage = $"{beginTime.Value.Month} 月 {beginTime.Value.Day} 日 {beginTime:HH:mm:ss} - {endTime.Value.Month} 月 {endTime.Value.Day} 日 {endTime:HH:mm:ss} 已存在记录，添加失败。";
+                
+                _regionManager.Regions[RegionNames.ErrorRegion].RemoveAll();
                 _regionManager.RequestNavigate(
                     RegionNames.ErrorRegion,
                     ViewNames.ErrorTips,

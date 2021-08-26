@@ -4,6 +4,7 @@
              xmlns:prism="http://prismlibrary.com/"
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:suence="http://software.suence.com/"
+             xmlns:enums="clr-namespace:OTLog.Core.Enums;assembly=OTLog.Core"
              xmlns:modernWpf="http://schemas.modernwpf.com/2019"
              prism:ViewModelLocator.AutoWireViewModel="True">
     <UserControl.Resources>
@@ -35,8 +36,16 @@
         <suence:ColorToSolidColorBrushConverter x:Key="ColorToBrush"/>
     </UserControl.Resources>
     <i:Interaction.Triggers>
+        <i:DataTrigger  Binding="{Binding DialogResult}"
+                        Value="{x:Static enums:DialogResult.Cancelled}">
+            <i:ControlStoryboardAction Storyboard="{StaticResource HidenAnimation}" />
+        </i:DataTrigger>
+        <i:DataTrigger  Binding="{Binding DialogResult}"
+                        Value="{x:Static enums:DialogResult.Confirmed}">
+            <i:ControlStoryboardAction Storyboard="{StaticResource HidenAnimation}" />
+        </i:DataTrigger>
         <i:StoryboardCompletedTrigger Storyboard="{StaticResource HidenAnimation}">
-            <i:InvokeCommandAction Command="{Binding CancelCommand}" />
+            <i:InvokeCommandAction Command="{Binding FinishedCommand}" />
         </i:StoryboardCompletedTrigger>
     </i:Interaction.Triggers>
     <UserControl.Triggers>
@@ -187,26 +196,16 @@
                                 IsEnabled="{Binding CanEdit}"
                                 Foreground="{DynamicResource App.Foreground}"
                                 Style="{DynamicResource Win10ButtonStyle}"
-                                modernWpf:ControlHelper.CornerRadius="0">
-                            <Button.Triggers>
-                                <EventTrigger RoutedEvent="ButtonBase.Click">
-                                    <BeginStoryboard Storyboard="{StaticResource HidenAnimation}" />
-                                </EventTrigger>
-                            </Button.Triggers>
-                        </Button>
+                                modernWpf:ControlHelper.CornerRadius="0" />
+
                         <Button Content="取消"
                                 Padding="40, 7"
                                 Margin="5"
                                 FontSize="14"
+                                Command="{Binding CancelCommand}"
                                 Foreground="{DynamicResource App.Foreground}"
                                 Style="{DynamicResource Win10ButtonStyle}"
-                                modernWpf:ControlHelper.CornerRadius="0">
-                            <Button.Triggers>
-                                <EventTrigger RoutedEvent="ButtonBase.Click">
-                                    <BeginStoryboard Storyboard="{StaticResource HidenAnimation}" />
-                                </EventTrigger>
-                            </Button.Triggers>
-                        </Button>
+                                modernWpf:ControlHelper.CornerRadius="0" />
                     </StackPanel>
                 </Grid>
             </Border>

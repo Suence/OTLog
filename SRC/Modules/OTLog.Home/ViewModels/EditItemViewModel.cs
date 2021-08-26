@@ -1,11 +1,16 @@
 ﻿using OTLog.Core.Constants;
+using OTLog.Core.Enums;
 using OTLog.Core.Events;
+using OTLog.Core.Extensions;
 using OTLog.Core.Models;
+using OTLog.Core.Utils;
 using Prism.Commands;
 using Prism.Events;
 using Prism.Mvvm;
 using Prism.Regions;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace OTLog.Home.ViewModels
 {
@@ -18,8 +23,14 @@ namespace OTLog.Home.ViewModels
         private DateTime? _endTime;
         private string _remark;
         private DateTime? _beginDate;
-        #endregion 
+        private DialogResult _dialogResult;
+        #endregion
 
+        public DialogResult DialogResult
+        {
+            get => _dialogResult;
+            set => SetProperty(ref _dialogResult, value);
+        }
 
         public Guid Id { get; set; }
 
@@ -67,27 +78,56 @@ namespace OTLog.Home.ViewModels
                ? EndTime.Value.AddDays(1) - BeginTime
                : EndTime - BeginTime;
 
+        public OTRecord NewRecord => new()
+        {
+            BeginTime = BeginDate.Value + BeginTime.Value.TimeOfDay,
+            EndTime = EndTime?.TimeOfDay < BeginTime?.TimeOfDay
+                                      ? BeginDate.Value.AddDays(1) + EndTime.Value.TimeOfDay
+                                      : BeginDate.Value + EndTime.Value.TimeOfDay,
+            Id = Id,
+            Remark = Remark
+        };
+
         public bool CanEdit => BeginDate != null && BeginTime != null && EndTime != null;
         public bool IsNextDay => EndTime?.TimeOfDay < BeginTime?.TimeOfDay;
 
         public DelegateCommand CancelCommand { get; }
-        private void Cancel()
-        {
-            _regionManager.Regions[RegionNames.MessageRegion].RemoveAll();
-        }
+        private void Cancel() => DialogResult = DialogResult.Cancelled;
 
         public DelegateCommand ConfirmCommand { get; }
         private void Confirm()
         {
-            _eventAggregator.GetEvent<OTRecordChangedEvent>().Publish(new OTRecord
+            List<OTRecord> records = AppFileHelper.GetOTRecords();
+            OTRecord conflictRecord = records.FirstOrDefault(r => r.CheckIsCoincidence(NewRecord));
+            if (conflictRecord != null)
             {
-                BeginTime = BeginDate.Value + BeginTime.Value.TimeOfDay,
-                EndTime = EndTime?.TimeOfDay < BeginTime?.TimeOfDay
-                          ? BeginDate.Value.AddDays(1) + EndTime.Value.TimeOfDay
-                          : BeginDate.Value + EndTime.Value.TimeOfDay,
-                Id = Id,
-                Remark = Remark
-            });
+                (DateTime? beginTime, DateTime? endTime) = conflictRecord.CoincidenceInterval(NewRecord);
+                string errorMessage = $"{beginTime.Value.Month} 月 {beginTime.Value.Day} 日 {beginTime:HH:mm:ss} - {endTime.Value.Month} 月 {endTime.Value.Day} 日 {endTime:HH:mm:ss} 已存在记录，添加失败。";
+
+                _regionManager.Regions[RegionNames.ErrorRegion].RemoveAll();
+                _regionManager.RequestNavigate(
+                    RegionNames.ErrorRegion,
+                    ViewNames.ErrorTips,
+                    new NavigationParameters
+                    {
+                        { "Message", errorMessage }
+                    });
+                return;
+            }
+
+            DialogResult = DialogResult.Confirmed;
+        }
+
+        public DelegateCommand FinishedCommand { get; }
+        private void Finished()
+        {
+            if (DialogResult == DialogResult.Confirmed)
+            {
+                _eventAggregator.GetEvent<OTRecordChangedEvent>().Publish(NewRecord);
+            }
+
+            _regionManager.Regions[RegionNames.ErrorRegion].RemoveAll();
+            _regionManager.Regions[RegionNames.MessageRegion].RemoveAll();
         }
 
         public EditItemViewModel(IRegionManager regionManager, IEventAggregator eventAggregator)
@@ -97,6 +137,7 @@ namespace OTLog.Home.ViewModels
 
             ConfirmCommand = new DelegateCommand(Confirm);
             CancelCommand = new DelegateCommand(Cancel);
+            FinishedCommand = new DelegateCommand(Finished);
         }
 
         public bool KeepAlive => false;
