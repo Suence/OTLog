@@ -9,6 +9,8 @@
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:suence="http://software.suence.com/"
              xmlns:modernWpf="http://schemas.modernwpf.com/2019"
+             xmlns:viewmodels="clr-namespace:OTLog.Home.ViewModels"
+             d:DataContext="{d:DesignInstance Type=viewmodels:NoticeViewModel}"
              x:Class="OTLog.Home.Views.Notice"
              prism:ViewModelLocator.AutoWireViewModel="True"
              d:DesignWidth="660"
@@ -121,7 +123,8 @@
                                    FontSize="18"
                                    Foreground="{DynamicResource App.Foreground}">
                             <Run Text="{Binding Record.BeginTime, StringFormat={}{0:M月dd日}}"
-                                 Foreground="{Binding Source={x:Static modernWpf:ThemeManager.Current}, Path=AccentColor, Converter={StaticResource ColorToBrush}}"
+                                 Foreground="{suence:BindingWithDesignSupport {Binding Source={x:Static modernWpf:ThemeManager.Current}, Path=AccentColor, Converter={StaticResource ColorToBrush}}}"
+                                 d:Foreground="DarkMagenta"
                                  FontWeight="SemiBold" />
                              <Run Text="这一天，你好像工作到很晚才回家。"/>
                         </TextBlock>
@@ -159,7 +162,8 @@
                                                             modernWpf:ControlHelper.CornerRadius="0"
                                                             Culture="de-DE"
                                                             HorizontalAlignment="Left" />
-                                <Label Background="{Binding Source={x:Static modernWpf:ThemeManager.Current}, Path=AccentColor, Converter={StaticResource ColorToBrush}}"
+                                <Label Background="{suence:BindingWithDesignSupport {Binding Source={x:Static modernWpf:ThemeManager.Current}, Path=AccentColor, Converter={StaticResource ColorToBrush}}}"
+                                       d:Background="DarkMagenta"
                                        Content="第二天"
                                        Margin="10, 0"
                                        Foreground="{DynamicResource App.Foreground3}"
@@ -183,9 +187,9 @@
                                        Foreground="{DynamicResource App.Foreground}">
                                 <TextBlock.Text>
                                     <MultiBinding StringFormat="{}{0:0小时;;#} {1:0分钟;;''} {2:0秒;;''}">
-                                        <Binding Path="TotalTime.Hours" />
-                                        <Binding Path="TotalTime.Minutes" />
-                                        <Binding Path="TotalTime.Seconds" />
+                                        <Binding Path="TotalTime.Value.Hours" />
+                                        <Binding Path="TotalTime.Value.Minutes" />
+                                        <Binding Path="TotalTime.Value.Seconds" />
                                     </MultiBinding>
                                 </TextBlock.Text>
                             </TextBlock>

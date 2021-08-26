@@ -21,10 +21,10 @@
     <SolidColorBrush x:Key="Mask.Background"
                      Color="#90000000" />
     <ImageBrush x:Key="Notice.Cover"
-                ImageSource="pack://application:,,,/Assets/Images/noticeBg2.png" />
+                ImageSource="/OTLog;component/Assets/Images/noticeBg2.png" />
     <SolidColorBrush x:Key="Notice.Cover.Mask"
                      Color="#90000000" />
-
+    <Color x:Key="Notice.Shadow">#FF333333</Color>
     <SolidColorBrush x:Key="AppTitleButton.Pressed.Background"
                      Color="#60000000" />
 

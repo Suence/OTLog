@@ -7,6 +7,8 @@
              xmlns:modernWpf="http://schemas.modernwpf.com/2019"
              x:Class="OTLog.Home.Views.Overview"
              xmlns:suence="http://software.suence.com/"
+             xmlns:viewmodels="clr-namespace:OTLog.Home.ViewModels"
+             d:DataContext="{d:DesignInstance Type=viewmodels:OverviewViewModel}"
              prism:ViewModelLocator.AutoWireViewModel="True"
              d:DesignWidth="1030"
              d:DesignHeight="590">
@@ -408,9 +410,9 @@
                                                        Foreground="{DynamicResource App.Foreground}">
                                                 <TextBlock.Text>
                                                     <MultiBinding StringFormat="{}{0:0小时;;#} {1:0分钟;;''} {2:0秒;;''}">
-                                                        <Binding Path="OTTime.Hours" />
-                                                        <Binding Path="OTTime.Minutes" />
-                                                        <Binding Path="OTTime.Seconds" />
+                                                        <Binding Path="OTTime.Value.Hours" />
+                                                        <Binding Path="OTTime.Value.Minutes" />
+                                                        <Binding Path="OTTime.Value.Seconds" />
                                                     </MultiBinding>
                                                 </TextBlock.Text>
                                             </TextBlock>

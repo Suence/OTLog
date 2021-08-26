@@ -5,6 +5,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:viewmodels="clr-namespace:OTLog.Home.ViewModels"
+             d:DataContext="{d:DesignInstance Type=viewmodels:ErrorTipsViewModel}"
              x:Class="OTLog.Home.Views.ErrorTips"
              Background="{DynamicResource Error.Background}"
              prism:ViewModelLocator.AutoWireViewModel="True"

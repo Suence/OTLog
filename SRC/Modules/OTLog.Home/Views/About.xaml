@@ -6,6 +6,7 @@
              mc:Ignorable="d"
              xmlns:suence="http://software.suence.com/"
              xmlns:modernWpf="http://schemas.modernwpf.com/2019"
+             xmlns:viewmodels="clr-namespace:OTLog.Home.ViewModels"
              x:Class="OTLog.Home.Views.About"
              prism:ViewModelLocator.AutoWireViewModel="True"
              d:DesignWidth="940"
@@ -82,7 +83,8 @@
                        Margin="0, 10"
                        FontWeight="SemiBold">
                 <Hyperlink NavigateUri="https://www.suence.net/otlog"
-                           Foreground="{Binding Source={x:Static modernWpf:ThemeManager.Current}, Path=AccentColor, Converter={StaticResource ColorToBrush}}"
+                           Foreground="{suence:BindingWithDesignSupport {Binding Source={x:Static modernWpf:ThemeManager.Current}, Path=AccentColor, Converter={StaticResource ColorToBrush}}}"
+                           d:Foreground="DarkMagenta"
                            Click="GoToTheOfficialWebsite">https://www.suence.net/otlog</Hyperlink>
             </TextBlock>
         </StackPanel>
@@ -94,7 +96,8 @@
                        Margin="0, 10"
                        FontWeight="SemiBold">
                 <Hyperlink NavigateUri="https://github.com/Suence/OTLog"
-                           Foreground="{Binding Source={x:Static modernWpf:ThemeManager.Current}, Path=AccentColor, Converter={StaticResource ColorToBrush}}"
+                           Foreground="{suence:BindingWithDesignSupport {Binding Source={x:Static modernWpf:ThemeManager.Current}, Path=AccentColor, Converter={StaticResource ColorToBrush}}}"
+                           d:Foreground="DarkMagenta"
                            Click="GoToTheOfficialWebsite">https://github.com/Suence/OTLog</Hyperlink>
             </TextBlock>
         </StackPanel>
@@ -111,7 +114,7 @@
                         Padding="0"
                         Click="ShowWeChatQR"
                         BorderThickness="0">
-                    <Image Source="pack://application:,,,/Assets/Images/wechat.png"
+                    <Image Source="pack://application:,,,/OTLog;component/Assets/Images/wechat.png"
                            Width="50"
                            Height="50" />
                 </Button>
@@ -127,7 +130,7 @@
                             Margin="20">
                         <Image Width="200"
                                Height="200"
-                               Source="pack://application:,,,/Assets/Images/wechatQR.png" />
+                               Source="pack://application:,,,/OTLog;component/Assets/Images/wechatQR.png" />
                         <Border.Effect>
                             <DropShadowEffect Color="{Binding Source={x:Static modernWpf:ThemeManager.Current}, Path=AccentColor}" 
                                               BlurRadius="20" 
@@ -141,7 +144,7 @@
                         Padding="0"
                         Click="SendEmail"
                         BorderThickness="0">
-                    <Image Source="pack://application:,,,/Assets/Images/outlook.png"
+                    <Image Source="pack://application:,,,/OTLog;component/Assets/Images/outlook.png"
                            Width="50"
                            Height="50" />
                 </Button>
@@ -151,7 +154,7 @@
                         Padding="0"
                         Click="GoToGitHub"
                         BorderThickness="0">
-                    <Image Source="pack://application:,,,/Assets/Images/github.png"
+                    <Image Source="pack://application:,,,/OTLog;component/Assets/Images/github.png"
                            Width="49"
                            Height="49" />
                 </Button>
