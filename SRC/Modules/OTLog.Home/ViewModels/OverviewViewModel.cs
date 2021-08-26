@@ -137,24 +137,9 @@ namespace OTLog.Home.ViewModels
 
         private void NewOTRecord(OTRecord newRecord)
         {
-            OTRecord conflictRecord = OTRecords.FirstOrDefault(r => r.CheckIsCoincidence(newRecord));
-            if (conflictRecord != null)
-            {
-                (DateTime? beginTime, DateTime? endTime) = conflictRecord.CoincidenceInterval(newRecord);
-                string errorMessage = $"{beginTime.Value.Month} 月 {beginTime.Value.Day} 日 {beginTime:HH:mm:ss} - {endTime.Value.Month} 月 {endTime.Value.Day} 日 {endTime:HH:mm:ss} 已存在记录，添加失败。";
-                _regionManager.RequestNavigate(
-                    RegionNames.ErrorRegion,
-                    ViewNames.ErrorTips,
-                    new NavigationParameters
-                    {
-                        { "Message", errorMessage }
-                    });
-                return;
-            }
-
             OTRecords.Add(newRecord);
-
             SearchResult.Add(newRecord);
+
             SearchResult = new ObservableCollection<OTRecord>(SearchResult.OrderByDescending(r => r.BeginTime));
             UpdateStatisticalInfo();
             AppFileHelper.SaveOTRecords(OTRecords.ToList());
