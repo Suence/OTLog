@@ -1,11 +1,16 @@
 ﻿<UserControl x:Class="OTLog.Home.Views.NewItem"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:prism="http://prismlibrary.com/"  
+             xmlns:prism="http://prismlibrary.com/"
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:suence="http://software.suence.com/"
              xmlns:enums="clr-namespace:OTLog.Core.Enums;assembly=OTLog.Core"
              xmlns:modernWpf="http://schemas.modernwpf.com/2019"
+             xmlns:viewmodels="clr-namespace:OTLog.Home.ViewModels"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance Type=viewmodels:NewItemViewModel}"
              prism:ViewModelLocator.AutoWireViewModel="True">
     <UserControl.Resources>
         <Storyboard x:Key="HidenAnimation">
@@ -146,7 +151,8 @@
                                                         SelectedDateTime="{Binding EndTime}" modernWpf:ControlHelper.CornerRadius="0"
                                                             Culture="de-DE"
                                                             HorizontalAlignment="Left" />
-                                <Label Background="{Binding Source={x:Static modernWpf:ThemeManager.Current}, Path=AccentColor, Converter={StaticResource ColorToBrush}}"
+                                <Label Background="{suence:BindingWithDesignSupport {Binding Source={x:Static modernWpf:ThemeManager.Current}, Path=AccentColor, Converter={StaticResource ColorToBrush}}}"
+                                       d:Background="DarkMagenta"
                                        Content="第二天"
                                        Margin="10, 0"
                                        Foreground="{DynamicResource App.Foreground3}"
@@ -168,9 +174,9 @@
                                        Foreground="{DynamicResource App.Foreground}">
                                 <TextBlock.Text>
                                     <MultiBinding StringFormat="{}{0:0小时;;#} {1:0分钟;;''} {2:0秒;;''}">
-                                        <Binding Path="TotalTime.Hours" />
-                                        <Binding Path="TotalTime.Minutes" />
-                                        <Binding Path="TotalTime.Seconds" />
+                                        <Binding Path="TotalTime.Value.Hours" />
+                                        <Binding Path="TotalTime.Value.Minutes" />
+                                        <Binding Path="TotalTime.Value.Seconds" />
                                     </MultiBinding>
                                 </TextBlock.Text>
                             </TextBlock>

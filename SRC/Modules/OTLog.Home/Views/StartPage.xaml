@@ -6,6 +6,8 @@
              mc:Ignorable="d"
              xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:modernWpf="http://schemas.modernwpf.com/2019"
+             xmlns:viewmodels="clr-namespace:OTLog.Home.ViewModels"
+             d:DataContext="{d:DesignInstance Type=viewmodels:StartPageViewModel}"
              x:Class="OTLog.Home.Views.StartPage"
              prism:ViewModelLocator.AutoWireViewModel="True"
              d:DesignWidth="750"

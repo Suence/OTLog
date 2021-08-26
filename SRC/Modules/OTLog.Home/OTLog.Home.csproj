@@ -8,9 +8,17 @@
     <PackageReference Include="ModernWpfUI" Version="0.9.4" />
     <PackageReference Include="ModernWpfUI.MahApps" Version="0.9.4" />
     <PackageReference Include="Prism.Wpf" Version="8.1.97" />
+    
+    <Page Update="Properties\DesignTimeResources.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <ContainsDesignTimeResources>true</ContainsDesignTimeResources>
+    </Page>
+  
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\OTLog.Core\OTLog.Core.csproj" />
+    <ProjectReference Include="..\..\OTLog.Themes\OTLog.Themes.csproj" />
     <ProjectReference Include="..\..\OTLog.UI.Core\OTLog.UI.Core.csproj" />
   </ItemGroup>
 </Project>

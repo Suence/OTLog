@@ -10,6 +10,8 @@
              xmlns:suence="http://software.suence.com/"
              xmlns:modernWpf="http://schemas.modernwpf.com/2019"
              xmlns:system="clr-namespace:System;assembly=mscorlib"
+             xmlns:viewmodels="clr-namespace:OTLog.Home.ViewModels"
+             d:DataContext="{d:DesignInstance Type=viewmodels:SettingsViewModel}"
              x:Class="OTLog.Home.Views.Settings"
              prism:ViewModelLocator.AutoWireViewModel="True"
              d:DesignWidth="490"
