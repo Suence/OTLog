@@ -186,10 +186,10 @@
                             <TextBlock Margin="0, 5"
                                        Foreground="{DynamicResource App.Foreground}">
                                 <TextBlock.Text>
-                                    <MultiBinding StringFormat="{}{0:0小时;;#} {1:0分钟;;''} {2:0秒;;''}">
-                                        <Binding Path="TotalTime.Value.Hours" />
-                                        <Binding Path="TotalTime.Value.Minutes" />
-                                        <Binding Path="TotalTime.Value.Seconds" />
+                                    <MultiBinding StringFormat="{}{0:0小时;;#} {1:0分钟;;#} {2:0秒;;#}">
+                                        <Binding Path="TotalTime.Hours" />
+                                        <Binding Path="TotalTime.Minutes" />
+                                        <Binding Path="TotalTime.Seconds" />
                                     </MultiBinding>
                                 </TextBlock.Text>
                             </TextBlock>

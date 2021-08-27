@@ -121,7 +121,7 @@ namespace OTLog.Home.ViewModels
         {
             if (DialogResult == DialogResult.Confirmed)
             {
-                _eventAggregator.GetEvent<OTRecordChangedEvent>().Publish(NewRecord);
+                _eventAggregator.GetEvent<NewOTRecordEvent>().Publish(NewRecord);
             }
 
             _regionManager.Regions[RegionNames.ErrorRegion].RemoveAll();
