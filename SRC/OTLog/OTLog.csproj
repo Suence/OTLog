@@ -69,6 +69,11 @@
     <Resource Include="Assets\Images\用户.png" />
   </ItemGroup>
   <ItemGroup>
+    <Page Update="Properties\DesignTimeResources.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <ContainsDesignTimeResources>true</ContainsDesignTimeResources>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Views\NotifyIcon.xaml">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Page>

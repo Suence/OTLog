@@ -58,7 +58,7 @@ namespace OTLog.Home.ViewModels
         public DelegateCommand<Theme?> ChangeThemeCommand { get; }
         private void ChangeTheme(Theme? theme)
         {
-            _eventAggregator.GetEvent<ThemeChangedEvent>().Publish((Theme)theme);
+            _eventAggregator.GetEvent<ThemeChangingEvent>().Publish((Theme)theme);
         }
 
         public SettingsViewModel(IEventAggregator eventAggregator)

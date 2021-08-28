@@ -6,4 +6,8 @@
     <Platforms>AnyCPU;x64</Platforms>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Resource Include="Shaders\PS\Transition_RippleEffect.ps" />
+  </ItemGroup>
+
 </Project>
