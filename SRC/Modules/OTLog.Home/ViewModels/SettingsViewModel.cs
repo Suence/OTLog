@@ -78,7 +78,7 @@ namespace OTLog.Home.ViewModels
 
         public void OnNavigatedFrom(NavigationContext navigationContext)
         {
-            AppFileHelper.SaveAppConfig(GlobalObjectHolder.Config);
+            AppFileHelper.SaveAppConfigAsync(GlobalObjectHolder.Config);
 
             if (!GlobalObjectHolder.Config.OpenAtBoot)
             {
@@ -88,7 +88,7 @@ namespace OTLog.Home.ViewModels
 
             if (!File.Exists(AppFileHelper.LinkFileFullPath))
             {
-                AppFileHelper.CreateShortcut(AppFileHelper.LinkFileFullPath, "--nowindow");
+                AppFileHelper.CreateShortcutAsync(AppFileHelper.LinkFileFullPath, "--nowindow");
             }
         }
 

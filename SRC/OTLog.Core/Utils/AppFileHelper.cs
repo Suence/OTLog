@@ -57,6 +57,9 @@ namespace OTLog.Core.Utils
             shortcut.Save();
         }
 
+        public static async void CreateShortcutAsync(string lnkFilePath, string args = "")
+            => await Task.Run(() => CreateShortcut(lnkFilePath, args));
+
         public static List<OTRecordTodo> GetOTRecordToDos()
         {
             string data = File.ReadAllText(OTRecordTodoFileFullPath);
@@ -67,6 +70,9 @@ namespace OTLog.Core.Utils
 
             return JsonConvert.DeserializeObject<List<OTRecordTodo>>(data);
         }
+
+        public static Task<List<OTRecordTodo>> GetOTRecordToDosAsync()
+            => Task.Run(() => GetOTRecordToDos());
 
         /// <summary>
         /// 验证并修复应用程序文件
@@ -93,13 +99,18 @@ namespace OTLog.Core.Utils
             File.WriteAllText(OTRecordTodoFileFullPath, data);
         }
 
-
+        public static async void SaveRecordToDoAsync(List<OTRecordTodo> oTRecordTodos)
+            => await Task.Run(() => SaveRecordToDo(oTRecordTodos));
 
         public static void SaveOTRecords(List<OTRecord> records)
         {
             string data = JsonConvert.SerializeObject(records);
             File.WriteAllText(DataFileFullPath, data);
         }
+
+        public static async void SaveOTRecordsAsync(List<OTRecord> records)
+            => await Task.Run(() => SaveOTRecords(records));
+
 
         public static List<OTRecord> GetOTRecords()
         {
@@ -112,16 +123,26 @@ namespace OTLog.Core.Utils
             return JsonConvert.DeserializeObject<List<OTRecord>>(data);
         }
 
+        public static Task<List<OTRecord>> GetOTRecordsAsync()
+            => Task.Run(() => GetOTRecords());
+
+
         public static Config LoadAppConfig()
         {
             string configString = File.ReadAllText(SettingsFileFullPath);
             return JsonConvert.DeserializeObject<Config>(configString);
         }
 
+        public static Task<Config> LoadAppConfigAsync()
+            => Task.Run(() => LoadAppConfig());
+
         public static void SaveAppConfig(Config config)
         {
             string configString = JsonConvert.SerializeObject(config);
             File.WriteAllText(SettingsFileFullPath, configString);
         }
+
+        public static async void SaveAppConfigAsync(Config config)
+            => await Task.Run(() => SaveAppConfig(config));
     }
 }
