@@ -152,9 +152,7 @@ namespace OTLog.Home.ViewModels
             targetRecord.EndTime = record.EndTime;
             targetRecord.Remark = record.Remark;
 
-            SearchResult.Remove(targetRecord);
-            var previousRecord = SearchResult.LastOrDefault(r => r.BeginTime > record.BeginTime);
-            SearchResult.Insert(previousRecord == null ? 0 : SearchResult.IndexOf(previousRecord), record);
+            SearchResult = new ObservableCollection<OTRecord>(SearchResult.OrderByDescending(r => r.BeginTime));
 
             UpdateStatisticalInfo();
             AppFileHelper.SaveOTRecords(OTRecords.ToList());

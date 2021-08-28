@@ -98,7 +98,7 @@ namespace OTLog.Home.ViewModels
         private void Confirm()
         {
             List<OTRecord> records = AppFileHelper.GetOTRecords();
-            OTRecord conflictRecord = records.FirstOrDefault(r => r.CheckIsCoincidence(NewRecord));
+            OTRecord conflictRecord = records.FirstOrDefault(r => r.Id != NewRecord.Id && r.CheckIsCoincidence(NewRecord));
             if (conflictRecord != null)
             {
                 (DateTime? beginTime, DateTime? endTime) = conflictRecord.CoincidenceInterval(NewRecord);
