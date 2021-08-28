@@ -115,7 +115,7 @@
                     <StackPanel Margin="20, 20, 20, 0" HorizontalAlignment="Left"
                                 VerticalAlignment="Center">
                         
-                    <TextBlock Text="{Binding Source={x:Static gb:GlobalObjectHolder.Config}, Path=UserName}"
+                    <TextBlock Text="{Binding Source={x:Static gb:GlobalObjectHolder.Config}, Path=Employee.Name}"
                                FontWeight="SemiBold"
                                Foreground="{DynamicResource App.Foreground}"
                                FontSize="25" />
