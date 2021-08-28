@@ -20,6 +20,7 @@
 
     <SolidColorBrush x:Key="Mask.Background"
                      Color="#90000000" />
+    <Color x:Key="OTRecord.Mask">#20FFFFFF</Color>
     <ImageBrush x:Key="Notice.Cover"
                 ImageSource="/OTLog;component/Assets/Images/noticeBg2.png" />
     <SolidColorBrush x:Key="Notice.Cover.Mask"

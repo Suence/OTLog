@@ -12,7 +12,6 @@ namespace OTLog.Controls.Decorators
 {
     public class IlluminationDecorator : Decorator
     {
-        public Color CenterColor { get; set; }
         protected override Size MeasureOverride(Size constraint)
         {
             if (this.Child is null)
@@ -22,6 +21,8 @@ namespace OTLog.Controls.Decorators
             Child.Measure(constraint);
             return Child.DesiredSize;
         }
+        public static readonly DependencyProperty RadiusXProperty;
+        public static readonly DependencyProperty RadiusYProperty;
         public static readonly DependencyProperty BackgroundColorProperty;
         static IlluminationDecorator()
         {
@@ -35,12 +36,46 @@ namespace OTLog.Controls.Decorators
                         DefaultValue = Colors.Transparent,
                         AffectsRender = true
                     });
+
+            RadiusXProperty =
+                DependencyProperty.Register(
+                    nameof(RadiusX),
+                    typeof(double),
+                    typeof(IlluminationDecorator),
+                    new FrameworkPropertyMetadata
+                    {
+                        DefaultValue = 1D,
+                        AffectsRender = true
+                    });
+            RadiusYProperty =
+                DependencyProperty.Register(
+                    nameof(RadiusY),
+                    typeof(double),
+                    typeof(IlluminationDecorator),
+                    new FrameworkPropertyMetadata
+                    {
+                        DefaultValue = 4D,
+                        AffectsRender = true
+                    });
         }
         public Color BackgroundColor
         {
             get => (Color)GetValue(BackgroundColorProperty);
             set => SetValue(BackgroundColorProperty, value);
         }
+
+        public double RadiusX
+        {
+            get => (double)GetValue(RadiusXProperty);
+            set => SetValue(RadiusXProperty, value);
+        }
+
+        public double RadiusY
+        {
+            get => (double)GetValue(RadiusYProperty);
+            set => SetValue(RadiusYProperty, value);
+        }
+
         protected override void OnMouseMove(MouseEventArgs e)
         {
             base.OnMouseMove(e);
@@ -68,7 +103,7 @@ namespace OTLog.Controls.Decorators
         {
             if (!IsMouseOver)
             {
-                return new SolidColorBrush(BackgroundColor);
+                return new SolidColorBrush(Colors.Transparent);
             }
 
             var brush = new RadialGradientBrush
@@ -78,7 +113,7 @@ namespace OTLog.Controls.Decorators
                     new GradientStop
                     {
                         //Color = Color.FromArgb(0x30, 0x00, 0x00, 0x00),
-                        Color = CenterColor,
+                        Color = BackgroundColor,
                         Offset = 0
                     },
                     new GradientStop
@@ -94,8 +129,8 @@ namespace OTLog.Controls.Decorators
                 absoluteGradientOrigin.Y / ActualHeight);
             brush.GradientOrigin = relativeGradientOrigin;
             brush.Center = relativeGradientOrigin;
-            brush.RadiusX = 1;
-            brush.RadiusY = 4;
+            brush.RadiusX = RadiusX;
+            brush.RadiusY = RadiusY;
             return brush;
         }
     }

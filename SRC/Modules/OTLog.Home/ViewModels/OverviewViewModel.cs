@@ -160,7 +160,7 @@ namespace OTLog.Home.ViewModels
             AppFileHelper.SaveOTRecords(OTRecords.ToList());
         }
 
-        private void Load()
+        private async void Load()
         {
             var data = AppFileHelper.GetOTRecords();
             OTRecords = new ObservableCollection<OTRecord>(data);

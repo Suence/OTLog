@@ -11,17 +11,5 @@ namespace OTLog.Home.Views
         {
             InitializeComponent();
         }
-
-        private void DeleteButton_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-            Button button = sender as Button;
-            DeleteRecordPopup.DataContext = button.DataContext;
-            DeleteRecordPopup.IsOpen = true;
-        }
-
-        private void HideDeleteRecordPopup(object sender, System.Windows.RoutedEventArgs e)
-        {
-            DeleteRecordPopup.IsOpen = false;
-        }
     }
 }

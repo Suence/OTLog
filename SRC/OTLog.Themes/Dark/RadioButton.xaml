@@ -14,7 +14,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type RadioButton}">
-                    <element:IlluminationDecorator CenterColor="#30FFFFFF">
+                    <element:IlluminationDecorator BackgroundColor="#30FFFFFF">
                         <Grid x:Name="grid"
                               RenderTransformOrigin="0.5, 0.5"
                               Background="{TemplateBinding Background}"
