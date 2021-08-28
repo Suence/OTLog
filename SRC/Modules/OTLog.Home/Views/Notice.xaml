@@ -35,6 +35,7 @@
             </DoubleAnimation>
         </Storyboard>
         <suence:ColorToSolidColorBrushConverter x:Key="ColorToBrush"/>
+        <suence:OTTimeTextConverter x:Key="OTTimeText"/>
     </UserControl.Resources>
     <UserControl.Triggers>
         <EventTrigger RoutedEvent="FrameworkElement.Loaded">
@@ -184,15 +185,8 @@
                                        Margin="0, 5"
                                        Foreground="{DynamicResource App.Foreground2}" />
                             <TextBlock Margin="0, 5"
-                                       Foreground="{DynamicResource App.Foreground}">
-                                <TextBlock.Text>
-                                    <MultiBinding StringFormat="{}{0:0小时;;#} {1:0分钟;;#} {2:0秒;;#}">
-                                        <Binding Path="TotalTime.Hours" />
-                                        <Binding Path="TotalTime.Minutes" />
-                                        <Binding Path="TotalTime.Seconds" />
-                                    </MultiBinding>
-                                </TextBlock.Text>
-                            </TextBlock>
+                                       Text="{Binding TotalTime, Converter={StaticResource OTTimeText}}"
+                                       Foreground="{DynamicResource App.Foreground}" />
                         </StackPanel>
                         <StackPanel Margin="0, 5">
                             <TextBlock Text="备注"

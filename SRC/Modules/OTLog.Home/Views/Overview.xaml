@@ -19,6 +19,7 @@
     <UserControl.Resources>
         <suence:OTSeverityBrushConverter x:Key="OTSeverityBrush" />
         <suence:OTSeverityColorConverter x:Key="OTSeverityColor" />
+        <suence:OTTimeTextConverter x:Key="OTTimeText" />
         <suence:BindingProxy x:Key="BindingProxy"
                              Data="{Binding}" />
         <suence:IsNextDayToVisibilityConverter x:Key="IsNextDay" />
@@ -359,15 +360,8 @@
                                                                Margin="12, 5, 5, 5"
                                                                Foreground="{DynamicResource App.Foreground2}" />
                                                     <TextBlock Margin="5"
-                                                               Foreground="{DynamicResource App.Foreground}">
-                                                        <TextBlock.Text>
-                                                            <MultiBinding StringFormat="{}{0:0小时;;#} {1:0分钟;;''} {2:0秒;;''}">
-                                                                <Binding Path="OTTime.Value.Hours" />
-                                                                <Binding Path="OTTime.Value.Minutes" />
-                                                                <Binding Path="OTTime.Value.Seconds" />
-                                                            </MultiBinding>
-                                                        </TextBlock.Text>
-                                                    </TextBlock>
+                                                               Text="{Binding OTTime, Converter={StaticResource OTTimeText}}"
+                                                               Foreground="{DynamicResource App.Foreground}" />
                                                 </StackPanel>
                                                 <StackPanel Grid.Row="4">
                                                     <TextBlock Margin="12, 5, 12, 10"
