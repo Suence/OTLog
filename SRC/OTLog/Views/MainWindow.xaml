@@ -24,9 +24,44 @@
         Height="800"
         Width="1200"
         mc:Ignorable="d">
+    <Window.Resources>
+        <Storyboard x:Key="ShowMask">
+            <DoubleAnimation Storyboard.TargetName="AppContainer"
+                             Storyboard.TargetProperty="(Grid.Effect).Progress"
+                             Duration="0:0:.5"
+                             To="0" />
+            <DoubleAnimation BeginTime="0:0:.5" Storyboard.TargetName="AppContainer"
+                             Storyboard.TargetProperty="(Grid.Effect).Progress"
+                             Duration="0:0:.5"
+                             From="0"
+                             To="0"></DoubleAnimation>
+        </Storyboard>
+        <Storyboard x:Key="HideMask">
+            <DoubleAnimation Storyboard.TargetName="AppContainer"
+                             Storyboard.TargetProperty="(Grid.Effect).Progress"
+                             Duration="0:0:.5"
+                             To="100" />
+        </Storyboard>
+    </Window.Resources>
     <i:Interaction.Behaviors>
         <suence:ClearFocusOnClickBehavior />
     </i:Interaction.Behaviors>
+    <i:Interaction.Triggers>
+        <i:DataTrigger Binding="{Binding TaskProgress}"
+                       Value="InProgress">
+            <i:ControlStoryboardAction Storyboard="{StaticResource ShowMask}"/>
+        </i:DataTrigger>
+        <i:DataTrigger Binding="{Binding TaskProgress}"
+                       Value="Finished">
+            <i:ControlStoryboardAction Storyboard="{StaticResource HideMask}"/>
+        </i:DataTrigger>
+        <i:StoryboardCompletedTrigger Storyboard="{StaticResource ShowMask}">
+            <i:InvokeCommandAction Command="{Binding ChangeThemeCommand}"/>
+        </i:StoryboardCompletedTrigger>
+        <i:StoryboardCompletedTrigger Storyboard="{StaticResource HideMask}">
+            <i:InvokeCommandAction Command="{Binding ResetTaskStatusCommand}"/>
+        </i:StoryboardCompletedTrigger>
+    </i:Interaction.Triggers>
     <Window.InputBindings>
         <KeyBinding Key="Space"
                     Modifiers="Alt"
@@ -38,6 +73,14 @@
                       GlassFrameThickness="1" />
     </WindowChrome.WindowChrome>
     <Grid x:Name="AppContainer">
+        <Grid.Effect>
+            <suence:Transition_RippleEffect Progress="100">
+                <suence:Transition_RippleEffect.Texture2>
+                    <VisualBrush Visual="{Binding ElementName=ShaderBackground}"/>
+                </suence:Transition_RippleEffect.Texture2>
+            </suence:Transition_RippleEffect>
+        </Grid.Effect>
+        <Grid x:Name="ShaderBackground" Background="{DynamicResource Shader.Brush}"/>
         <Grid x:Name="HomeContainer"
               Background="Transparent">
             <Grid.RowDefinitions>
@@ -48,14 +91,12 @@
             <!-- 内容区域 -->
             <ContentControl Grid.Row="0"
                             Grid.RowSpan="2"
-                            Foreground="{DynamicResource SecondryText.Foreground}"
                             prism:RegionManager.RegionName="{x:Static constants:RegionNames.MainRegion}" />
 
             
             <!-- 提示消息区域 -->
             <ContentControl Grid.Row="0"
                             Grid.RowSpan="2"
-                            Foreground="{DynamicResource SecondryText.Foreground}"
                             prism:RegionManager.RegionName="{x:Static constants:RegionNames.MessageRegion}" />
             
             <!--#region 错误消息区域 -->
