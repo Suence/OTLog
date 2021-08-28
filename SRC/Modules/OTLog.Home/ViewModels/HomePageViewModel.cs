@@ -76,7 +76,7 @@ namespace OTLog.Home.ViewModels
 
         private void ToDoChanged()
         {
-            AppFileHelper.SaveRecordToDo(TodoList.ToList());
+            AppFileHelper.SaveRecordToDoAsync(TodoList.ToList());
         }
 
         private void LoadData()
@@ -95,7 +95,7 @@ namespace OTLog.Home.ViewModels
                 SessionUnlocked();
             }
 
-            AppFileHelper.SaveRecordToDo(TodoList.ToList());
+            AppFileHelper.SaveRecordToDoAsync(TodoList.ToList());
         }
         private void SessionLocked()
         {

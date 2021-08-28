@@ -35,6 +35,7 @@
             </DoubleAnimation>
         </Storyboard>
         <suence:ColorToSolidColorBrushConverter x:Key="ColorToBrush"/>
+        <suence:OTTimeTextConverter x:Key="OTTimeText"/>
     </UserControl.Resources>
     <UserControl.Triggers>
         <EventTrigger RoutedEvent="FrameworkElement.Loaded">
@@ -114,7 +115,7 @@
                     <StackPanel Margin="20, 20, 20, 0" HorizontalAlignment="Left"
                                 VerticalAlignment="Center">
                         
-                    <TextBlock Text="{Binding Source={x:Static gb:GlobalObjectHolder.Config}, Path=UserName}"
+                    <TextBlock Text="{Binding Source={x:Static gb:GlobalObjectHolder.Config}, Path=Employee.Name}"
                                FontWeight="SemiBold"
                                Foreground="{DynamicResource App.Foreground}"
                                FontSize="25" />
@@ -184,15 +185,8 @@
                                        Margin="0, 5"
                                        Foreground="{DynamicResource App.Foreground2}" />
                             <TextBlock Margin="0, 5"
-                                       Foreground="{DynamicResource App.Foreground}">
-                                <TextBlock.Text>
-                                    <MultiBinding StringFormat="{}{0:0小时;;#} {1:0分钟;;''} {2:0秒;;''}">
-                                        <Binding Path="TotalTime.Value.Hours" />
-                                        <Binding Path="TotalTime.Value.Minutes" />
-                                        <Binding Path="TotalTime.Value.Seconds" />
-                                    </MultiBinding>
-                                </TextBlock.Text>
-                            </TextBlock>
+                                       Text="{Binding TotalTime, Converter={StaticResource OTTimeText}}"
+                                       Foreground="{DynamicResource App.Foreground}" />
                         </StackPanel>
                         <StackPanel Margin="0, 5">
                             <TextBlock Text="备注"

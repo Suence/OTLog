@@ -78,7 +78,7 @@ namespace OTLog.Home.ViewModels
 
         public void OnNavigatedFrom(NavigationContext navigationContext)
         {
-            AppFileHelper.SaveAppConfig(GlobalObjectHolder.Config);
+            AppFileHelper.SaveAppConfigAsync(GlobalObjectHolder.Config);
 
             //if (!GlobalObjectHolder.Config.OpenAtBoot)
             //{

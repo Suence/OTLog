@@ -66,10 +66,13 @@ namespace OTLog.Home.ViewModels
             Search();
         }
 
-        public int MildTimes=> SearchResult.Count(r => r.OTTime <= TimeSpan.FromHours(3));
-        public int ModerateTimes => SearchResult.Count(r => r.OTTime > TimeSpan.FromHours(3) && r.OTTime <= TimeSpan.FromHours(5));
-        public int SevereTimes => SearchResult.Count(r => r.OTTime > TimeSpan.FromHours(5));
-        public double AllTime => SearchResult.Select(r => r.OTTime ?? new TimeSpan()).Aggregate(new TimeSpan(), (left, right) => left + right).TotalHours;
+        public int MildTimes=> SearchResult?.Count(r => r.OTTime <= TimeSpan.FromHours(3)) ?? 0;
+        public int ModerateTimes => SearchResult?.Count(r => r.OTTime > TimeSpan.FromHours(3) && r.OTTime <= TimeSpan.FromHours(5)) ?? 0;
+        public int SevereTimes => SearchResult?.Count(r => r.OTTime > TimeSpan.FromHours(5)) ?? 0;
+        public double AllTime => 
+            SearchResult != null 
+            ? SearchResult.Select(r => r.OTTime ?? new TimeSpan()).Aggregate(new TimeSpan(), (left, right) => left + right).TotalHours
+            : 0;
 
         public DelegateCommand AddNewItemCommand { get; }
         private void AddNewItem()
@@ -109,7 +112,7 @@ namespace OTLog.Home.ViewModels
             OTRecords.Remove(record);
             SearchResult.Remove(record);
             UpdateStatisticalInfo();
-            AppFileHelper.SaveOTRecords(OTRecords.ToList());
+            AppFileHelper.SaveOTRecordsAsync(OTRecords.ToList());
         }
         public OverviewViewModel(IRegionManager regionManager, IEventAggregator eventAggregator)
         {
@@ -142,7 +145,7 @@ namespace OTLog.Home.ViewModels
 
             SearchResult = new ObservableCollection<OTRecord>(SearchResult.OrderByDescending(r => r.BeginTime));
             UpdateStatisticalInfo();
-            AppFileHelper.SaveOTRecords(OTRecords.ToList());
+            AppFileHelper.SaveOTRecordsAsync(OTRecords.ToList());
         }
 
         private void OnOTRecordChanged(OTRecord record)
@@ -152,17 +155,15 @@ namespace OTLog.Home.ViewModels
             targetRecord.EndTime = record.EndTime;
             targetRecord.Remark = record.Remark;
 
-            SearchResult.Remove(targetRecord);
-            var previousRecord = SearchResult.LastOrDefault(r => r.BeginTime > record.BeginTime);
-            SearchResult.Insert(previousRecord == null ? 0 : SearchResult.IndexOf(previousRecord), record);
+            SearchResult = new ObservableCollection<OTRecord>(SearchResult.OrderByDescending(r => r.BeginTime));
 
             UpdateStatisticalInfo();
-            AppFileHelper.SaveOTRecords(OTRecords.ToList());
+            AppFileHelper.SaveOTRecordsAsync(OTRecords.ToList());
         }
 
-        private void Load()
+        private async void Load()
         {
-            var data = AppFileHelper.GetOTRecords();
+            var data = await AppFileHelper.GetOTRecordsAsync();
             OTRecords = new ObservableCollection<OTRecord>(data);
             SearchResult = new ObservableCollection<OTRecord>(OTRecords.OrderByDescending(r => r.BeginTime));
             UpdateStatisticalInfo();

@@ -11,9 +11,9 @@
                      Color="Black" />
     
     <SolidColorBrush x:Key="App.Background2"
-                     Color="#FFF5F5F7" />
+                     Color="#FFF3F3F3" />
     <SolidColorBrush x:Key="App.Background"
-                     Color="#FFFDFDFD" />
+                     Color="#FFF9F9F9" />
     
     <SolidColorBrush x:Key="App.Background3"
                      Color="#FFCCCCCC" />
@@ -21,8 +21,8 @@
                      Color="#FFA02222" />
 
     <SolidColorBrush x:Key="Mask.Background"
-                     Color="#90FFFFFF" />
-
+                     Color="#90000000" />
+    <Color x:Key="OTRecord.Mask">#30000000</Color>
     <ImageBrush x:Key="Notice.Cover"
                 ImageSource="pack://application:,,,/Assets/Images/noticeBg.png"/>
     <SolidColorBrush x:Key="Notice.Cover.Mask"

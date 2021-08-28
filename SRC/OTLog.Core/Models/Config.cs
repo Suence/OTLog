@@ -11,7 +11,7 @@ namespace OTLog.Core.Models
         private bool _notificationAfterMin;
         private Color _themeColor;
         private Theme _theme;
-        private string _userName;
+        private Employee _employee;
         private bool _useSystemThemeColorScheme;
         private StartupScheme _StartupScheme;
         #endregion
@@ -42,10 +42,11 @@ namespace OTLog.Core.Models
             get => _theme;
             set => SetProperty(ref _theme, value);
         }
-        public string UserName
+
+        public Employee Employee
         {
-            get => _userName;
-            set => SetProperty(ref _userName, String.IsNullOrEmpty(value.Trim()) ? Environment.UserName : value.Trim());
+            get => _employee;
+            set => SetProperty(ref _employee, value);
         }
     }
 }

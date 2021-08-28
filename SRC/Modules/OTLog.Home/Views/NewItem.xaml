@@ -39,6 +39,7 @@
         <suence:BindingProxy x:Key="BindingProxy"
                              Data="{Binding}" />
         <suence:ColorToSolidColorBrushConverter x:Key="ColorToBrush"/>
+        <suence:OTTimeTextConverter x:Key="OTTimeText"/>
     </UserControl.Resources>
     <i:Interaction.Triggers>
         <i:DataTrigger  Binding="{Binding DialogResult}"
@@ -170,16 +171,9 @@
                         </StackPanel>
                         <StackPanel Margin="0, 5">
                             <TextBlock Text="时长" Margin="0, 5" Foreground="{DynamicResource App.Foreground2}"/>
-                            <TextBlock Margin="0, 5" 
-                                       Foreground="{DynamicResource App.Foreground}">
-                                <TextBlock.Text>
-                                    <MultiBinding StringFormat="{}{0:0小时;;#} {1:0分钟;;''} {2:0秒;;''}">
-                                        <Binding Path="TotalTime.Value.Hours" />
-                                        <Binding Path="TotalTime.Value.Minutes" />
-                                        <Binding Path="TotalTime.Value.Seconds" />
-                                    </MultiBinding>
-                                </TextBlock.Text>
-                            </TextBlock>
+                            <TextBlock Margin="0, 5"
+                                       Text="{Binding TotalTime, Converter={StaticResource OTTimeText}}"
+                                       Foreground="{DynamicResource App.Foreground}" />
                         </StackPanel>
                         <StackPanel Margin="0, 5">
                             <TextBlock Text="备注" Foreground="{DynamicResource App.Foreground2}" Margin="0,5 "/>

@@ -8,6 +8,7 @@
              x:Class="OTLog.Home.Views.Overview"
              xmlns:suence="http://software.suence.com/"
              xmlns:viewmodels="clr-namespace:OTLog.Home.ViewModels"
+             xmlns:elements="clr-namespace:OTLog.Controls.Decorators;assembly=OTLog.Controls"
              d:DataContext="{d:DesignInstance Type=viewmodels:OverviewViewModel}"
              prism:ViewModelLocator.AutoWireViewModel="True"
              d:DesignWidth="1030"
@@ -16,12 +17,14 @@
         <TranslateTransform Y="100" />
     </UserControl.RenderTransform>
     <UserControl.Resources>
-        <suence:OTSeverityConverter x:Key="OTSeverityConverter" />
+        <suence:OTSeverityBrushConverter x:Key="OTSeverityBrush" />
+        <suence:OTSeverityColorConverter x:Key="OTSeverityColor" />
+        <suence:OTTimeTextConverter x:Key="OTTimeText" />
         <suence:BindingProxy x:Key="BindingProxy"
                              Data="{Binding}" />
         <suence:IsNextDayToVisibilityConverter x:Key="IsNextDay" />
-        <suence:ColorToSolidColorBrushConverter x:Key="ColorToBrush"/>
-        <suence:FriendlyTimeTextConverter x:Key="FriendlyTimeText"/>
+        <suence:ColorToSolidColorBrushConverter x:Key="ColorToBrush" />
+        <suence:FriendlyTimeTextConverter x:Key="FriendlyTimeText" />
     </UserControl.Resources>
 
     <UserControl.Triggers>
@@ -41,48 +44,6 @@
     </UserControl.Triggers>
 
     <Grid>
-        <Popup x:Name="DeleteRecordPopup"
-               StaysOpen="False"
-               Width="180"
-               HorizontalOffset="-170"
-               PopupAnimation="Scroll"
-               Placement="Mouse">
-            <Border BorderBrush="{DynamicResource Control.BorderBrush}"
-                    Background="{DynamicResource App.Background}"
-                    BorderThickness="1">
-                <Grid Margin="5">
-                    <Grid.RowDefinitions>
-                        <RowDefinition />
-                        <RowDefinition Height="Auto" />
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition />
-                        <ColumnDefinition />
-                    </Grid.ColumnDefinitions>
-                    <TextBlock Text="确定要删除吗？"
-                               FontSize="16"
-                               Margin="5"
-                               Foreground="{DynamicResource App.Foreground}"
-                               Grid.ColumnSpan="2" />
-                    <Button Style="{DynamicResource Win10ButtonStyle}"
-                            Content="确定"
-                            Grid.Row="1"
-                            Grid.Column="0"
-                            Foreground="{DynamicResource App.Foreground}"
-                            Command="{Binding Source={StaticResource BindingProxy}, Path=Data.DeleteRecordCommand}"
-                            CommandParameter="{Binding}"
-                            Click="HideDeleteRecordPopup"
-                            Margin="5" />
-                    <Button Style="{DynamicResource Win10ButtonStyle}"
-                            Grid.Row="1"
-                            Grid.Column="1"
-                            Foreground="{DynamicResource App.Foreground}"
-                            Click="HideDeleteRecordPopup"
-                            Content="取消"
-                            Margin="5" />
-                </Grid>
-            </Border>
-        </Popup>
         <ScrollViewer Margin="0, 0, 3, 0"
                       Padding="0, 0, 30, 0">
             <StackPanel>
@@ -101,6 +62,7 @@
                                     modernWpf:ControlHelper.PlaceholderText="从" />
                         <TextBlock Text="-"
                                    Margin="5"
+                                   Foreground="{DynamicResource App.Foreground}"
                                    VerticalAlignment="Center" />
                         <DatePicker modernWpf:ControlHelper.CornerRadius="0"
                                     Width="150"
@@ -155,7 +117,7 @@
                                    Margin="0, 10" />
                         <WrapPanel Orientation="Horizontal">
                             <Grid Background="{DynamicResource App.Background2}"
-                                  Width="164"
+                                  Width="172"
                                   Height="100"
                                   Margin="0, 5, 10, 5">
                                 <Grid.RowDefinitions>
@@ -173,7 +135,9 @@
                                             VerticalAlignment="Center">
                                     <TextBlock Grid.Row="1"
                                                Text="{Binding AllTime, StringFormat={}{0:0.00}}"
-                                               Foreground="{DynamicResource App.Foreground}"
+                                               Foreground="{suence:BindingWithDesignSupport {Binding Source={x:Static modernWpf:ThemeManager.Current}, Path=AccentColor, Converter={StaticResource ColorToBrush}}}"
+                                               d:Foreground="DarkMagenta"
+                                               FontWeight="SemiBold"
                                                FontSize="30" />
                                     <TextBlock Text="小时"
                                                VerticalAlignment="Bottom"
@@ -183,7 +147,7 @@
                                 </StackPanel>
                             </Grid>
                             <Grid Background="{DynamicResource App.Background2}"
-                                  Width="164"
+                                  Width="160"
                                   Height="100"
                                   Margin="0, 5, 10, 5">
                                 <Grid.RowDefinitions>
@@ -201,7 +165,9 @@
                                             VerticalAlignment="Center">
                                     <TextBlock Grid.Row="1"
                                                Text="{Binding MildTimes}"
-                                               Foreground="{DynamicResource App.Foreground}"
+                                               Foreground="{suence:BindingWithDesignSupport {Binding Source={x:Static modernWpf:ThemeManager.Current}, Path=AccentColor, Converter={StaticResource ColorToBrush}}}"
+                                               d:Foreground="DarkMagenta"
+                                               FontWeight="SemiBold"
                                                FontSize="30" />
                                     <TextBlock Text="天"
                                                VerticalAlignment="Bottom"
@@ -211,7 +177,7 @@
                                 </StackPanel>
                             </Grid>
                             <Grid Background="{DynamicResource App.Background2}"
-                                  Width="164"
+                                  Width="160"
                                   Height="100"
                                   Margin="0, 5, 10, 5">
                                 <Grid.RowDefinitions>
@@ -229,7 +195,9 @@
                                             VerticalAlignment="Center">
                                     <TextBlock Grid.Row="1"
                                                Text="{Binding ModerateTimes}"
-                                               Foreground="{DynamicResource App.Foreground}"
+                                               Foreground="{suence:BindingWithDesignSupport {Binding Source={x:Static modernWpf:ThemeManager.Current}, Path=AccentColor, Converter={StaticResource ColorToBrush}}}"
+                                               d:Foreground="DarkMagenta"
+                                               FontWeight="SemiBold"
                                                FontSize="30" />
                                     <TextBlock Text="天"
                                                VerticalAlignment="Bottom"
@@ -239,7 +207,7 @@
                                 </StackPanel>
                             </Grid>
                             <Grid Background="{DynamicResource App.Background2}"
-                                  Width="164"
+                                  Width="160"
                                   Height="100"
                                   Margin="0, 5, 10, 5">
                                 <Grid.RowDefinitions>
@@ -257,7 +225,9 @@
                                             VerticalAlignment="Center">
                                     <TextBlock Grid.Row="1"
                                                Text="{Binding SevereTimes}"
-                                               Foreground="{DynamicResource App.Foreground}"
+                                               Foreground="{suence:BindingWithDesignSupport {Binding Source={x:Static modernWpf:ThemeManager.Current}, Path=AccentColor, Converter={StaticResource ColorToBrush}}}"
+                                               d:Foreground="DarkMagenta"
+                                               FontWeight="SemiBold"
                                                FontSize="30" />
                                     <TextBlock Text="天"
                                                VerticalAlignment="Bottom"
@@ -309,187 +279,115 @@
                         <ItemsControl ItemsSource="{Binding SearchResult}">
                             <ItemsControl.ItemsPanel>
                                 <ItemsPanelTemplate>
-                                    <WrapPanel IsItemsHost="True"
-                                               Orientation="Horizontal" />
+                                    <WrapPanel IsItemsHost="True"/>
                                 </ItemsPanelTemplate>
                             </ItemsControl.ItemsPanel>
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate DataType="OTRecord">
-                                    <Grid Width="200"
-                                          VerticalAlignment="Top"
-                                          ClipToBounds="True"
-                                          Background="{DynamicResource App.Background2}">
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="Auto" />
-                                            <RowDefinition Height="Auto" />
-                                            <RowDefinition Height="Auto" />
-                                            <RowDefinition Height="Auto" />
-                                            <RowDefinition />
-                                            <RowDefinition Height="Auto" />
-                                        </Grid.RowDefinitions>
-                                        <Grid Grid.Row="0">
-                                            <TextBlock Text="{Binding BeginTime, Converter={StaticResource FriendlyTimeText}}"
-                                                       FontSize="16"
-                                                       FontWeight="Bold"
-                                                       Foreground="{DynamicResource App.Foreground2}"
-                                                       HorizontalAlignment="Left"
-                                                       Margin="5, 5, 5, 10" />
-                                            <StackPanel HorizontalAlignment="Right"
-                                                        Orientation="Horizontal">
-                                                <Button x:Name="EditButton"
-                                                        Padding="5"
-                                                        Command="{Binding Source={StaticResource BindingProxy}, Path=Data.EditRecordCommand}"
-                                                        CommandParameter="{Binding}"
-                                                        VerticalAlignment="Center"
-                                                        Style="{DynamicResource NonBgButton}">
-                                                    <Viewbox Width="20"
-                                                             Height="20">
-                                                        <Canvas Width="24"
-                                                                Height="24">
-                                                            <Path Fill="Gray"
-                                                                  Data="M20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18,2.9 17.35,2.9 16.96,3.29L15.12,5.12L18.87,8.87M3,17.25V21H6.75L17.81,9.93L14.06,6.18L3,17.25Z" />
-                                                        </Canvas>
-                                                    </Viewbox>
-                                                    <Button.RenderTransform>
-                                                        <TranslateTransform Y="-40" />
-                                                    </Button.RenderTransform>
-                                                </Button>
-                                                <Button x:Name="DeleteButton"
-                                                        Style="{DynamicResource NonBgButton}"
-                                                        Click="DeleteButton_Click"
-                                                        CommandParameter="{Binding}"
-                                                        VerticalAlignment="Center"
-                                                        Padding="5">
-                                                    <Viewbox Width="20"
-                                                             Height="20">
-                                                        <Canvas Width="24"
-                                                                Height="24">
-                                                            <Path Fill="OrangeRed"
-                                                                  Data="M19,4H15.5L14.5,3H9.5L8.5,4H5V6H19M6,19A2,2 0 0,0 8,21H16A2,2 0 0,0 18,19V7H6V19Z" />
-                                                        </Canvas>
-                                                    </Viewbox>
-                                                    <Button.RenderTransform>
-                                                        <TranslateTransform Y="-40" />
-                                                    </Button.RenderTransform>
-                                                </Button>
-                                            </StackPanel>
-                                        </Grid>
-                                        <StackPanel Grid.Row="1"
-                                                    TextBlock.FontSize="16"
-                                                    Orientation="Horizontal">
-                                            <TextBlock Text="开始"
-                                                       Margin="5"
-                                                       Foreground="{DynamicResource App.Foreground2}" />
-                                            <TextBlock Text="{Binding BeginTime, StringFormat={}{0:HH:mm:ss}}"
-                                                       Margin="5"
-                                                       Foreground="{DynamicResource App.Foreground}"/>
-                                        </StackPanel>
-                                        <StackPanel Grid.Row="2"
-                                                    TextBlock.FontSize="16"
-                                                    Orientation="Horizontal">
-                                            <TextBlock Text="结束"
-                                                       Margin="5"
-                                                       Foreground="{DynamicResource App.Foreground2}" />
-                                            <TextBlock Text="{Binding EndTime, StringFormat={}{0:HH:mm:ss}}"
-                                                       Margin="5"
-                                                       Foreground="{DynamicResource App.Foreground}" />
-                                            <Label Background="{Binding Source={x:Static modernWpf:ThemeManager.Current}, Path=AccentColor, Converter={StaticResource ColorToBrush}}"
-                                                   Content="第二天"
-                                                   Padding="5, 3"
-                                                   Foreground="{DynamicResource App.Foreground3}"
-                                                   Visibility="{Binding Converter={StaticResource IsNextDay}}"
-                                                   VerticalAlignment="Center" />
-                                        </StackPanel>
-                                        <StackPanel Grid.Row="3"
-                                                    TextBlock.FontSize="16"
-                                                    Orientation="Horizontal">
-                                            <TextBlock Text="时长"
-                                                       Margin="5"
-                                                       Foreground="{DynamicResource App.Foreground2}" />
-                                            <TextBlock Margin="5"
-                                                       Foreground="{DynamicResource App.Foreground}">
-                                                <TextBlock.Text>
-                                                    <MultiBinding StringFormat="{}{0:0小时;;#} {1:0分钟;;''} {2:0秒;;''}">
-                                                        <Binding Path="OTTime.Value.Hours" />
-                                                        <Binding Path="OTTime.Value.Minutes" />
-                                                        <Binding Path="OTTime.Value.Seconds" />
-                                                    </MultiBinding>
-                                                </TextBlock.Text>
-                                            </TextBlock>
-                                        </StackPanel>
-                                        <StackPanel Grid.Row="4">
-                                            <TextBlock Margin="5, 5, 5, 10"
-                                                   MinHeight="30"
-                                                   Text="{Binding Remark}"
-                                                   Foreground="{DynamicResource App.Foreground2}"
-                                                   FontSize="14"
-                                                   MaxHeight="30"
-                                                   ToolTip="{Binding Remark}"
-                                                   TextTrimming="CharacterEllipsis"
-                                                   Background="{DynamicResource App.Background}"
-                                                   Padding="5" />
-                                        </StackPanel>
-                                        <Rectangle Grid.Row="5"
-                                                   Height="3"
-                                                   Fill="{Binding OTTime, Converter={StaticResource OTSeverityConverter}}" />
-                                    </Grid>
-                                    <DataTemplate.Triggers>
-                                        <Trigger Property="IsMouseOver"
-                                                 Value="True">
-                                            <Trigger.EnterActions>
-                                                <BeginStoryboard>
-                                                    <Storyboard>
-                                                        <DoubleAnimation Storyboard.TargetName="EditButton"
-                                                                         Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.Y)"
-                                                                         To="0"
-                                                                         Duration="0:0:0.2">
-                                                            <DoubleAnimation.EasingFunction>
-                                                                <CircleEase EasingMode="EaseOut" />
-                                                            </DoubleAnimation.EasingFunction>
-                                                        </DoubleAnimation>
-                                                        <DoubleAnimation BeginTime="0:0:0.1"
-                                                                         Storyboard.TargetName="DeleteButton"
-                                                                         Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.Y)"
-                                                                         To="0"
-                                                                         Duration="0:0:0.2">
-                                                            <DoubleAnimation.EasingFunction>
-                                                                <CircleEase EasingMode="EaseOut" />
-                                                            </DoubleAnimation.EasingFunction>
-                                                        </DoubleAnimation>
-                                                    </Storyboard>
-                                                </BeginStoryboard>
-                                            </Trigger.EnterActions>
-                                            <Trigger.ExitActions>
-                                                <BeginStoryboard>
-                                                    <Storyboard>
-                                                        <DoubleAnimation Storyboard.TargetName="EditButton"
-                                                                         Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.Y)"
-                                                                         To="-40"
-                                                                         Duration="0:0:0.2">
-                                                            <DoubleAnimation.EasingFunction>
-                                                                <CircleEase EasingMode="EaseOut" />
-                                                            </DoubleAnimation.EasingFunction>
-                                                        </DoubleAnimation>
-                                                        <DoubleAnimation BeginTime="0:0:0.1"
-                                                                         Storyboard.TargetName="DeleteButton"
-                                                                         Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.Y)"
-                                                                         To="-40"
-                                                                         Duration="0:0:0.2">
-                                                            <DoubleAnimation.EasingFunction>
-                                                                <CircleEase EasingMode="EaseOut" />
-                                                            </DoubleAnimation.EasingFunction>
-                                                        </DoubleAnimation>
-                                                    </Storyboard>
-                                                </BeginStoryboard>
-                                            </Trigger.ExitActions>
-                                        </Trigger>
-                                    </DataTemplate.Triggers>
+                                    <Button Background="{DynamicResource App.Background2}"
+                                            Style="{DynamicResource TextButtonStyle}"
+                                            BorderThickness="0"
+                                            Padding="0"
+                                            Command="{Binding Source={StaticResource BindingProxy}, Path=Data.EditRecordCommand}"
+                                            CommandParameter="{Binding}">
+                                        <Button.ContextMenu>
+                                            <ContextMenu modernWpf:ControlHelper.CornerRadius="0">
+                                                <MenuItem Header="编辑"
+                                                          BorderThickness="0"
+                                                          Command="{Binding Source={StaticResource BindingProxy}, Path=Data.DeleteRecordCommand}"
+                                                          CommandParameter="{Binding}"
+                                                          FontSize="14" />
+                                                <MenuItem Header="删除"
+                                                          BorderThickness="0"
+                                                          Command="{Binding Source={StaticResource BindingProxy}, Path=Data.DeleteRecordCommand}"
+                                                          CommandParameter="{Binding}"
+                                                          FontSize="14" />
+                                            </ContextMenu>
+                                        </Button.ContextMenu>
+                                        <elements:IlluminationDecorator BackgroundColor="{DynamicResource OTRecord.Mask}"
+                                                                        RadiusX="1"
+                                                                        RadiusY="1">
+                                            <Grid Width="200"
+                                                  VerticalAlignment="Top"
+                                                  ClipToBounds="True">
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition Height="Auto" />
+                                                    <RowDefinition />
+                                                    <RowDefinition Height="Auto" />
+                                                </Grid.RowDefinitions>
+                                                <Grid Grid.Row="0">
+                                                    <TextBlock Text="{Binding BeginTime, Converter={StaticResource FriendlyTimeText}}"
+                                                               FontSize="16"
+                                                               FontWeight="Bold"
+                                                               Foreground="{suence:BindingWithDesignSupport {Binding Source={x:Static modernWpf:ThemeManager.Current}, Path=AccentColor, Converter={StaticResource ColorToBrush}}}"
+                                                               d:Foreground="DarkMagenta"
+                                                               HorizontalAlignment="Left"
+                                                               Margin="12, 12, 5, 10" />
+                                                </Grid>
+                                                <StackPanel Grid.Row="1"
+                                                            TextBlock.FontSize="16"
+                                                            Orientation="Horizontal">
+                                                    <TextBlock Text="开始"
+                                                               Margin="12, 5, 5, 5"
+                                                               Foreground="{DynamicResource App.Foreground2}" />
+                                                    <TextBlock Text="{Binding BeginTime, StringFormat={}{0:HH:mm:ss}}"
+                                                               Margin="5"
+                                                               Foreground="{DynamicResource App.Foreground}" />
+                                                </StackPanel>
+                                                <StackPanel Grid.Row="2"
+                                                            TextBlock.FontSize="16"
+                                                            Orientation="Horizontal">
+                                                    <TextBlock Text="结束"
+                                                               Margin="12, 5, 5, 5"
+                                                               Foreground="{DynamicResource App.Foreground2}" />
+                                                    <TextBlock Text="{Binding EndTime, StringFormat={}{0:HH:mm:ss}}"
+                                                               Margin="5"
+                                                               Foreground="{DynamicResource App.Foreground}" />
+                                                    <Label Background="{Binding Source={x:Static modernWpf:ThemeManager.Current}, Path=AccentColor, Converter={StaticResource ColorToBrush}}"
+                                                           Content="第二天"
+                                                           Padding="5, 3"
+                                                           Foreground="{DynamicResource App.Foreground3}"
+                                                           Visibility="{Binding Converter={StaticResource IsNextDay}}"
+                                                           VerticalAlignment="Center" />
+                                                </StackPanel>
+                                                <StackPanel Grid.Row="3"
+                                                            TextBlock.FontSize="16"
+                                                            Orientation="Horizontal">
+                                                    <TextBlock Text="时长"
+                                                               Margin="12, 5, 5, 5"
+                                                               Foreground="{DynamicResource App.Foreground2}" />
+                                                    <TextBlock Margin="5"
+                                                               Text="{Binding OTTime, Converter={StaticResource OTTimeText}}"
+                                                               Foreground="{DynamicResource App.Foreground}" />
+                                                </StackPanel>
+                                                <StackPanel Grid.Row="4">
+                                                    <TextBlock Margin="12, 5, 12, 10"
+                                                               MinHeight="30"
+                                                               Text="{Binding Remark}"
+                                                               Foreground="{DynamicResource App.Foreground2}"
+                                                               FontSize="14"
+                                                               MaxHeight="30"
+                                                               ToolTip="{Binding Remark}"
+                                                               TextTrimming="CharacterEllipsis"
+                                                               Background="{DynamicResource App.Background}"
+                                                               Padding="5" />
+                                                </StackPanel>
+                                                <Rectangle Grid.Row="5"
+                                                           Height="3"
+                                                           Fill="{Binding OTTime, Converter={StaticResource OTSeverityBrush}}">
+                                                </Rectangle>
+                                            </Grid>
+                                        </elements:IlluminationDecorator>
+                                    </Button>
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                             <ItemsControl.ItemContainerStyle>
                                 <Style TargetType="ContentPresenter">
                                     <Setter Property="Margin"
-                                            Value="5" />
+                                            Value="0" />
                                 </Style>
                             </ItemsControl.ItemContainerStyle>
                         </ItemsControl>

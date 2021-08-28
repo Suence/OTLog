@@ -55,9 +55,11 @@
                               Content="随系统启动"
                               modernWpf:ControlHelper.CornerRadius="0"
                               Foreground="{DynamicResource App.Foreground}"
-                              Checked="StartupCheckBox_Checked"
-                              Unchecked="StartupCheckBox_Unchecked"
-                              Margin="0, 10" />
+                              IsChecked="{Binding Source={x:Static gb:GlobalObjectHolder.Config},Path=OpenAtBoot}"
+                              Margin="0, 10, 0, 0" />
+                    <TextBlock Text="智能提醒功能依赖于此设置。虽然你仍可以关闭它，但是不建议这么做。" Margin="0, 5, 0, 10"
+                               Foreground="{DynamicResource App.Foreground2}"
+                               FontSize="14"/>
                 </StackPanel>
                 <!--#endregion-->
 
@@ -173,10 +175,10 @@
                                FontSize="20"
                                Foreground="{DynamicResource App.Foreground}" />
                     <TextBox Width="215"
-                             modernWpf:ControlHelper.PlaceholderText="{x:Static system:Environment.UserName}"
+                             modernWpf:ControlHelper.PlaceholderText="{Binding Source={x:Static gb:GlobalObjectHolder.Config}, Path=Employee.DefaultName}"
                              Margin="0, 10, 15, 5"
                              HorizontalAlignment="Left"
-                             Text="{Binding Source={x:Static gb:GlobalObjectHolder.Config},Path=UserName}"
+                             Text="{Binding Source={x:Static gb:GlobalObjectHolder.Config},Path=Employee.Name}"
                              modernWpf:ControlHelper.CornerRadius="0"
                              modernWpf:ControlHelper.PlaceholderForeground="{DynamicResource PlaceHolder.Foreground}" />
                 </StackPanel>

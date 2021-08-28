@@ -122,7 +122,7 @@ namespace OTLog.Home.ViewModels
                 return;
             }
             records.Add(newRecord);
-            AppFileHelper.SaveOTRecords(records);
+            AppFileHelper.SaveOTRecordsAsync(records);
 
             Record.Status = Core.Enums.TodoStatus.Negligible;
             SaveRecord();
