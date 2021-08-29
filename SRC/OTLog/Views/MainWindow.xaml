@@ -15,9 +15,9 @@
         Background="{DynamicResource App.Background}"
         modernWpf:ControlHelper.CornerRadius="0"
         WindowStartupLocation="CenterScreen"
-        ResizeMode="CanResizeWithGrip"
         Closing="Window_Closing"
         Loaded="Window_Loaded"
+        ResizeMode="CanResizeWithGrip"
         Title="{Binding Title}"
         MinHeight="800"
         MinWidth="900"
@@ -29,7 +29,11 @@
             <DoubleAnimation Storyboard.TargetName="AppContainer"
                              Storyboard.TargetProperty="(Grid.Effect).Progress"
                              Duration="0:0:.5"
-                             To="0" />
+                             To="0">
+                <DoubleAnimation.EasingFunction>
+                    <CircleEase EasingMode="EaseOut"/>
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
             <DoubleAnimation BeginTime="0:0:.5" Storyboard.TargetName="AppContainer"
                              Storyboard.TargetProperty="(Grid.Effect).Progress"
                              Duration="0:0:.5"
@@ -40,7 +44,11 @@
             <DoubleAnimation Storyboard.TargetName="AppContainer"
                              Storyboard.TargetProperty="(Grid.Effect).Progress"
                              Duration="0:0:.5"
-                             To="100" />
+                             To="100">
+                <DoubleAnimation.EasingFunction>
+                    <CircleEase EasingMode="EaseOut" />
+                </DoubleAnimation.EasingFunction>
+            </DoubleAnimation>
         </Storyboard>
     </Window.Resources>
     <i:Interaction.Behaviors>

@@ -7,11 +7,7 @@
                     xmlns:vm="clr-namespace:OTLog.ViewModels">
     <ContextMenu x:Shared="false"
                  x:Key="SysTrayMenu">
-        <!--<MenuItem Header="Show Window"
-                  Command="{Binding ShowWindowCommand}" />
-        <MenuItem Header="Hide Window"
-                  Command="{Binding HideWindowCommand}" />-->
-        <MenuItem Header="添加加班记录"
+        <MenuItem Header="添加记录"
                   Command="{Binding AddRecordCommand}" />
         <MenuItem Header="通知"
                   Command="{Binding GoToTargetViewCommand}"
