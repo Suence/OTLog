@@ -1,0 +1,193 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="./images/OTLog.ico" type="image/x-icon">
+    <title>OTLog</title>
+    <style type="text/css">
+
+        @keyframes scaleEnter {
+            from {
+                transform: scale(3, 3);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1, 1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes showTitle {
+            from {
+                opacity: 0;
+                transform: translate(0px, 100px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translate(0px, 0px);
+            }
+        }
+
+        @keyframes leftMove {
+            from {
+                transform: translate(0px, 0px);
+            }
+
+            to {
+                transform: translate(-300px, 0px);
+            }
+        }
+
+        @keyframes showRemark {
+            from {
+                opacity: 0;
+                transform: translate(0px, 50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translate(0px, 0px);
+            }
+        }
+
+        @keyframes showButton {
+            from {
+                opacity: 0;
+                transform: translate(0px, 50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translate(0px, 0px);
+            }
+        }
+
+        @keyframes pressedAnimation {
+            from {
+                transform: scale(1, 1);
+            }
+            to {
+                transform: scale(0.97, 0.97);
+            }
+        }
+        body {
+            background-color: #111;
+            margin: 0px;
+        }
+
+        .layoutRoot {
+            display: grid;
+            grid-template-columns: repeat(1);
+            grid-template-rows: repeat(3, auto);
+            background: #111;
+            background-image:
+                linear-gradient(#333 2px, transparent 0),
+                linear-gradient(90deg, #333 2px, transparent 0);
+            background-size: 24px 24px;
+            width: 100%;
+            height: 100%;
+            justify-content: center;
+            align-content: center;
+        }
+
+        .logo {
+            opacity: 0;
+            width: 100px;
+            height: 100px;
+            align-self: center;
+            animation: 0.5s ease 0.5s scaleEnter forwards;
+        }
+        
+        .logoContainer {
+            display: flex;
+            animation: 0.5s ease 1s leftMove forwards;
+            text-align: center;
+            justify-content: center;
+            height: 100%;
+            grid-row: 1;
+            grid-column: 1;
+            background: transparent;
+            margin-top: 00px;
+            margin-left: 600px;
+        }
+        .title {
+            opacity: 0;
+            grid-row: 1;
+            grid-column: 1;
+            font-size: 50px;
+            margin: 20px;
+            color: white;
+            animation: 0.5s ease 1.5s showTitle forwards;
+        }
+
+        
+        .remarkA {
+            grid-column: 1;
+            grid-row: 2;
+            opacity: 0;
+            font-size: 30px;
+            color: white;
+            align-self: center;
+            justify-self: center;
+            margin: 50px 0px 0px 0px;
+            animation: 0.5s ease 1.8s showRemark forwards;
+        }
+
+        .downloadButton {
+            opacity: 0;
+            font-size: 40px;
+            border: gray 2px;
+            color: #fff;
+            background: #333;
+            cursor: hand;
+            padding: 4px 50px;
+            grid-row: 3;
+            user-select: none;
+            grid-column: 1;
+            justify-self: center;
+            border: 3px transparent solid;
+            margin: 100px 0px 0px 0px;
+            transform: scale(0.5, 0.5);
+            animation: 0.5s ease 2s showButton forwards;
+        }
+
+        .downloadButton:hover {
+            border: 3px gray solid;
+        }
+        .downloadButton:active {
+            background: gray;
+            animation: 0s ease 0s showButton forwards, 0.1s ease 0s pressedAnimation forwards;
+        }
+
+        .downloadpfx {
+            opacity: 0;
+            color: rgb(29, 117, 199);
+            justify-self: center;
+            margin-top: 20px;
+            cursor: hand;
+            font-size: 20;
+            animation: 0.5s ease 2.2s showButton forwards;
+        }
+        .downloadpfx:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="layoutRoot">
+        <div class="logoContainer">
+            <img class="logo" src="./images/logo100.png" />
+            <section class="title">OTLog for Windows 10</h1>
+        </div>
+        <section class="remarkA">Hello</section>
+        <a class="downloadButton" >立即下载</a>
+        <a class="downloadpfx">开发者证书</a>
+    </div>
+</body>
+
+</html>
