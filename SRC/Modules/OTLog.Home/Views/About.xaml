@@ -32,7 +32,8 @@
     <UserControl.Resources>
         <suence:ColorToSolidColorBrushConverter x:Key="ColorToBrush" />
     </UserControl.Resources>
-    <StackPanel>
+    <ScrollViewer>
+        <StackPanel>
         <TextBlock Grid.Row="1"
                    Text="版本信息"
                    FontSize="18"
@@ -72,7 +73,7 @@
                        Foreground="{DynamicResource App.Foreground2}"
                        VerticalAlignment="Top"
                        Margin="5"
-                       Text="版本 1.0.5"
+                       Text="版本 1.0.6"
                        FontSize="14" />
         </Grid>
         <StackPanel Margin="0, 10">
@@ -168,6 +169,16 @@
                        Margin="0, 0, 0, 20"
                        Foreground="{DynamicResource App.Foreground}" />
             <StackPanel Margin="0, 0, 0, 8">
+                <TextBlock Text="1.0.6"
+                           FontWeight="SemiBold"
+                           FontSize="16"
+                           Foreground="{DynamicResource App.Foreground}" />
+                <TextBlock Text="◈ 修复了右键菜单编辑按钮错误的删除了数据的问题"
+                           Margin="0, 4"
+                           FontSize="14"
+                           Foreground="{DynamicResource App.Foreground}" />
+            </StackPanel>
+            <StackPanel Margin="0, 0, 0, 8">
                 <TextBlock Text="1.0.5"
                            FontWeight="SemiBold"
                            FontSize="16"
@@ -199,4 +210,5 @@
             </StackPanel>
         </StackPanel>
     </StackPanel>
+    </ScrollViewer>
 </UserControl>
