@@ -69,9 +69,15 @@ namespace OTLog.Home.ViewModels
             NameOfCurrentTab = ViewNames.Overview;
 
             _eventAggregator.GetEvent<OTRecordTodoChangedEvent>().Subscribe(ToDoChanged);
-            _eventAggregator.GetEvent<RequestViewEvent>().Subscribe(GoToTargetView);
+            _eventAggregator.GetEvent<RequestViewEvent>().Subscribe(RequestView);
             LoadData();
             SessionUnlocked();
+        }
+
+        private void RequestView(string viewName)
+        {
+            _regionManager.Regions[RegionNames.MessageRegion].RemoveAll();
+            GoToTargetView(viewName);
         }
 
         private void ToDoChanged()

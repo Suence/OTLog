@@ -19,8 +19,8 @@
         Loaded="Window_Loaded"
         ResizeMode="CanResizeWithGrip"
         Title="{Binding Title}"
-        MinHeight="800"
-        MinWidth="900"
+        MinHeight="400"
+        MinWidth="500"
         Height="800"
         Width="1200"
         mc:Ignorable="d">
