@@ -5,9 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="./images/OTLog.ico" type="image/x-icon">
-    <title>Document</title>
+    <title>OTLog</title>
     <style type="text/css">
-
         @keyframes scaleEnter {
             from {
                 transform: scale(3, 3);
@@ -70,13 +69,16 @@
             from {
                 transform: scale(1, 1);
             }
+
             to {
                 transform: scale(0.97, 0.97);
             }
         }
+
         body {
             background-color: #111;
             margin: 0px;
+            user-select: none;
         }
 
         .layoutRoot {
@@ -101,7 +103,7 @@
             align-self: center;
             animation: 0.5s ease 0.5s scaleEnter forwards;
         }
-        
+
         .logoContainer {
             display: flex;
             animation: 0.5s ease 1s leftMove forwards;
@@ -114,41 +116,44 @@
             margin-top: 00px;
             margin-left: 600px;
         }
+
         .title {
             opacity: 0;
             grid-row: 1;
             grid-column: 1;
             font-size: 50px;
-            margin: 20px;
+            padding: 0px 10px 0px 20px;
+            align-self: center;
             color: white;
             animation: 0.5s ease 1.5s showTitle forwards;
         }
 
-        
-        .remarkA {
+
+        .remark {
             grid-column: 1;
             grid-row: 2;
             opacity: 0;
             font-size: 30px;
             color: white;
-            align-self: center;
             justify-self: center;
+            text-align: center;
             margin: 50px 0px 0px 0px;
             animation: 0.5s ease 1.8s showRemark forwards;
         }
 
         .downloadButton {
             opacity: 0;
-            font-size: 40px;
+            font-size: 32px;
             border: gray 2px;
             color: #fff;
             background: #333;
             cursor: hand;
-            padding: 4px 50px;
+            padding: 8px 50px;
             grid-row: 3;
             user-select: none;
             grid-column: 1;
             justify-self: center;
+            text-decoration: none;
             border: 3px transparent solid;
             margin: 100px 0px 0px 0px;
             transform: scale(0.5, 0.5);
@@ -158,6 +163,7 @@
         .downloadButton:hover {
             border: 3px gray solid;
         }
+
         .downloadButton:active {
             background: gray;
             animation: 0s ease 0s showButton forwards, 0.1s ease 0s pressedAnimation forwards;
@@ -165,12 +171,27 @@
 
         .downloadpfx {
             opacity: 0;
-            color: rgb(29, 117, 199);
+            color: rgb(42, 140, 231);
             justify-self: center;
             margin-top: 20px;
             cursor: hand;
-            font-size: 20;
+            font-size: 24;
+            text-decoration: none;
             animation: 0.5s ease 2.2s showButton forwards;
+        }
+
+        #englishRemark {
+            color: gray;
+            font-size: 25px;
+        }
+
+        #versionInfo {
+            align-self: center;
+            color: white;
+            font-size: 16;
+            background: rgb(238, 46, 46);
+            padding: 4px 12px;
+            border-radius: 8px;
         }
         .downloadpfx:hover {
             text-decoration: underline;
@@ -182,11 +203,18 @@
     <div class="layoutRoot">
         <div class="logoContainer">
             <img class="logo" src="./images/logo100.png" />
-            <section class="title">OTLog for Windows 10</h1>
+            <section class="title">OTLog for Windows 10</section>
+            <section class="title" id="versionInfo">🏷️ v1.0.3</section>
         </div>
-        <section class="remarkA">Hello</section>
-        <a class="downloadButton" >立即下载</a>
-        <a class="downloadpfx">开发者证书</a>
+        <div class="remark">
+            <section id="chineseRemark">它是好的，请下载。🙂</section>
+            <section id="englishRemark">It's good, please download it.</section>
+            <br><br>
+            <section id="chineseRemark">顺便说一句，别忘了下载证书并安装它。🤝</section>
+            <section id="englishRemark">By the way, don't forget to download the certificate and install it.</section>
+        </div>
+        <a class="downloadButton" download="otlog_1_0_3.appinstaller" href="./app/OTLog.Package.appinstaller">🐱‍💻立即下载</a>
+        <a class="downloadpfx" download="otlog签名证书.cer" href="./app/OTLog.Package_1.0.3.0_Test/OTLog.Package_1.0.3.0_x64.cer">签名证书🔑</a>
     </div>
 </body>
 
