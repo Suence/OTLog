@@ -9,8 +9,8 @@
              xmlns:viewmodels="clr-namespace:OTLog.Home.ViewModels"
              x:Class="OTLog.Home.Views.About"
              prism:ViewModelLocator.AutoWireViewModel="True"
-             d:DesignWidth="940"
-             d:DesignHeight="510">
+             d:DesignWidth="895"
+             d:DesignHeight="690">
     <UserControl.RenderTransform>
         <TranslateTransform Y="100" />
     </UserControl.RenderTransform>
@@ -72,7 +72,7 @@
                        Foreground="{DynamicResource App.Foreground2}"
                        VerticalAlignment="Top"
                        Margin="5"
-                       Text="版本 1.0.4"
+                       Text="版本 1.0.5"
                        FontSize="14" />
         </Grid>
         <StackPanel Margin="0, 10">
@@ -132,9 +132,9 @@
                                Height="200"
                                Source="pack://application:,,,/OTLog;component/Assets/Images/wechatQR.png" />
                         <Border.Effect>
-                            <DropShadowEffect Color="{Binding Source={x:Static modernWpf:ThemeManager.Current}, Path=AccentColor}" 
-                                              BlurRadius="20" 
-                                              ShadowDepth="0"/>
+                            <DropShadowEffect Color="{Binding Source={x:Static modernWpf:ThemeManager.Current}, Path=AccentColor}"
+                                              BlurRadius="20"
+                                              ShadowDepth="0" />
                         </Border.Effect>
                     </Border>
                 </Popup>
@@ -167,7 +167,27 @@
                        FontSize="18"
                        Margin="0, 0, 0, 20"
                        Foreground="{DynamicResource App.Foreground}" />
-            <StackPanel>
+            <StackPanel Margin="0, 0, 0, 8">
+                <TextBlock Text="1.0.5"
+                           FontWeight="SemiBold"
+                           FontSize="16"
+                           Foreground="{DynamicResource App.Foreground}" />
+                <TextBlock Text="◈ 修复了关于界面的发行说明和当前版本不匹配的问题"
+                           Margin="0, 4"
+                           FontSize="14"
+                           Foreground="{DynamicResource App.Foreground}" />
+            </StackPanel>
+            <StackPanel Margin="0, 0, 0, 8">
+                <TextBlock Text="1.0.4"
+                           FontWeight="SemiBold"
+                           FontSize="16"
+                           Foreground="{DynamicResource App.Foreground}" />
+                <TextBlock Text="◈ 修复了托盘菜单导航没有关闭当前对话框的问题"
+                           Margin="0, 4"
+                           FontSize="14"
+                           Foreground="{DynamicResource App.Foreground}" />
+            </StackPanel>
+            <StackPanel Margin="0, 0, 0, 8">
                 <TextBlock Text="1.0.0"
                            FontWeight="SemiBold"
                            FontSize="16"
