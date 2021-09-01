@@ -32,7 +32,8 @@
     <UserControl.Resources>
         <suence:ColorToSolidColorBrushConverter x:Key="ColorToBrush" />
     </UserControl.Resources>
-    <StackPanel>
+    <ScrollViewer>
+        <StackPanel>
         <TextBlock Grid.Row="1"
                    Text="版本信息"
                    FontSize="18"
@@ -209,4 +210,5 @@
             </StackPanel>
         </StackPanel>
     </StackPanel>
+    </ScrollViewer>
 </UserControl>
