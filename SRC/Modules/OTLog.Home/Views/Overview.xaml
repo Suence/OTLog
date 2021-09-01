@@ -294,7 +294,7 @@
                                             <ContextMenu modernWpf:ControlHelper.CornerRadius="0">
                                                 <MenuItem Header="编辑"
                                                           BorderThickness="0"
-                                                          Command="{Binding Source={StaticResource BindingProxy}, Path=Data.DeleteRecordCommand}"
+                                                          Command="{Binding Source={StaticResource BindingProxy}, Path=Data.EditRecordCommand}"
                                                           CommandParameter="{Binding}"
                                                           FontSize="14" />
                                                 <MenuItem Header="删除"
