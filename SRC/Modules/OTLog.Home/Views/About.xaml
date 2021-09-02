@@ -102,73 +102,80 @@
                            Click="GoToTheOfficialWebsite">https://github.com/Suence/OTLog</Hyperlink>
             </TextBlock>
         </StackPanel>
-        <StackPanel Margin="0, 10">
-            <TextBlock Text="如果您有任何疑问，请随时联系我"
-                       Foreground="{DynamicResource App.Foreground}"
-                       FontSize="18" />
-            <StackPanel Orientation="Horizontal"
-                        Margin="0, 8">
-                <Button x:Name="WeChatButton"
-                        Margin="5"
-                        Background="Transparent"
-                        Style="{DynamicResource Win10ButtonStyle}"
-                        Padding="0"
-                        Click="ShowWeChatQR"
-                        BorderThickness="0">
-                    <Image Source="pack://application:,,,/OTLog;component/Assets/Images/wechat.png"
-                           Width="50"
-                           Height="50" />
-                </Button>
-                <Popup x:Name="WeChatPopup"
-                       PlacementTarget="{Binding ElementName=WeChatButton}"
-                       AllowsTransparency="True"
-                       VerticalOffset="-8"
-                       PopupAnimation="Slide"
-                       StaysOpen="False"
-                       Placement="Top">
-                    <Border BorderBrush="{DynamicResource App.Foreground3}"
-                            BorderThickness="2"
-                            Margin="20">
-                        <Image Width="200"
-                               Height="200"
-                               Source="pack://application:,,,/OTLog;component/Assets/Images/wechatQR.png" />
-                        <Border.Effect>
-                            <DropShadowEffect Color="{Binding Source={x:Static modernWpf:ThemeManager.Current}, Path=AccentColor}"
-                                              BlurRadius="20"
-                                              ShadowDepth="0" />
-                        </Border.Effect>
-                    </Border>
-                </Popup>
-                <Button Margin="5"
-                        Background="Transparent"
-                        Style="{DynamicResource Win10ButtonStyle}"
-                        Padding="0"
-                        Click="SendEmail"
-                        BorderThickness="0">
-                    <Image Source="pack://application:,,,/OTLog;component/Assets/Images/outlook.png"
-                           Width="50"
-                           Height="50" />
-                </Button>
-                <Button Margin="5"
-                        Background="Transparent"
-                        Style="{DynamicResource Win10ButtonStyle}"
-                        Padding="0"
-                        Click="GoToGitHub"
-                        BorderThickness="0">
-                    <Image Source="pack://application:,,,/OTLog;component/Assets/Images/github.png"
-                           Width="49"
-                           Height="49" />
-                </Button>
+            <StackPanel Margin="0, 10">
+                <TextBlock Text="如果您有任何疑问，请随时联系我"
+                           Foreground="{DynamicResource App.Foreground}"
+                           FontSize="18" />
+                <StackPanel Orientation="Horizontal"
+                            Margin="0, 8">
+                    <Button x:Name="WeChatButton"
+                            Margin="5"
+                            Background="Transparent"
+                            Style="{DynamicResource Win10ButtonStyle}"
+                            Padding="0"
+                            Click="ShowWeChatQR"
+                            BorderThickness="0">
+                        <Image Source="pack://application:,,,/OTLog;component/Assets/Images/wechat.png"
+                               Width="50"
+                               Height="50" />
+                    </Button>
+                    <Popup x:Name="WeChatPopup"
+                           PlacementTarget="{Binding ElementName=WeChatButton}"
+                           AllowsTransparency="True"
+                           VerticalOffset="-8"
+                           PopupAnimation="Slide"
+                           StaysOpen="False"
+                           Placement="Top">
+                        <Border BorderBrush="{DynamicResource App.Foreground3}"
+                                BorderThickness="2"
+                                Margin="20">
+                            <Image Width="200"
+                                   Height="200"
+                                   Source="pack://application:,,,/OTLog;component/Assets/Images/wechatQR.png" />
+                            <Border.Effect>
+                                <DropShadowEffect Color="{Binding Source={x:Static modernWpf:ThemeManager.Current}, Path=AccentColor}"
+                                                  BlurRadius="20"
+                                                  ShadowDepth="0" />
+                            </Border.Effect>
+                        </Border>
+                    </Popup>
+                    <Button Margin="5"
+                            Background="Transparent"
+                            Style="{DynamicResource Win10ButtonStyle}"
+                            Padding="0"
+                            Click="SendEmail"
+                            BorderThickness="0">
+                        <Image Source="pack://application:,,,/OTLog;component/Assets/Images/outlook.png"
+                               Width="50"
+                               Height="50" />
+                    </Button>
+                    <Button Margin="5"
+                            Background="Transparent"
+                            Style="{DynamicResource Win10ButtonStyle}"
+                            Padding="0"
+                            Click="GoToGitHub"
+                            BorderThickness="0">
+                        <Image Source="pack://application:,,,/OTLog;component/Assets/Images/github.png"
+                               Width="49"
+                               Height="49" />
+                    </Button>
+                </StackPanel>
             </StackPanel>
-        </StackPanel>
-        <StackPanel Grid.Row="3"
+            <StackPanel Grid.Row="3"
                     Margin="0, 10">
-            <TextBlock Grid.Row="1"
-                       Text="发行说明"
-                       FontSize="18"
-                       Margin="0, 0, 0, 20"
-                       Foreground="{DynamicResource App.Foreground}" />
-            <StackPanel Margin="0, 0, 0, 8">
+                <TextBlock Grid.Row="1"
+                           FontSize="18"
+                           Margin="0, 0, 0, 20"
+                           Foreground="{DynamicResource App.Foreground}">
+                    <Run Text="发行说明 [" />
+                    <Hyperlink NavigateUri="https://github.com/Suence/OTLog/projects/1"
+                                Foreground="{suence:BindingWithDesignSupport {Binding Source={x:Static modernWpf:ThemeManager.Current}, Path=AccentColor, Converter={StaticResource ColorToBrush}}}"
+                                d:Foreground="DarkMagenta"
+                               FontSize="16"
+                                Click="GoToTheOfficialWebsite">后续开发计划</Hyperlink>
+                    <Run Text="]" />
+                </TextBlock>
+                <StackPanel Margin="0, 0, 0, 8">
                 <TextBlock Text="1.0.6"
                            FontWeight="SemiBold"
                            FontSize="16"
