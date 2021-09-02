@@ -36,7 +36,7 @@ namespace OTLog.Core.Utils
                 Path.Combine(
                     Environment.GetFolderPath(
                         Environment.SpecialFolder.LocalApplicationData),
-                    $"SuenceSoft/OTLog/");
+                    $"Suencesoft/OTLog/");
             SettingsFileFullPath = Path.Combine(_basePath, "settings.json");
             DataFileFullPath = Path.Combine(_basePath, "data.json");
             OTRecordTodoFileFullPath = Path.Combine(_basePath, "todo.json");
