@@ -3,7 +3,9 @@
                     xmlns:tb="http://www.hardcodet.net/taskbar"
                     xmlns:prism="http://prismlibrary.com/"
                     xmlns:constants="clr-namespace:OTLog.Core.Constants;assembly=OTLog.Core"
+                    xmlns:gb="clr-namespace:OTLog.Core.StaticObjects;assembly=OTLog.Core"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:am="clr-namespace:Windows.ApplicationModel;assembly=Microsoft.Windows.SDK.NET"
                     xmlns:vm="clr-namespace:OTLog.ViewModels">
     <ContextMenu x:Shared="false"
                  x:Key="SysTrayMenu">
@@ -25,7 +27,7 @@
 
     <tb:TaskbarIcon x:Key="NotifyIcon"
                     IconSource="/Assets/Icons/OTLog.ico"
-                    ToolTipText="OTLog v1.0.1"
+                    ToolTipText="{Binding Source={x:Static gb:GlobalObjectHolder.Version}, StringFormat=OTLog v{0}}"
                     DoubleClickCommand="{Binding ShowWindowCommand}"
                     ContextMenu="{StaticResource SysTrayMenu}">
         <!--<tb:TaskbarIcon.DataContext>

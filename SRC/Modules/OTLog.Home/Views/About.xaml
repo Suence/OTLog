@@ -8,6 +8,7 @@
              xmlns:modernWpf="http://schemas.modernwpf.com/2019"
              xmlns:viewmodels="clr-namespace:OTLog.Home.ViewModels"
              x:Class="OTLog.Home.Views.About"
+             xmlns:gb="clr-namespace:OTLog.Core.StaticObjects;assembly=OTLog.Core"
              prism:ViewModelLocator.AutoWireViewModel="True"
              d:DesignWidth="895"
              d:DesignHeight="690">
@@ -73,7 +74,8 @@
                            Foreground="{DynamicResource App.Foreground2}"
                            VerticalAlignment="Top"
                            Margin="5"
-                           Text="版本 1.0.8"
+                           Text="{suence:BindingWithDesignSupport {Binding Source={x:Static gb:GlobalObjectHolder.Version}, StringFormat=版本 {0}}}"
+                           d:Text="版本 X.X.X"
                            FontSize="14" />
             </Grid>
             <StackPanel Margin="0, 10">

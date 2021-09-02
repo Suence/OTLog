@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Windows.Media;
+using Windows.ApplicationModel;
 
 namespace OTLog.Core.StaticObjects
 {
@@ -13,8 +14,12 @@ namespace OTLog.Core.StaticObjects
     {
         public static Config Config { get; set; }
         public const string StartupTaskId = "OTLog";
+        public static string Version { get; }
+
         static GlobalObjectHolder()
         {
+            var versionInfo = Package.Current.Id.Version;
+            Version = $"{versionInfo.Major}.{versionInfo.Minor}.{versionInfo.Build}";
             ThemeColors = new List<ThemeColor>
             {
                 new ThemeColor(Color.FromRgb(255, 185, 0), "黄金色"),
