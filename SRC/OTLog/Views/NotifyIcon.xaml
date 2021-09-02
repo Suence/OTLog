@@ -25,7 +25,7 @@
 
     <tb:TaskbarIcon x:Key="NotifyIcon"
                     IconSource="/Assets/Icons/OTLog.ico"
-                    ToolTipText="OTLog v1.0.1"
+                    ToolTipText="OTLog vX.X.X"
                     DoubleClickCommand="{Binding ShowWindowCommand}"
                     ContextMenu="{StaticResource SysTrayMenu}">
         <!--<tb:TaskbarIcon.DataContext>
