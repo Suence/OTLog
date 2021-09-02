@@ -18,6 +18,7 @@
         Closing="Window_Closing"
         Loaded="Window_Loaded"
         ResizeMode="CanResizeWithGrip"
+        StateChanged="Window_StateChanged"
         Title="{Binding Title}"
         MinHeight="400"
         MinWidth="500"
@@ -169,6 +170,36 @@
                                     Height="24">
                                 <Path Fill="{DynamicResource App.Foreground2}"
                                       Data="M19,13H5V11H19V13Z" />
+                            </Canvas>
+                        </Viewbox>
+                    </Button.Content>
+                </Button>
+                <Button x:Name="WindowRestoreButton" Width="47"
+                        IsTabStop="False"
+                        BorderThickness="0"
+                        Foreground="{DynamicResource App.Foreground}"
+                        FontWeight="Bold"
+                        ToolTip="还原"
+                        Visibility="Collapsed"
+                        Style="{DynamicResource AppTitleButtonStyle}"
+                        suence:ButtonBrush.ButtonPressBackground="{DynamicResource AppTitleButton.Pressed.Background}"
+                        suence:ButtonBrush.ButtonMouseOverBackground="{DynamicResource App.Background2}"
+                        FontFamily="Segoe MDL2 Assets"
+                        FontSize="15">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Click">
+                            <i:ChangePropertyAction TargetObject="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Window}}}"
+                                                    PropertyName="WindowState"
+                                                    Value="Normal" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    <Button.Content>
+                        <Viewbox Width="20"
+                                 Height="20">
+                            <Canvas Width="24"
+                                    Height="24">
+                                <Path Fill="{DynamicResource App.Foreground2}"
+                                      Data="M4,8H8V4H20V16H16V20H4V8M16,8V14H18V6H10V8H16M6,12V18H14V12H6Z" />
                             </Canvas>
                         </Viewbox>
                     </Button.Content>

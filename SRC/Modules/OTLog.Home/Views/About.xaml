@@ -73,7 +73,7 @@
                            Foreground="{DynamicResource App.Foreground2}"
                            VerticalAlignment="Top"
                            Margin="5"
-                           Text="版本 1.0.7"
+                           Text="版本 1.0.8"
                            FontSize="14" />
             </Grid>
             <StackPanel Margin="0, 10">
@@ -175,6 +175,16 @@
                                Click="GoToTheOfficialWebsite">后续开发计划</Hyperlink>
                     <Run Text="]" />
                 </TextBlock>
+                <StackPanel Margin="0, 0, 0, 8">
+                    <TextBlock Text="1.0.8"
+                               FontWeight="SemiBold"
+                               FontSize="16"
+                               Foreground="{DynamicResource App.Foreground}" />
+                    <TextBlock Text="◈ 添加窗口还原按钮"
+                               Margin="0, 4"
+                               FontSize="14"
+                               Foreground="{DynamicResource App.Foreground}" />
+                </StackPanel>
                 <StackPanel Margin="0, 0, 0, 8">
                     <TextBlock Text="1.0.7"
                                FontWeight="SemiBold"

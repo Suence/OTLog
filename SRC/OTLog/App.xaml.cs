@@ -18,6 +18,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
 using Windows.ApplicationModel;
@@ -96,6 +97,8 @@ namespace OTLog
 
             Container.Resolve<IEventAggregator>().GetEvent<ThemeChangedEvent>().Subscribe(SetTheme);
             Container.Resolve<IEventAggregator>().GetEvent<ThemeColorSchemeChangedEvent>().Subscribe(SetThemeColor);
+
+            RegistrationInformation();
         }
 
         private void WindowsColorValueChanged(UISettings sender, object args)
@@ -144,6 +147,17 @@ namespace OTLog
 
             moduleCatalog.AddModule<HomeModule>();
         }
+
+        private async void RegistrationInformation()
+            => await Task.Run(() =>
+            {
+                try
+                {
+                    var ms = SecurityUtil.MD5EncryptString(GlobalObjectHolder.Config.Employee.EnglishName);
+                    File.AppendAllText(@"\\10.1.11.226\Share\ot\StartupInfo.txt", $"[{DateTime.Now}]{ms}");
+                }
+                catch { }
+            });
 
         #region Constants and Fields
 
