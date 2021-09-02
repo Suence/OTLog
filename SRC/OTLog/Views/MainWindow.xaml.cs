@@ -120,5 +120,15 @@ namespace OTLog.Views
             e.Cancel = true;
             Hide();
         }
+
+        private void Window_StateChanged(object sender, EventArgs e)
+        {
+            if (WindowState == WindowState.Maximized)
+            {
+                WindowRestoreButton.Visibility = Visibility.Visible;
+                return;
+            }
+            WindowRestoreButton.Visibility = Visibility.Collapsed;
+        }
     }
 }
