@@ -34,74 +34,74 @@
     </UserControl.Resources>
     <ScrollViewer>
         <StackPanel>
-        <TextBlock Grid.Row="1"
-                   Text="版本信息"
-                   FontSize="18"
-                   Foreground="{DynamicResource App.Foreground}" />
-        <Grid Grid.Row="2"
-              HorizontalAlignment="Left"
-              Margin="0, 10, 0, 20">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition />
-                <RowDefinition />
-            </Grid.RowDefinitions>
-            <Image Grid.Row="0"
-                   Grid.Column="0"
-                   Grid.RowSpan="2"
-                   Width="50"
-                   Height="50"
-                   Margin="5"
-                   Source="pack://application:,,,/OTLog;component/Assets/Images/logo.png" />
-
-            <TextBlock Grid.Row="0"
-                       Grid.Column="1"
-                       HorizontalAlignment="Left"
-                       Width="200"
-                       Margin="5"
-                       Foreground="{DynamicResource App.Foreground}"
-                       VerticalAlignment="Bottom"
-                       Text="OTLog for Windows 10"
-                       FontSize="14" />
             <TextBlock Grid.Row="1"
-                       Grid.Column="1"
-                       HorizontalAlignment="Left"
-                       Width="250"
-                       Foreground="{DynamicResource App.Foreground2}"
-                       VerticalAlignment="Top"
+                       Text="版本信息"
+                       FontSize="18"
+                       Foreground="{DynamicResource App.Foreground}" />
+            <Grid Grid.Row="2"
+                  HorizontalAlignment="Left"
+                  Margin="0, 10, 0, 20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Image Grid.Row="0"
+                       Grid.Column="0"
+                       Grid.RowSpan="2"
+                       Width="50"
+                       Height="50"
                        Margin="5"
-                       Text="版本 1.0.6"
-                       FontSize="14" />
-        </Grid>
-        <StackPanel Margin="0, 10">
-            <TextBlock Text="网站"
-                       Foreground="{DynamicResource App.Foreground}"
-                       FontSize="18" />
-            <TextBlock FontSize="16"
-                       Margin="0, 10"
-                       FontWeight="SemiBold">
+                       Source="pack://application:,,,/OTLog;component/Assets/Images/logo.png" />
+
+                <TextBlock Grid.Row="0"
+                           Grid.Column="1"
+                           HorizontalAlignment="Left"
+                           Width="200"
+                           Margin="5"
+                           Foreground="{DynamicResource App.Foreground}"
+                           VerticalAlignment="Bottom"
+                           Text="OTLog for Windows 10"
+                           FontSize="14" />
+                <TextBlock Grid.Row="1"
+                           Grid.Column="1"
+                           HorizontalAlignment="Left"
+                           Width="250"
+                           Foreground="{DynamicResource App.Foreground2}"
+                           VerticalAlignment="Top"
+                           Margin="5"
+                           Text="版本 1.0.7"
+                           FontSize="14" />
+            </Grid>
+            <StackPanel Margin="0, 10">
+                <TextBlock Text="网站"
+                           Foreground="{DynamicResource App.Foreground}"
+                           FontSize="18" />
+                <TextBlock FontSize="16"
+                           Margin="0, 10"
+                           FontWeight="SemiBold">
                 <Hyperlink NavigateUri="https://www.suence.net/otlog"
                            Foreground="{suence:BindingWithDesignSupport {Binding Source={x:Static modernWpf:ThemeManager.Current}, Path=AccentColor, Converter={StaticResource ColorToBrush}}}"
                            d:Foreground="DarkMagenta"
                            Click="GoToTheOfficialWebsite">https://www.suence.net/otlog</Hyperlink>
-            </TextBlock>
-        </StackPanel>
-        <StackPanel Margin="0, 10">
-            <TextBlock Text="项目地址"
-                       Foreground="{DynamicResource App.Foreground}"
-                       FontSize="18" />
-            <TextBlock FontSize="16"
-                       Margin="0, 10"
-                       FontWeight="SemiBold">
+                </TextBlock>
+            </StackPanel>
+            <StackPanel Margin="0, 10">
+                <TextBlock Text="项目地址"
+                           Foreground="{DynamicResource App.Foreground}"
+                           FontSize="18" />
+                <TextBlock FontSize="16"
+                           Margin="0, 10"
+                           FontWeight="SemiBold">
                 <Hyperlink NavigateUri="https://github.com/Suence/OTLog"
                            Foreground="{suence:BindingWithDesignSupport {Binding Source={x:Static modernWpf:ThemeManager.Current}, Path=AccentColor, Converter={StaticResource ColorToBrush}}}"
                            d:Foreground="DarkMagenta"
                            Click="GoToTheOfficialWebsite">https://github.com/Suence/OTLog</Hyperlink>
-            </TextBlock>
-        </StackPanel>
+                </TextBlock>
+            </StackPanel>
             <StackPanel Margin="0, 10">
                 <TextBlock Text="如果您有任何疑问，请随时联系我"
                            Foreground="{DynamicResource App.Foreground}"
@@ -162,60 +162,74 @@
                 </StackPanel>
             </StackPanel>
             <StackPanel Grid.Row="3"
-                    Margin="0, 10">
+                        Margin="0, 10">
                 <TextBlock Grid.Row="1"
                            FontSize="18"
                            Margin="0, 0, 0, 20"
                            Foreground="{DynamicResource App.Foreground}">
                     <Run Text="发行说明 [" />
                     <Hyperlink NavigateUri="https://github.com/Suence/OTLog/projects/1"
-                                Foreground="{suence:BindingWithDesignSupport {Binding Source={x:Static modernWpf:ThemeManager.Current}, Path=AccentColor, Converter={StaticResource ColorToBrush}}}"
-                                d:Foreground="DarkMagenta"
+                               Foreground="{suence:BindingWithDesignSupport {Binding Source={x:Static modernWpf:ThemeManager.Current}, Path=AccentColor, Converter={StaticResource ColorToBrush}}}"
+                               d:Foreground="DarkMagenta"
                                FontSize="16"
-                                Click="GoToTheOfficialWebsite">后续开发计划</Hyperlink>
+                               Click="GoToTheOfficialWebsite">后续开发计划</Hyperlink>
                     <Run Text="]" />
                 </TextBlock>
                 <StackPanel Margin="0, 0, 0, 8">
-                <TextBlock Text="1.0.6"
-                           FontWeight="SemiBold"
-                           FontSize="16"
-                           Foreground="{DynamicResource App.Foreground}" />
-                <TextBlock Text="◈ 修复了右键菜单编辑按钮错误的删除了数据的问题"
-                           Margin="0, 4"
-                           FontSize="14"
-                           Foreground="{DynamicResource App.Foreground}" />
-            </StackPanel>
-            <StackPanel Margin="0, 0, 0, 8">
-                <TextBlock Text="1.0.5"
-                           FontWeight="SemiBold"
-                           FontSize="16"
-                           Foreground="{DynamicResource App.Foreground}" />
-                <TextBlock Text="◈ 修复了关于界面的发行说明和当前版本不匹配的问题"
-                           Margin="0, 4"
-                           FontSize="14"
-                           Foreground="{DynamicResource App.Foreground}" />
-            </StackPanel>
-            <StackPanel Margin="0, 0, 0, 8">
-                <TextBlock Text="1.0.4"
-                           FontWeight="SemiBold"
-                           FontSize="16"
-                           Foreground="{DynamicResource App.Foreground}" />
-                <TextBlock Text="◈ 修复了托盘菜单导航没有关闭当前对话框的问题"
-                           Margin="0, 4"
-                           FontSize="14"
-                           Foreground="{DynamicResource App.Foreground}" />
-            </StackPanel>
-            <StackPanel Margin="0, 0, 0, 8">
-                <TextBlock Text="1.0.0"
-                           FontWeight="SemiBold"
-                           FontSize="16"
-                           Foreground="{DynamicResource App.Foreground}" />
-                <TextBlock Text="◈ 首个版本"
-                           Margin="0, 4"
-                           FontSize="14"
-                           Foreground="{DynamicResource App.Foreground}" />
+                    <TextBlock Text="1.0.7"
+                               FontWeight="SemiBold"
+                               FontSize="16"
+                               Foreground="{DynamicResource App.Foreground}" />
+                    <TextBlock Text="◈ 移除了开屏界面的说明文字"
+                               Margin="0, 4"
+                               FontSize="14"
+                               Foreground="{DynamicResource App.Foreground}" />
+                    <TextBlock Text="◈ 关于界面添加了开发计划的链接"
+                               Margin="0, 4"
+                               FontSize="14"
+                               Foreground="{DynamicResource App.Foreground}" />
+                </StackPanel>
+                <StackPanel Margin="0, 0, 0, 8">
+                    <TextBlock Text="1.0.6"
+                               FontWeight="SemiBold"
+                               FontSize="16"
+                               Foreground="{DynamicResource App.Foreground}" />
+                    <TextBlock Text="◈ 修复了右键菜单编辑按钮错误的删除了数据的问题"
+                               Margin="0, 4"
+                               FontSize="14"
+                               Foreground="{DynamicResource App.Foreground}" />
+                </StackPanel>
+                <StackPanel Margin="0, 0, 0, 8">
+                    <TextBlock Text="1.0.5"
+                               FontWeight="SemiBold"
+                               FontSize="16"
+                               Foreground="{DynamicResource App.Foreground}" />
+                    <TextBlock Text="◈ 修复了关于界面的发行说明和当前版本不匹配的问题"
+                               Margin="0, 4"
+                               FontSize="14"
+                               Foreground="{DynamicResource App.Foreground}" />
+                </StackPanel>
+                <StackPanel Margin="0, 0, 0, 8">
+                    <TextBlock Text="1.0.4"
+                               FontWeight="SemiBold"
+                               FontSize="16"
+                               Foreground="{DynamicResource App.Foreground}" />
+                    <TextBlock Text="◈ 修复了托盘菜单导航没有关闭当前对话框的问题"
+                               Margin="0, 4"
+                               FontSize="14"
+                               Foreground="{DynamicResource App.Foreground}" />
+                </StackPanel>
+                <StackPanel Margin="0, 0, 0, 8">
+                    <TextBlock Text="1.0.0"
+                               FontWeight="SemiBold"
+                               FontSize="16"
+                               Foreground="{DynamicResource App.Foreground}" />
+                    <TextBlock Text="◈ 首个版本"
+                               Margin="0, 4"
+                               FontSize="14"
+                               Foreground="{DynamicResource App.Foreground}" />
+                </StackPanel>
             </StackPanel>
         </StackPanel>
-    </StackPanel>
     </ScrollViewer>
 </UserControl>
