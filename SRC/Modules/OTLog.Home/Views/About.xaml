@@ -178,6 +178,16 @@
                     <Run Text="]" />
                 </TextBlock>
                 <StackPanel Margin="0, 0, 0, 8">
+                    <TextBlock Text="1.0.9"
+                               FontWeight="SemiBold"
+                               FontSize="16"
+                               Foreground="{DynamicResource App.Foreground}" />
+                    <TextBlock Text="◈ 简化通知显示内容"
+                               Margin="0, 4"
+                               FontSize="14"
+                               Foreground="{DynamicResource App.Foreground}" />
+                </StackPanel>
+                <StackPanel Margin="0, 0, 0, 8">
                     <TextBlock Text="1.0.8"
                                FontWeight="SemiBold"
                                FontSize="16"
